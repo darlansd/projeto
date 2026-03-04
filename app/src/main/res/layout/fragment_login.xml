@@ -1,0 +1,127 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Fragments.Fragment_login"
+    tools:layout_editor_absoluteX="-1dp"
+    tools:layout_editor_absoluteY="187dp"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/custom_linear"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_marginTop="38dp"
+            android:layout_marginStart="30dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:text="Vamos Criar Sua Conta"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edt_userName"
+        android:layout_width="330dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="300dp"
+        android:drawableStart="@drawable/change_user"
+        android:ems="10"
+        android:background="@drawable/custom_input"
+        android:paddingEnd="12dp"
+        android:paddingStart="25dp"
+        android:drawablePadding="12dp"
+        android:hint="Nome Completo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edt_EmailAddress"
+        android:layout_width="330dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="15dp"
+        android:drawableStart="@drawable/change_email"
+        android:ems="20"
+        android:background="@drawable/custom_input"
+        android:paddingEnd="12dp"
+        android:paddingStart="25dp"
+        android:drawablePadding="12dp"
+        android:hint="Email de acesso"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_userName" />
+
+    <EditText
+        android:id="@+id/edt_password"
+        android:layout_width="330dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="15dp"
+        android:drawableStart="@drawable/change_senha"
+        android:ems="10"
+        android:background="@drawable/custom_input"
+        android:paddingEnd="12dp"
+        android:paddingStart="25dp"
+        android:drawablePadding="12dp"
+        android:hint="Senha"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_EmailAddress" />
+
+    <EditText
+        android:id="@+id/edt_password_confirmation"
+        android:layout_width="330dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="15dp"
+        android:drawableStart="@drawable/change_senha"
+        android:ems="10"
+        android:background="@drawable/custom_input"
+        android:paddingEnd="12dp"
+        android:paddingStart="25dp"
+        android:drawablePadding="12dp"
+        android:hint="Confirmaçao de Senha"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_password" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="149dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="38dp"
+        android:text="Concorda com os "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_password_confirmation" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="266dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="35dp"
+        android:text="Continuar "
+        android:textSize="20sp"
+        android:backgroundTint="@color/green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
