@@ -7,10 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import Fragments.Fragment_login;
+import Fragments.Fragment_tela_inicial;
+import Fragments.Fragment_cadastro;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.frame_principal,new Fragment_login());
+        transaction.add(R.id.frame_principal,new Fragment_tela_inicial());
         transaction.commit();
     }
 }

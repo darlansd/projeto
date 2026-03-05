@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Fragments.Fragment_login"
+    tools:context="Fragments.Fragment_cadastro"
     tools:layout_editor_absoluteX="-1dp"
     tools:layout_editor_absoluteY="187dp"
     >
@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="@drawable/custom_linear"
+        android:background="@drawable/custom_linear_cadastro"
         app:layout_constraintTop_toTopOf="parent" >
 
         <TextView

@@ -9,13 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.appnoticia.R;
-public class Fragment_login extends Fragment {
+public class Fragment_cadastro extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_cadastro, container, false);
 
         return view;
     }

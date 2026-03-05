@@ -4,11 +4,16 @@
     <color name="black">#FF000000</color>
     <color name="my_light_primary">#800080</color>
     <color name="grey">#808080</color>
+    <color name="white">#FFFFFF</color>
     <color name="green">#00674F</color>
+    <color name="light_green">#82aaa2</color>
+    <color name="letter">#487068</color>
+    <color name="start_gradient_button_inicial">#4e8178</color>
+    <color name="end_gradient_button_inicial">#2c5f56</color>
+    <color name="cadastrar_button_inicial">#bed2d0</color>
 
     <!-- night colors -->
     <color name="my_night_primary">#800080</color>
-    <color name="white">#FFFFFF</color>
     <color name="fodase">#7F00FF</color>
 
 </resources>
