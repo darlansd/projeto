@@ -39,7 +39,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        btn_entrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), segunda_activity.class);
+                intent.putExtra("SHOW_FRAGMENT",1);
+                startActivity(intent);
+            }
+        });
 
 
         //FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

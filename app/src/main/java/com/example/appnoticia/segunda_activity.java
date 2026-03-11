@@ -36,7 +36,11 @@ public class segunda_activity extends AppCompatActivity {
                 cadastrar.commit();
             break;
 
-
+            case 1:
+                FragmentTransaction entrar = getSupportFragmentManager().beginTransaction();
+                entrar.replace(R.id.frame_principal_2,new Fragment_entrar());
+                entrar.commit();
+            break;
         }
 
 
