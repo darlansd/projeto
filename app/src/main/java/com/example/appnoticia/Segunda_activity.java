@@ -1,6 +1,7 @@
 package com.example.appnoticia;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -10,7 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import Fragments.Fragment_cadastro;
 import Fragments.Fragment_entrar;
 
-public class segunda_activity extends AppCompatActivity {
+public class Segunda_activity extends AppCompatActivity {
 
     Button btn_cadastrar;
     int show_fragment;
@@ -40,6 +41,11 @@ public class segunda_activity extends AppCompatActivity {
                 FragmentTransaction entrar = getSupportFragmentManager().beginTransaction();
                 entrar.replace(R.id.frame_principal_2,new Fragment_entrar());
                 entrar.commit();
+            break;
+
+            case 3:
+                startActivity(new Intent(getApplicationContext(), Activity_tela_inicio.class));
+                finish();
             break;
         }
 

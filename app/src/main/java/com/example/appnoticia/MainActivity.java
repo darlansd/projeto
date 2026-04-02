@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,9 +13,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import Models.Configuracao_firebase;
+import Models.Usuarios;
+
 public class MainActivity extends AppCompatActivity {
 
+    TextView name_confirmation;
     Button btn_cadastrar,btn_entrar;
+    Usuarios user = new Usuarios();
+    FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,25 +38,55 @@ public class MainActivity extends AppCompatActivity {
 
         btn_cadastrar = findViewById(R.id.btn_casdastrar);
         btn_entrar = findViewById(R.id.btn_entrar);
+        name_confirmation = findViewById(R.id.textView5);
 
 
-        btn_cadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), segunda_activity.class);
-                intent.putExtra("SHOW_FRAGMENT",0);
-                startActivity(intent);
-            }
-        });
+
+        //tentando verificar se ha algum usario logado
+        if(auth.getCurrentUser() != null){
+            //usario logado
+            name_confirmation.setText(user.getNome());
+            name_confirmation.setVisibility(View.VISIBLE);
+
+
+        }else{
+            //ninguem logado
+            Toast.makeText(this,"nao logado",Toast.LENGTH_SHORT).show();
+        }
 
         btn_entrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), segunda_activity.class);
-                intent.putExtra("SHOW_FRAGMENT",1);
-                startActivity(intent);
+
+                //tentando fazer com que se um usuario tiver logado nao faça o login
+
+                if (auth.getCurrentUser() != null) {
+
+                    Toast.makeText(getApplicationContext(),"voce ja tava logado " + user.getNome(), Toast.LENGTH_SHORT).show();
+
+                    startActivity(new Intent(getApplicationContext(), Activity_tela_inicio.class));
+
+                }else{
+                    Intent intent = new Intent(getApplicationContext(), Segunda_activity.class);
+                    intent.putExtra("SHOW_FRAGMENT",1);
+                    startActivity(intent);
+                }
+
             }
         });
+
+        btn_cadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), Segunda_activity.class);
+                intent.putExtra("SHOW_FRAGMENT", 0);
+                startActivity(intent);
+
+
+            }
+        });
+
 
 
         //FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

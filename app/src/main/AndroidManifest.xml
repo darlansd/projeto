@@ -12,7 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/DayAndNight.Theme.AppNoticia">
         <activity
-            android:name=".segunda_activity"
+            android:name=".activity_tela_inicio"
+            android:exported="false" />
+        <activity
+            android:name=".Activity_tela_inicio"
+            android:exported="false" />
+        <activity
+            android:name=".Segunda_activity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
