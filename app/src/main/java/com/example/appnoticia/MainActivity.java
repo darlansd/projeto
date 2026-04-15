@@ -40,13 +40,12 @@ public class MainActivity extends AppCompatActivity {
         btn_entrar = findViewById(R.id.btn_entrar);
         name_confirmation = findViewById(R.id.textView5);
 
-
+        auth.signOut();
 
         //tentando verificar se ha algum usario logado
         if(auth.getCurrentUser() != null){
             //usario logado
-            name_confirmation.setText(user.getNome());
-            name_confirmation.setVisibility(View.VISIBLE);
+
 
 
         }else{

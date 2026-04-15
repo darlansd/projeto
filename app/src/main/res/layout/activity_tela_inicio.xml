@@ -7,13 +7,138 @@
     android:layout_height="match_parent"
     tools:context=".Activity_tela_inicio">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="335dp"
-        android:text="TELA INICIO"
+        android:background="@drawable/custom_btn_tela_inicio"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:elevation="21dp"
+        android:paddingTop="20dp"
+        app:menu="@menu/menu_tela_inicio"
+        app:title="nao seio"
+        app:titleTextColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:background="@drawable/custom_linear_tela_inicio"
+        android:elevation="10dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/txt_tela_inicio"
+            android:layout_width="175dp"
+            android:layout_height="154dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="80dp"
+            android:text="Oque Você Procura?"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_adote"
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/btn_background"
+        android:gravity="center"
+        android:text="Adote um pet"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        android:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_denuncia"
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/btn_background"
+        android:gravity="center"
+        android:text="Disk Denúncia"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        android:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_adote" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_castraçao"
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/btn_background"
+        android:gravity="center|end"
+        android:paddingEnd="10dp"
+        android:text="Vermifugaçao e Castração"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        android:elevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_denuncia" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_adote"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="76dp"
+        android:scaleType="centerCrop"
+        android:elevation="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+        app:srcCompat="@drawable/adote" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_denuncia"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:scaleType="centerCrop"
+        android:elevation="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_adote"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+        app:srcCompat="@drawable/denuncia" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_castracao"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:scaleType="centerCrop"
+        android:elevation="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_denuncia"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+        app:srcCompat="@drawable/castracao">
+    </com.google.android.material.imageview.ShapeableImageView>
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
