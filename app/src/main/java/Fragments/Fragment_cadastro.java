@@ -109,11 +109,11 @@ public class Fragment_cadastro extends Fragment {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
+
                     users.setUid(task.getResult().getUser().getUid());
                     users.uploadtodatabase();
 
-                    Intent tela_inicio = new Intent(getContext(), Activity_tela_inicio.class);
-                    startActivity(tela_inicio);
+                    startActivity(new Intent(getContext(), Activity_tela_inicio.class));
                     getActivity().finish();
 
                     Toast.makeText(getContext(), "cadastro concluido", Toast.LENGTH_SHORT).show();

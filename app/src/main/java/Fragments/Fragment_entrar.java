@@ -51,9 +51,6 @@ public class Fragment_entrar extends Fragment {
             @Override
             public void onClick(View v) {
 
-                email = edt_email.getText().toString();
-                senha = edt_senha.getText().toString();
-
                 Toast.makeText(getContext(), "Entrando ...", Toast.LENGTH_SHORT).show();
 
                 if (auth.getCurrentUser() != null) {
@@ -72,13 +69,27 @@ public class Fragment_entrar extends Fragment {
         return view;
     }
 
-    private void validarLogin(){
+    private void validarLogin() {
+
+        email = edt_email.getText().toString();
+        senha = edt_senha.getText().toString();
+
+        if (!email.isEmpty()) {
+            if (!senha.isEmpty()) {
+
+                user.setEmail(email);
+                user.setSenha(senha);
+
+
+            } else {
+                Toast.makeText(getContext(), "Preecha o Campo De Senha", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getContext(), "Preecha o Campo De Email", Toast.LENGTH_SHORT).show();
+        }
 
     }
     private void logar() {
-
-        user.setEmail(email);
-        user.setSenha(senha);
 
         auth.signInWithEmailAndPassword(user.getEmail(), user.getSenha()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -87,21 +98,23 @@ public class Fragment_entrar extends Fragment {
 
                     Toast.makeText(getContext(), "bem vindo de volta ", Toast.LENGTH_SHORT).show();
 
-                    Intent tela_inicio = new Intent(getContext(), Activity_tela_inicio.class);
-                    startActivity(tela_inicio);
+                    startActivity(new Intent(getContext(), Activity_tela_inicio.class));
                     getActivity().finish();
 
                 } else {
                     String execao = "";
 
-                    try {
+                    try {//vai tentar capturar as exeçoes que o objeto task pode lançar
                         throw (task.getException());
                     } catch (FirebaseAuthInvalidUserException e) {
                         execao = "Email Nao existe no Banco De Dados";
                     } catch (FirebaseAuthInvalidCredentialsException e) {
-                        execao = "Senha Errada";
+                        execao = "Email ou Senha Esta Errado";
                     } catch (Exception e) {
                         execao = "Erro ao Logar" + e.getMessage();
+
+                        //printa o erro no log
+                        e.printStackTrace();
                     }
 
                     Toast.makeText(getContext(), execao, Toast.LENGTH_SHORT).show();

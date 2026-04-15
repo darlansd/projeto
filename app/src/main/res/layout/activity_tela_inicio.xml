@@ -11,12 +11,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_btn_tela_inicio"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        android:elevation="21dp"
+        android:background="@drawable/gradient_light_green_dark_green"
         android:paddingTop="20dp"
-        app:menu="@menu/menu_tela_inicio"
         app:title="nao seio"
         app:titleTextColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,15 +28,14 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <TextView
             android:id="@+id/txt_tela_inicio"
             android:layout_width="175dp"
             android:layout_height="154dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="45dp"
             android:text="Oque Você Procura?"
             android:textColor="@color/white"
             android:textSize="40sp"
@@ -58,7 +53,7 @@
         android:text="Adote um pet"
         android:textColor="@color/white"
         android:textSize="19sp"
-        android:elevation="0dp"
+        app:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.647"
         app:layout_constraintStart_toStartOf="parent"

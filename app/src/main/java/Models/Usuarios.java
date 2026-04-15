@@ -6,7 +6,7 @@ import com.google.firebase.database.Exclude;
 public class Usuarios {
 
     private String uid, nome, email, senha;
-    DatabaseReference refFire,salvar_usuario;
+    DatabaseReference refFire,salvar_dados_usuario;
 
 
 
@@ -18,11 +18,11 @@ public class Usuarios {
         refFire = Configuracao_firebase.getfirebasedatabase();
 
         //nesse atributo eu passo um metodo de criar 2 nós no realtime database
-        salvar_usuario = refFire.child("USUARIOS").child(getUid());
+        salvar_dados_usuario = refFire.child("USUARIOS").child(getUid());
 
-        //e dentro do ultimo nó eu salvo os atributos dessa classe
-        salvar_usuario.child("NOME").setValue(getNome());
-        salvar_usuario.child("E-MAIL").setValue(getEmail());
+        //e dentro do ultimo nó (uid) salvo os atributos dessa classe (nome, email)
+        salvar_dados_usuario.child("NOME").setValue(this.nome);
+        salvar_dados_usuario.child("E-MAIL").setValue(this.email);
 
     }
 
@@ -51,7 +51,7 @@ public class Usuarios {
         this.email = email;
     }
 
-    @Exclude
+    @Exclude //anotaçao do propria firebase pra nao salvar no banco de dados
     public String getSenha() {
         return senha;
     }
