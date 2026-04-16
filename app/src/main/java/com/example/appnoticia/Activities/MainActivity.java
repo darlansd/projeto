@@ -84,11 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-        //FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        //transaction.add(R.id.frame_principal,new Fragment_tela_inicial());
-        //transaction.commit();
+        
     }
 }
