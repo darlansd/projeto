@@ -1,0 +1,22 @@
+# Android / Gradle
+.gradle/
+build/
+
+# Local config
+local.properties
+
+# IDE (Android Studio)
+.idea/
+
+# Arquivos de compilação
+*.iml
+
+# Logs
+*.log
+
+# Arquivos temporários
+*.tmp
+
+.idea/misc.xml
+
+build/reports/problems/problems-report.html
