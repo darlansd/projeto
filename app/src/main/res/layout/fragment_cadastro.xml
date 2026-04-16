@@ -5,11 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     tools:context="Fragments.Fragment_cadastro">
-=======
-    tools:context=".Fragments.Fragment_cadastro">
->>>>>>> 76f34e4 (passando de volta pro pczao)
+
 
     <!-- TODO: Update blank fragment layout -->
 

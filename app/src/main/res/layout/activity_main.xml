@@ -6,11 +6,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    tools:context=".MainActivity">
-=======
     tools:context=".Activities.MainActivity">
->>>>>>> 76f34e4 (passando de volta pro pczao)
+
 
 
     <androidx.constraintlayout.widget.Guideline

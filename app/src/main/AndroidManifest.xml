@@ -11,19 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/DayAndNight.Theme.AppNoticia">
+
         <activity
-            android:name=".activity_tela_inicio"
-            android:exported="false" />
-        <activity
-<<<<<<< HEAD
-            android:name=".Activity_tela_inicio"
-            android:exported="false" />
-        <activity
-            android:name=".Segunda_activity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-=======
             android:name=".Activities.Activity_tela_inicio"
             android:exported="false" />
         <activity
@@ -31,8 +20,8 @@
             android:exported="false" />
         <activity
             android:name=".Activities.MainActivity"
->>>>>>> 76f34e4 (passando de volta pro pczao)
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
