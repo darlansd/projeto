@@ -1,0 +1,126 @@
+package com.example.appnoticia.Fragments;
+
+import android.content.Intent;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.appnoticia.Activities.Activity_tela_inicio;
+import com.example.appnoticia.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.database.DatabaseReference;
+
+import com.example.appnoticia.Models.Configuracao_firebase;
+import com.example.appnoticia.Models.Usuarios;
+
+public class Fragment_entrar extends Fragment {
+
+    Button entrar;
+    EditText edt_email, edt_senha;
+    String email, senha;
+    Usuarios user = new Usuarios();
+    FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
+    DatabaseReference database = Configuracao_firebase.getfirebasedatabase();
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_entrar, container, false);
+
+        edt_email = view.findViewById(R.id.edt_addresemail);
+        edt_senha = view.findViewById(R.id.edt_Senha);
+        entrar = view.findViewById(R.id.btn_entrar);
+
+
+        entrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getContext(), "Entrando ...", Toast.LENGTH_SHORT).show();
+
+                if (auth.getCurrentUser() != null) {
+
+                    Toast.makeText(getContext(), "usuario ja esta logado", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    validarLogin();
+                    logar();
+                }
+
+            }
+        });
+
+
+        return view;
+    }
+    private void validarLogin() {
+
+        email = edt_email.getText().toString();
+        senha = edt_senha.getText().toString();
+
+        if (!email.isEmpty()) {
+            if (!senha.isEmpty()) {
+
+                user.setEmail(email);
+                user.setSenha(senha);
+
+
+            } else {
+                Toast.makeText(getContext(), "Preecha o Campo De Senha", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getContext(), "Preecha o Campo De Email", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+    private void logar() {
+
+        auth.signInWithEmailAndPassword(user.getEmail(), user.getSenha()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+
+                    Toast.makeText(getContext(), "bem vindo de volta ", Toast.LENGTH_SHORT).show();
+
+                    startActivity(new Intent(getContext(), Activity_tela_inicio.class));
+                    getActivity().finish();
+
+                } else {
+                    String execao = "";
+
+                    try {//vai tentar capturar as exeçoes que o objeto task pode lançar
+                        throw (task.getException());
+                    } catch (FirebaseAuthInvalidUserException e) {
+                        execao = "Email Nao Cadastrado";
+                    } catch (FirebaseAuthInvalidCredentialsException e) {
+                        execao = "Email ou Senha Esta Errado";
+                    } catch (Exception e) {
+                        execao = "Erro ao Logar" + e.getMessage();
+
+                        //printa o erro no log
+                        e.printStackTrace();
+                    }
+
+                    Toast.makeText(getContext(), execao, Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+
+    }
+}
