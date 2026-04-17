@@ -134,7 +134,7 @@ public class Fragment_cadastro extends Fragment {
                         //printa o erro no log
                         e.printStackTrace();
 
-                    }Toast.makeText(getContext(), execao, Toast.LENGTH_SHORT).show();
+                    }Toast.makeText(getContext(), execao, Toast.LENGTH_LONG).show();
                 }
             }
         });

@@ -115,7 +115,7 @@ public class Fragment_entrar extends Fragment {
                         e.printStackTrace();
                     }
 
-                    Toast.makeText(getContext(), execao, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), execao, Toast.LENGTH_LONG).show();
                 }
 
 

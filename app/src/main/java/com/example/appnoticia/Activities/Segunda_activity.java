@@ -34,20 +34,16 @@ public class Segunda_activity extends AppCompatActivity {
 
             case 0:
                 FragmentTransaction cadastrar = getSupportFragmentManager().beginTransaction();
-                cadastrar.replace(R.id.frame_principal_2, new Fragment_cadastro());
+                cadastrar.replace(R.id.frame_principal, new Fragment_cadastro());
                 cadastrar.commit();
             break;
 
             case 1:
                 FragmentTransaction entrar = getSupportFragmentManager().beginTransaction();
-                entrar.replace(R.id.frame_principal_2,new Fragment_entrar());
+                entrar.replace(R.id.frame_principal,new Fragment_entrar());
                 entrar.commit();
             break;
 
-            case 3:
-                startActivity(new Intent(getApplicationContext(), Activity_tela_inicio.class));
-                finish();
-            break;
         }
 
 

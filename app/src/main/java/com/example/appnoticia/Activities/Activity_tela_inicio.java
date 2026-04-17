@@ -21,8 +21,11 @@ import androidx.core.view.MenuProvider;
 
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Lifecycle;
 
+import com.example.appnoticia.Fragments.Fragment_adote_um_pet;
+import com.example.appnoticia.Fragments.Fragment_entrar;
 import com.example.appnoticia.R;
 import com.google.firebase.auth.FirebaseAuth;
 import org.jspecify.annotations.NonNull;
@@ -64,7 +67,9 @@ public class Activity_tela_inicio extends AppCompatActivity  {
             @Override
             public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
+
                 if(id == R.id.item_sair){
+
                     Toast.makeText(getApplicationContext(),"Usuario Deslogado",Toast.LENGTH_SHORT).show();
                     auth.signOut();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -79,6 +84,10 @@ public class Activity_tela_inicio extends AppCompatActivity  {
         adote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), Terceira_Activity.class);
+                intent.putExtra("SHOW_FRAGMENT", 3);
+                startActivity(intent);
 
             }
         });
