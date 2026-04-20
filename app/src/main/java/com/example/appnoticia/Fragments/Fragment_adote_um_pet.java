@@ -17,7 +17,6 @@ public class Fragment_adote_um_pet extends Fragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_adote_um_pet, container, false);
 
-        menu.onCreateMenu();
 
     return view;
     }

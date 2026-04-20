@@ -50,15 +50,12 @@ public class Fragment_entrar extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(), "Entrando ...", Toast.LENGTH_SHORT).show();
-
                 if (auth.getCurrentUser() != null) {
 
                     Toast.makeText(getContext(), "usuario ja esta logado", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    validarLogin();
-                    logar();
+                    validar_logar();
                 }
 
             }
@@ -67,7 +64,7 @@ public class Fragment_entrar extends Fragment {
 
         return view;
     }
-    private void validarLogin() {
+    private void validar_logar() {
 
         email = edt_email.getText().toString();
         senha = edt_senha.getText().toString();
@@ -75,8 +72,12 @@ public class Fragment_entrar extends Fragment {
         if (!email.isEmpty()) {
             if (!senha.isEmpty()) {
 
+                Toast.makeText(getContext(), "Entrando ...", Toast.LENGTH_SHORT).show();
+
                 user.setEmail(email);
                 user.setSenha(senha);
+
+                logar();
 
 
             } else {

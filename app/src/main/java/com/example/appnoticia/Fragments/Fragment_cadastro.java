@@ -53,8 +53,8 @@ public class Fragment_cadastro extends Fragment {
             @Override
             public void onClick(View v) {
 
-                validar_usuario();
-                cadastrar_usuario(users.getEmail(), users.getSenha());
+                validar_cadastrar_usuario();
+
 
             }
         });
@@ -64,7 +64,7 @@ public class Fragment_cadastro extends Fragment {
     }
 
     //tenho que fazer o metodo validar se os dois campos de senha foram validados e que todos os campos foram preechidos pra poder fazer o cadastro
-    private void validar_usuario() {
+    private void validar_cadastrar_usuario() {
 
         nome = edt_nome.getText().toString();
         email = edt_email.getText().toString();
@@ -77,9 +77,13 @@ public class Fragment_cadastro extends Fragment {
 
                     if (senha_conf.equals(senha)) {
 
+                        Toast.makeText(getContext(), "Cadastrando ...", Toast.LENGTH_SHORT).show();
+
                         users.setNome(nome);
                         users.setEmail(email);
                         users.setSenha(senha);
+
+                        cadastrar_usuario(users.getEmail(), users.getSenha());
 
                     } else {
                         Toast kaka = Toast.makeText(getContext(), "as senhas precisao ser iguais", Toast.LENGTH_SHORT);
