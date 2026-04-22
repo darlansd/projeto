@@ -95,7 +95,7 @@ public class Fragment_entrar extends Fragment {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 
-                    Toast.makeText(getContext(), "bem vindo de volta ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "bem vindo de volta " + auth.getCurrentUser().getDisplayName(), Toast.LENGTH_SHORT).show();
 
                     startActivity(new Intent(getContext(), Activity_tela_inicio.class));
                     getActivity().finish();

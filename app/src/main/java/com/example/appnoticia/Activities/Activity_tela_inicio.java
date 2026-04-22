@@ -35,7 +35,7 @@ import com.example.appnoticia.Models.Usuarios;
 
 public class Activity_tela_inicio extends AppCompatActivity {
 
-    TextView text;
+    TextView user_name;
     Button adote;
     Usuarios user = new Usuarios();
     List<Configuracao_firebase> dados;
@@ -53,6 +53,9 @@ public class Activity_tela_inicio extends AppCompatActivity {
             v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        user_name = findViewById(R.id.txt_user_name);
+        user_name.setText(auth.getCurrentUser().getDisplayName());
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

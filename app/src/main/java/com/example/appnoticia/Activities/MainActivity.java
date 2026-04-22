@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (auth.getCurrentUser() != null) {
 
-                    Toast.makeText(getApplicationContext(),"voce ja tava logado " + user.getNome(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"voce ja tava logado " + auth.getCurrentUser().getDisplayName(), Toast.LENGTH_SHORT).show();
 
                     startActivity(new Intent(getApplicationContext(), Activity_tela_inicio.class));
 

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -27,7 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import org.jspecify.annotations.NonNull;
 
 public class Terceira_Activity extends AppCompatActivity {
-
+    TextView user_name;
     Bundle dados;
     int show_fragment;
     FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
@@ -42,6 +43,9 @@ public class Terceira_Activity extends AppCompatActivity {
             v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        user_name = findViewById(R.id.txt_user_name);
+        user_name.setText(auth.getCurrentUser().getDisplayName());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

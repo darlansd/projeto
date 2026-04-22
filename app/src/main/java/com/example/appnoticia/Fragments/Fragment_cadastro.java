@@ -115,6 +115,8 @@ public class Fragment_cadastro extends Fragment {
                     users.setUid(task.getResult().getUser().getUid());
                     users.uploadtodatabase();
 
+                    Usuarios.atualizarnome(users.getNome());
+
                     startActivity(new Intent(getContext(), Activity_tela_inicio.class));
                     getActivity().finish();
 
