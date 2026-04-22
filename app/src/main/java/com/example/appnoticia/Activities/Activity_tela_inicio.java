@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,7 @@ import com.example.appnoticia.Models.Configuracao_firebase;
 import com.example.appnoticia.Models.Usuarios;
 
 public class Activity_tela_inicio extends AppCompatActivity {
-
+    LinearLayout l_perfil;
     TextView user_name;
     Button adote;
     Usuarios user = new Usuarios();
@@ -56,6 +57,14 @@ public class Activity_tela_inicio extends AppCompatActivity {
 
         user_name = findViewById(R.id.txt_user_name);
         user_name.setText(auth.getCurrentUser().getDisplayName());
+
+        l_perfil = findViewById(R.id.linear_perfil);
+        l_perfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               
+            }
+        });
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

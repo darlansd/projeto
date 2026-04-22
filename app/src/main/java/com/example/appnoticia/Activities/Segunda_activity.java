@@ -40,6 +40,11 @@ public class Segunda_activity extends AppCompatActivity {
                 entrar.commit();
             break;
 
+            case 4:
+                FragmentTransaction editar = getSupportFragmentManager().beginTransaction();
+                editar.replace(R.id.frame_principal,new Fragment_entrar());
+                editar.commit();
+            break;
         }
 
 
