@@ -14,11 +14,7 @@ import com.example.appnoticia.R;
 
 public class Segunda_activity extends AppCompatActivity {
 
-    Button btn_cadastrar;
     int show_fragment;
-
-    Fragment frag;
-
     Bundle dados;
 
     @Override

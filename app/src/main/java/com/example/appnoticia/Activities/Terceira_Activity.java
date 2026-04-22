@@ -1,21 +1,36 @@
 package com.example.appnoticia.Activities;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
+import androidx.core.view.MenuProvider;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Lifecycle;
 
 import com.example.appnoticia.Fragments.Fragment_adote_um_pet;
+import com.example.appnoticia.Models.Configuracao_firebase;
 import com.example.appnoticia.R;
+import com.google.firebase.auth.FirebaseAuth;
+
+import org.jspecify.annotations.NonNull;
 
 public class Terceira_Activity extends AppCompatActivity {
 
     Bundle dados;
     int show_fragment;
+    FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +43,43 @@ public class Terceira_Activity extends AppCompatActivity {
             return insets;
         });
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         dados = getIntent().getExtras();
         show_fragment = dados.getInt("SHOW_FRAGMENT");
 
-        switch (show_fragment){
+
+        addMenuProvider(new MenuProvider() {
+            @Override
+            public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
+                menuInflater.inflate(R.menu.menu_tela_inicio, menu);
+            }
+
+            @Override
+            public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+
+                int id = menuItem.getItemId();
+
+                if (id == R.id.item_sair) {
+
+                    Toast.makeText(getApplicationContext(), "Usuario Deslogado", Toast.LENGTH_SHORT).show();
+                    auth.signOut();
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
+                    return true;
+                }
+                return false;
+            }
+        }, this, Lifecycle.State.RESUMED);
+
+        switch (show_fragment) {
             case 3:
                 FragmentTransaction adote = getSupportFragmentManager().beginTransaction();
-                adote.replace(R.id.frame_principal,new Fragment_adote_um_pet());
+                adote.replace(R.id.frame_principal, new Fragment_adote_um_pet());
                 adote.commit();
+                break;
         }
-
-
 
     }
 }

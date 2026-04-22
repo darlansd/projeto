@@ -2,6 +2,7 @@ package com.example.appnoticia.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -9,37 +10,37 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 
-
 import androidx.core.view.MenuProvider;
-
 
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Lifecycle;
 
-import com.example.appnoticia.Fragments.Fragment_adote_um_pet;
-import com.example.appnoticia.Fragments.Fragment_entrar;
 import com.example.appnoticia.R;
 import com.google.firebase.auth.FirebaseAuth;
+
 import org.jspecify.annotations.NonNull;
+
 import java.util.List;
+
 import com.example.appnoticia.Models.Configuracao_firebase;
 import com.example.appnoticia.Models.Usuarios;
 
-public class Activity_tela_inicio extends AppCompatActivity  {
+public class Activity_tela_inicio extends AppCompatActivity {
 
-   TextView text ;
-   Button adote;
-   Usuarios user = new Usuarios();
-   List<Configuracao_firebase> dados;
-   FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
+    TextView text;
+    Button adote;
+    Usuarios user = new Usuarios();
+    List<Configuracao_firebase> dados;
+    Toolbar toolbar;
+    FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +54,12 @@ public class Activity_tela_inicio extends AppCompatActivity  {
             return insets;
         });
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         adote = findViewById(R.id.btn_adote);
+
 
         //funçoes que usam o MenuProvider api
         addMenuProvider(new MenuProvider() {
@@ -64,13 +67,14 @@ public class Activity_tela_inicio extends AppCompatActivity  {
             public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
                 menuInflater.inflate(R.menu.menu_tela_inicio, menu);
             }
+
             @Override
             public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
 
-                if(id == R.id.item_sair){
+                if (id == R.id.item_sair) {
 
-                    Toast.makeText(getApplicationContext(),"Usuario Deslogado",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Usuario Deslogado", Toast.LENGTH_SHORT).show();
                     auth.signOut();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
@@ -78,7 +82,7 @@ public class Activity_tela_inicio extends AppCompatActivity  {
                 }
                 return false;
             }
-        },this, Lifecycle.State.RESUMED);
+        }, this, Lifecycle.State.RESUMED);
 
 
         adote.setOnClickListener(new View.OnClickListener() {

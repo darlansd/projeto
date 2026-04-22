@@ -6,9 +6,7 @@ import com.google.firebase.database.Exclude;
 public class Usuarios {
 
     private String uid, nome, email, senha;
-    DatabaseReference refFire,salvar_dados_usuario;
-
-
+    private DatabaseReference refFire,salvar_dados_usuario;
 
     public Usuarios() {
     }
