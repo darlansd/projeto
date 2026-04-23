@@ -2,7 +2,6 @@ package com.example.appnoticia.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -44,6 +43,14 @@ public class Activity_tela_inicio extends AppCompatActivity {
     FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        user_name.setText(auth.getCurrentUser().getDisplayName());
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -62,7 +69,7 @@ public class Activity_tela_inicio extends AppCompatActivity {
         l_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               
+                startActivity(new Intent(getApplicationContext(), Activity_perfil.class));
             }
         });
 

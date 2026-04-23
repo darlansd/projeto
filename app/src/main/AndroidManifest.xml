@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/DayAndNight.Theme.AppNoticia">
         <activity
+            android:name=".Activities.Activity_perfil"
+            android:exported="false" />
+        <activity
             android:name=".Activities.Terceira_Activity"
             android:exported="false" />
         <activity

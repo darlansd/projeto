@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.appnoticia.Fragments.Fragment_cadastro;
+import com.example.appnoticia.Fragments.Fragment_editar_perfil;
 import com.example.appnoticia.Fragments.Fragment_entrar;
 import com.example.appnoticia.R;
 
@@ -42,7 +43,7 @@ public class Segunda_activity extends AppCompatActivity {
 
             case 4:
                 FragmentTransaction editar = getSupportFragmentManager().beginTransaction();
-                editar.replace(R.id.frame_principal,new Fragment_entrar());
+                editar.replace(R.id.frame_principal,new Fragment_editar_perfil());
                 editar.commit();
             break;
         }

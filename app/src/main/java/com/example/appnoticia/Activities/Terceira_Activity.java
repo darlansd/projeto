@@ -44,6 +44,7 @@ public class Terceira_Activity extends AppCompatActivity {
             return insets;
         });
 
+
         user_name = findViewById(R.id.txt_user_name);
         user_name.setText(auth.getCurrentUser().getDisplayName());
 
