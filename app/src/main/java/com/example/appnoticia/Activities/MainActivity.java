@@ -27,6 +27,17 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        if(Configuracao_firebase.getfirebaseUser() != null) {
+
+            startActivity(new Intent(getApplicationContext(), Activity_tela_inicio.class));
+            finish();
+
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -40,17 +51,6 @@ public class MainActivity extends AppCompatActivity {
         btn_cadastrar = findViewById(R.id.btn_casdastrar);
         btn_entrar = findViewById(R.id.btn_entrar);
         name_confirmation = findViewById(R.id.textView5);
-
-        //tentando verificar se ha algum usario logado
-        if(auth.getCurrentUser() != null){
-            //usario logado
-
-
-
-        }else{
-            //ninguem logado
-            Toast.makeText(this,"nao logado",Toast.LENGTH_SHORT).show();
-        }
 
         btn_entrar.setOnClickListener(new View.OnClickListener() {
             @Override

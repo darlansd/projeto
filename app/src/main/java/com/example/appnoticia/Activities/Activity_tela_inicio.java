@@ -38,7 +38,6 @@ public class Activity_tela_inicio extends AppCompatActivity {
     TextView user_name;
     Button adote;
     Usuarios user = new Usuarios();
-    List<Configuracao_firebase> dados;
     Toolbar toolbar;
     FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
 

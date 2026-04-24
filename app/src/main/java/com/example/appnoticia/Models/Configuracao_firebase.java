@@ -6,7 +6,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Configuracao_firebase {
-    private static FirebaseUser user;
     private static FirebaseAuth auth;
     private static DatabaseReference database;
 
