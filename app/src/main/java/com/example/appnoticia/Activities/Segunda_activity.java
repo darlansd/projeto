@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.appnoticia.Fragments.Fragment_cadastrar_pet;
 import com.example.appnoticia.Fragments.Fragment_cadastro;
 import com.example.appnoticia.Fragments.Fragment_editar_perfil;
 import com.example.appnoticia.Fragments.Fragment_entrar;
@@ -27,28 +28,32 @@ public class Segunda_activity extends AppCompatActivity {
 
         show_fragment = dados.getInt("SHOW_FRAGMENT");
 
-        switch (show_fragment){
+        switch (show_fragment) {
 
             case 0:
                 FragmentTransaction cadastrar = getSupportFragmentManager().beginTransaction();
                 cadastrar.replace(R.id.frame_principal, new Fragment_cadastro());
                 cadastrar.commit();
-            break;
+                break;
 
             case 1:
                 FragmentTransaction entrar = getSupportFragmentManager().beginTransaction();
-                entrar.replace(R.id.frame_principal,new Fragment_entrar());
+                entrar.replace(R.id.frame_principal, new Fragment_entrar());
                 entrar.commit();
-            break;
+                break;
 
             case 4:
                 FragmentTransaction editar = getSupportFragmentManager().beginTransaction();
-                editar.replace(R.id.frame_principal,new Fragment_editar_perfil());
+                editar.replace(R.id.frame_principal, new Fragment_editar_perfil());
                 editar.commit();
-            break;
+                break;
+
+            case 5:
+                FragmentTransaction cad_pet = getSupportFragmentManager().beginTransaction();
+                cad_pet.replace(R.id.frame_principal, new Fragment_cadastrar_pet());
+                cad_pet.commit();
+                break;
         }
-
-
 
 
     }

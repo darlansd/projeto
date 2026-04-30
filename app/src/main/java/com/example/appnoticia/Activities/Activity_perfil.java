@@ -3,6 +3,7 @@ package com.example.appnoticia.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -16,6 +17,7 @@ import com.example.appnoticia.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Activity_perfil extends AppCompatActivity {
+    Button seus_pets_adocao;
     TextView user_name,editar_perfil;
     FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
 
@@ -41,6 +43,16 @@ public class Activity_perfil extends AppCompatActivity {
 
         user_name = findViewById(R.id.txt_user_name);
         user_name.setText(auth.getCurrentUser().getDisplayName());
+
+        seus_pets_adocao = findViewById(R.id.btn_seus_pets_adocao);
+        seus_pets_adocao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Segunda_activity.class);
+                intent.putExtra("SHOW_FRAGMENT",5);
+                startActivity(intent);
+            }
+        });
 
         editar_perfil = findViewById(R.id.txt_editar_perfil);
         editar_perfil.setOnClickListener(new View.OnClickListener() {

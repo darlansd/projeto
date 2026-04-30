@@ -73,7 +73,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_adocao"
+        android:id="@+id/btn_seus_pets_adocao"
         android:layout_width="340dp"
         android:layout_height="60dp"
         android:layout_marginTop="88dp"
@@ -103,7 +103,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.647"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_adocao" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_seus_pets_adocao" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_cx_mensagem"

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.Fragment_seus_pets_adocao">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/custom_linear_tela_inicio"
+        android:elevation="10dp"
+        android:gravity="center|top"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_adote_um_pet"
+            android:layout_width="340dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="Pets Para Adoçao"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_Melhor_Amigo"
+            android:layout_width="260dp"
+            android:layout_height="85dp"
+            android:gravity="center|start"
+            android:layout_marginEnd="35dp"
+            android:text="Veja Os Pets Que Voce Publicou"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_cadastrar_pet"
+        android:layout_width="128dp"
+        android:layout_height="148dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:text="Nova publicaçao"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
