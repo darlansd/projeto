@@ -12,13 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/DayAndNight.Theme.AppNoticia">
         <activity
+            android:name=".Ui.Header"
+            android:exported="false" />
+        <activity
+            android:name=".navigation.Navigation_drawer_Activity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.Activity_perfil"
             android:exported="false" />
         <activity
             android:name=".Activities.Terceira_Activity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.MainActivity2"
             android:exported="false" />
         <activity
             android:name=".Activities.Activity_tela_inicio"

@@ -41,18 +41,6 @@ public class Segunda_activity extends AppCompatActivity {
                 entrar.replace(R.id.frame_principal, new Fragment_entrar());
                 entrar.commit();
                 break;
-
-            case 4:
-                FragmentTransaction editar = getSupportFragmentManager().beginTransaction();
-                editar.replace(R.id.frame_principal, new Fragment_editar_perfil());
-                editar.commit();
-                break;
-
-            case 5:
-                FragmentTransaction cad_pet = getSupportFragmentManager().beginTransaction();
-                cad_pet.replace(R.id.frame_principal, new Fragment_cadastrar_pet());
-                cad_pet.commit();
-                break;
         }
 
 

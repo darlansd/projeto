@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.appnoticia.Models.Usuarios;
 import com.example.appnoticia.R;
+import com.example.appnoticia.navigation.Navigation_drawer_Activity;
 
 public class Fragment_editar_perfil extends Fragment {
     EditText user_name;
@@ -39,7 +40,7 @@ public class Fragment_editar_perfil extends Fragment {
                     Usuarios.atualizarnome(nome_atualizado);
                     Toast.makeText(getContext(),"Nome Atualizado",Toast.LENGTH_SHORT).show();
 
-                    requireActivity().finish();
+                    startActivity(new Intent(getContext(), Navigation_drawer_Activity.class));
 
                 }else{
                     Toast.makeText(getContext(),"preecha o campo nome",Toast.LENGTH_SHORT).show();

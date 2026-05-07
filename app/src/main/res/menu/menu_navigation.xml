@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item android:title="">
+        <menu>
+
+        </menu>
+    </item>
+
+
+    <item android:title="Adopet">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_adote"
+                    android:checked="true"
+                    android:icon="@drawable/ic_adote"
+                    android:title="adote um pet" />
+                <item
+                    android:id="@+id/menu_mensagens"
+                    android:icon="@drawable/ic_mensagens"
+                    android:title="mensagens" />
+
+                <item
+                    android:id="@+id/menu_pets_adotados"
+                    android:icon="@drawable/ic_pets_adotados"
+                    android:title="pets adotados" />
+
+                <item
+                    android:id="@+id/menu_saude_do_pet"
+                    android:icon="@drawable/design_sem_nome"
+                    android:title="saude do pet" />
+
+                <item
+                    android:id="@+id/menu_disk_denuncia"
+                    android:icon="@drawable/ic_disk_denuncia"
+                    android:title="disk denuncia" />
+            </group>
+        </menu>
+    </item>
+
+
+    <item android:title="Geral">
+        <menu>
+
+            <item
+                android:id="@+id/menu_compartilhar"
+                android:icon="@drawable/ic_compartilhar"
+                android:title="compartilhar" />
+
+            <item
+                android:id="@+id/menu_sair"
+                android:icon="@drawable/ic_sair"
+                android:title="sair" />
+
+        </menu>
+
+    </item>
+
+
+</menu>

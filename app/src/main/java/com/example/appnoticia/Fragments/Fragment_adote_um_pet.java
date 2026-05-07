@@ -1,29 +1,17 @@
 package com.example.appnoticia.Fragments;
 
-import android.content.Intent;
-import android.os.Bundle;
 
+import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
-import androidx.core.view.MenuProvider;
-import androidx.lifecycle.Lifecycle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.appnoticia.Activities.MainActivity;
-import com.example.appnoticia.Activities.Terceira_Activity;
 import com.example.appnoticia.Adapter.Adapter;
 import com.example.appnoticia.Models.Configuracao_firebase;
 import com.example.appnoticia.R;

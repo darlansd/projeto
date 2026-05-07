@@ -2,21 +2,16 @@ package com.example.appnoticia.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-
-import com.example.appnoticia.Activities.Activity_tela_inicio;
 import com.example.appnoticia.R;
+import com.example.appnoticia.navigation.Navigation_drawer_Activity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -117,7 +112,7 @@ public class Fragment_cadastro extends Fragment {
 
                     Usuarios.atualizarnome(users.getNome());
 
-                    startActivity(new Intent(getContext(), Activity_tela_inicio.class));
+                    startActivity(new Intent(getContext(), Navigation_drawer_Activity.class));
                     getActivity().finish();
 
                     Toast.makeText(getContext(), "cadastro concluido", Toast.LENGTH_SHORT).show();

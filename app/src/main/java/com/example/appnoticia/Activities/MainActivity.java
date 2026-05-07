@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.appnoticia.R;
+import com.example.appnoticia.navigation.Navigation_drawer_Activity;
 import com.google.firebase.auth.FirebaseAuth;
 
 import com.example.appnoticia.Models.Configuracao_firebase;
@@ -22,16 +23,17 @@ import com.example.appnoticia.Models.Usuarios;
 public class MainActivity extends AppCompatActivity {
 
     TextView name_confirmation;
-    Button btn_cadastrar,btn_entrar;
+    Button btn_cadastrar, btn_entrar;
     Usuarios user = new Usuarios();
     FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
 
+    //caso o usuario tiver logado mandar pra tela inicial
     @Override
     protected void onStart() {
         super.onStart();
-        if(Configuracao_firebase.getfirebaseUser() != null) {
+        if (Configuracao_firebase.getfirebaseUser() != null) {
 
-            startActivity(new Intent(getApplicationContext(), Activity_tela_inicio.class));
+            startActivity(new Intent(getApplicationContext(), Navigation_drawer_Activity.class));
             finish();
 
         }
@@ -56,19 +58,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //tentando fazer com que se um usuario tiver logado nao faça o login
+                Intent intent = new Intent(getApplicationContext(), Segunda_activity.class);
+                intent.putExtra("SHOW_FRAGMENT", 1);
+                startActivity(intent);
 
-                if (auth.getCurrentUser() != null) {
-
-                    Toast.makeText(getApplicationContext(),"voce ja tava logado " + auth.getCurrentUser().getDisplayName(), Toast.LENGTH_SHORT).show();
-
-                    startActivity(new Intent(getApplicationContext(), Activity_tela_inicio.class));
-
-                }else{
-                    Intent intent = new Intent(getApplicationContext(), Segunda_activity.class);
-                    intent.putExtra("SHOW_FRAGMENT",1);
-                    startActivity(intent);
-                }
 
             }
         });
