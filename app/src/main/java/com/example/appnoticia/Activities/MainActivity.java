@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
         btn_cadastrar = findViewById(R.id.btn_casdastrar);
         btn_entrar = findViewById(R.id.btn_entrar);
-        name_confirmation = findViewById(R.id.textView5);
 
         btn_entrar.setOnClickListener(new View.OnClickListener() {
             @Override

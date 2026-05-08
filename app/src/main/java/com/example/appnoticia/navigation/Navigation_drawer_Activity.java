@@ -68,7 +68,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
 
 
 
-        //fazer com que a action bar tenha o toggle do navigation drawer
+        //fazer com que a action bar tenha o toggle (botão) no navigation drawer
         drawer = findViewById(R.id.main);
         toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.kaka,R.string.koko);
         drawer.addDrawerListener(toggle);
@@ -130,7 +130,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
 
     }
 
-
+    // responsavel por controlar a navegaçao dos itens no navigation drawer
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
@@ -139,6 +139,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
             Configuracao_firebase.getfirebaseauth().signOut();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
+            Toast.makeText(getApplicationContext(),"Usuario Deslogado",Toast.LENGTH_SHORT);
 
         }else if(menuItem.getItemId() == R.id.menu_adote){
 

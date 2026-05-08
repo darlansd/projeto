@@ -34,9 +34,13 @@
         android:layout_marginTop="325dp"
         android:gravity="center"
         android:text="Adopet"
-        android:textColor="@color/light_green"
+        android:textColor="@color/turquesa_apagado"
         android:textSize="50sp"
         android:textStyle="bold"
+        android:shadowColor="@color/grey"
+        android:shadowRadius="2"
+        android:shadowDx="2"
+        android:shadowDy="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,13 +50,40 @@
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:background="@drawable/custom_linear_tela_inicial"
-        android:orientation="vertical"
         android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9999">
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_entrar"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_background"
+            android:text="Entrar"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_casdastrar"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_background"
+            android:text="Criar conta"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textView2"
@@ -61,55 +92,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="esqueceu a senha?"
-            android:textColor="@color/letter"
-            android:textSize="15sp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_entrar"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/btn_background"
-            android:text="Entrar"
-            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:text="ou"
-            android:textColor="@color/letter"
             android:textSize="15sp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_casdastrar"
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/btn_background"
-            android:backgroundTint="@color/cadastrar_button_inicial"
-            android:text="Criar conta"
-            android:textAllCaps="false"
-            android:textColor="@color/letter"
-            android:textSize="16sp" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.886"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

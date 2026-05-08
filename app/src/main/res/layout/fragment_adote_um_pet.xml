@@ -17,7 +17,7 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="170dp"
         android:background="@drawable/custom_linear_tela_inicio"
         android:elevation="10dp"
         android:gravity="center|top"
@@ -30,9 +30,9 @@
             android:id="@+id/txt_adote_um_pet"
             android:layout_width="325dp"
             android:layout_height="60dp"
-            android:layout_marginTop="15dp"
+            
             android:gravity="center"
-            android:text="Adote Um Pet"
+            android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="40sp"
             android:textStyle="bold" />

@@ -6,13 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start"
-    >
-
-    <!--include da tela que vai embaixo-->
-
-
-    <!--preciso adicionar um headerlayout que exibir o foto do user e o nome e editar perfil e cadastrar um pet-->
+    tools:openDrawer="start">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,17 +29,19 @@
 
     </LinearLayout>
 
+    <!--preciso adicionar um headerlayout que exibir o foto do user e o nome e editar perfil e cadastrar um pet-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:itemIconTint="@color/end_gradient_button_inicial"
+        app:itemIconTint="@color/turquesa"
         app:itemTextColor="@color/green"
         app:itemIconSize="30dp"
         app:headerLayout="@layout/activity_header"
-        app:menu="@menu/menu_navigation">
+        app:menu="@menu/menu_navigation"
+        >
 
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>
