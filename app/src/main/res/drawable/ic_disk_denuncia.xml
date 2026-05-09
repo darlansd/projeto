@@ -2,7 +2,7 @@
     android:width="40dp"
     android:height="40dp"
     android:viewportWidth="30"
-    android:viewportHeight="37.92">
+    android:viewportHeight="30">
   <group>
     <clip-path
         android:pathData="M1,0L29.969,0L29.969,29L1,29ZM1,0"/>

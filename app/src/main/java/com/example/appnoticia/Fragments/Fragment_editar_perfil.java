@@ -13,11 +13,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.appnoticia.Models.Configuracao_firebase;
 import com.example.appnoticia.Models.Usuarios;
 import com.example.appnoticia.R;
 import com.example.appnoticia.navigation.Navigation_drawer_Activity;
 
 public class Fragment_editar_perfil extends Fragment {
+    Usuarios user;
     EditText user_name;
     Button confirmar;
 
@@ -39,6 +41,8 @@ public class Fragment_editar_perfil extends Fragment {
 
                     Usuarios.atualizarnome(nome_atualizado);
                     Toast.makeText(getContext(),"Nome Atualizado",Toast.LENGTH_SHORT).show();
+
+
 
                     startActivity(new Intent(getContext(), Navigation_drawer_Activity.class));
 

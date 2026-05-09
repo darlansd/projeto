@@ -10,11 +10,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Usuarios {
 
+    private DatabaseReference child_nome = FirebaseDatabase.getInstance().getReference().child("USUARIOS").child(Configuracao_firebase.getfirebaseUser().getUid()).child("NOME");
+
     private String uid, nome, email, senha;
-    private DatabaseReference refFire, salvar_dados_usuario;
+    private DatabaseReference salvar_dados_usuario;
 
     public Usuarios() {
     }
@@ -22,15 +25,19 @@ public class Usuarios {
 
     public static boolean atualizarnome(String nome) {
 
-        try{
+        try {
+            //aqui eu faço referencia ate o nó nome e troco o valor pelo parametro
+            Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Configuracao_firebase.getfirebaseUser().getUid()).child("NOME").setValue(nome);
+
+            //alterar o nome dentro da variavel displayName
             FirebaseUser user = Configuracao_firebase.getfirebaseUser();
             UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder().setDisplayName(nome).build();
             user.updateProfile(profile).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
 
-                    if(!task.isSuccessful()){
-                        Log.e("perfil","erro ao atualizar o Nome do perfil");
+                    if (!task.isSuccessful()) {
+                        Log.e("perfil", "erro ao atualizar o Nome do perfil");
                     }
 
                 }
@@ -46,10 +53,8 @@ public class Usuarios {
 
     public void uploadtodatabase() {
 
-        refFire = Configuracao_firebase.getfirebasedatabase();
-
         //nesse atributo eu passo um metodo de criar 2 nós no realtime database
-        salvar_dados_usuario = refFire.child("USUARIOS").child(getUid());
+        salvar_dados_usuario = Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(getUid());
 
         //e dentro do ultimo nó (uid) salvo os atributos dessa classe (nome, email)
         salvar_dados_usuario.child("NOME").setValue(this.nome);
@@ -57,6 +62,9 @@ public class Usuarios {
 
     }
 
+    public DatabaseReference getChild_nome() {
+        return child_nome;
+    }
 
     public String getUid() {
         return uid;

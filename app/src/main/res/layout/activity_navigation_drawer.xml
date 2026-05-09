@@ -39,8 +39,10 @@
         app:itemIconTint="@color/turquesa"
         app:itemTextColor="@color/green"
         app:itemIconSize="30dp"
-        app:headerLayout="@layout/activity_header"
+        app:headerLayout="@layout/header"
         app:menu="@menu/menu_navigation"
+        app:itemTextAppearance="@style/TextAppearance.Material3.TitleMedium"
+        app:itemTextAppearanceActiveBoldEnabled="true"
         >
 
     </com.google.android.material.navigation.NavigationView>

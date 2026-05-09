@@ -34,8 +34,16 @@ import com.example.appnoticia.Fragments.Fragment_cadastrar_pet;
 import com.example.appnoticia.Fragments.Fragment_cadastro;
 import com.example.appnoticia.Fragments.Fragment_editar_perfil;
 import com.example.appnoticia.Models.Configuracao_firebase;
+import com.example.appnoticia.Models.Usuarios;
 import com.example.appnoticia.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.List;
 
 public class Navigation_drawer_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
@@ -45,6 +53,8 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
     Button cadastrar_pet_header;
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
+    Usuarios user = new Usuarios();
+    DatabaseReference nó_que_eu_quero_monitorar = user.getChild_nome();
 
 
     @Override
@@ -66,15 +76,14 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         //fazer com que a action bar tenha o toggle (botão) no navigation drawer
         drawer = findViewById(R.id.main);
         toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.kaka,R.string.koko);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        toggle.getDrawerArrowDrawable().setColor(-1);
 
-        //bora ver oque acontece
+        //implementar o metodo responsavel por controlar a navegaçao dos menus no navigation drawer
         nav_view = findViewById(R.id.nav_view);
         nav_view.setNavigationItemSelectedListener(this);
 
@@ -85,7 +94,20 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
         editar_user_header = header_views.findViewById(R.id.txt_editar_perfil_header);
 
         //fazer com que isso atualize assim que voce alterar o nome no fragment de editar perfil
-        user_name_header.setText(Configuracao_firebase.getfirebaseUser().getDisplayName());
+        nó_que_eu_quero_monitorar.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                user_name_header.setText(snapshot.getValue().toString());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         editar_user_header.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,25 +129,10 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
                 cadastrar_pet.replace(R.id.kaka, new Fragment_cadastrar_pet());
                 cadastrar_pet.commit();
 
+
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
-
-
-
-        addMenuProvider(new MenuProvider() {
-            @Override
-            public void onCreateMenu(@org.jspecify.annotations.NonNull Menu menu, @org.jspecify.annotations.NonNull MenuInflater menuInflater) {
-
-            }
-
-            @Override
-            public boolean onMenuItemSelected(@org.jspecify.annotations.NonNull MenuItem menuItem) {
-                return false;
-            }
-        });
-
-
 
 
     }

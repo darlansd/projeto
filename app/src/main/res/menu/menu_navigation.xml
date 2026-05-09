@@ -29,7 +29,7 @@
 
                 <item
                     android:id="@+id/menu_saude_do_pet"
-                    android:icon="@drawable/design_sem_nome"
+                    android:icon="@drawable/ic_saude_do_pet"
                     android:title="saude do pet" />
 
                 <item

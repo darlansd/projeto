@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.Fragment_cadastrar_pet">
 
     <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="205dp" />
+
     <LinearLayout
         android:id="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="170dp"
-        android:background="@drawable/custom_linear_tela_inicio"
+        android:background="@drawable/custom_linear_bottom_rounded"
         android:elevation="10dp"
         android:gravity="center|top"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/txt_Melhor_Amigo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center|start"
             android:layout_marginEnd="115dp"
+            android:gravity="center|start"
             android:text="Vamos"
             android:textColor="@color/white"
             android:textSize="30sp" />
@@ -33,14 +39,41 @@
             android:id="@+id/txt_adote_um_pet"
             android:layout_width="220dp"
             android:layout_height="100dp"
-            android:layout_marginEnd="60dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="60dp"
             android:gravity="start"
             android:text="Cadastrar Seu Pet"
             android:textColor="@color/white"
             android:textSize="40sp"
             android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_cadastrar_pet"
+        android:layout_width="150dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/round_btn_cadastrar_pet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <ImageView
+            android:src="@drawable/ic_add"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nova Publicação"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

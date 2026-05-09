@@ -27,7 +27,7 @@ public class Fragment_cadastro extends Fragment {
 
     EditText edt_nome, edt_email, edt_senha, edt_conf_senha;
     Button continuar;
-    String uid, nome, email, senha, senha_conf;
+    String nome, email, senha, senha_conf;
     Usuarios users = new Usuarios();
     FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
 
