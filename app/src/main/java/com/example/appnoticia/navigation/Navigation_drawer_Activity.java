@@ -2,9 +2,6 @@ package com.example.appnoticia.navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -18,22 +15,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.GravityCompat;
-import androidx.core.view.MenuProvider;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.example.appnoticia.Activities.MainActivity;
 import com.example.appnoticia.Fragments.Fragment_adote_um_pet;
 import com.example.appnoticia.Fragments.Fragment_cadastrar_pet;
-import com.example.appnoticia.Fragments.Fragment_cadastro;
 import com.example.appnoticia.Fragments.Fragment_editar_perfil;
-import com.example.appnoticia.Models.Configuracao_firebase;
+import com.example.appnoticia.Config.Configuracao_firebase;
 import com.example.appnoticia.Models.Usuarios;
 import com.example.appnoticia.R;
 import com.google.android.material.navigation.NavigationView;
@@ -43,8 +36,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
-
 public class Navigation_drawer_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
     NavigationView nav_view;
@@ -53,8 +44,6 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
     Button cadastrar_pet_header;
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
-    Usuarios user = new Usuarios();
-    DatabaseReference nó_que_eu_quero_monitorar = user.getChild_nome();
 
 
     @Override
@@ -63,6 +52,22 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_navigation_drawer);
 
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.fragmentContainer), (view, windowInsets) -> {
+
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.ime());
+
+            view.setPadding(
+                    view.getPaddingLeft(),
+                    view.getPaddingTop(),
+                    view.getPaddingRight(),
+                    insets.bottom
+            );
+
+            return windowInsets;
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom);
@@ -70,7 +75,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
         });
 
         FragmentTransaction adote = getSupportFragmentManager().beginTransaction();
-        adote.replace(R.id.kaka, new Fragment_adote_um_pet());
+        adote.replace(R.id.fragmentContainer, new Fragment_adote_um_pet());
         adote.commit();
 
         toolbar = findViewById(R.id.toolbar);
@@ -94,27 +99,23 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
         editar_user_header = header_views.findViewById(R.id.txt_editar_perfil_header);
 
         //fazer com que isso atualize assim que voce alterar o nome no fragment de editar perfil
-        nó_que_eu_quero_monitorar.addValueEventListener(new ValueEventListener() {
+        Usuarios.getChild_nome().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 user_name_header.setText(snapshot.getValue().toString());
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
 
-
         editar_user_header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 FragmentTransaction editar_perfil = getSupportFragmentManager().beginTransaction();
-                editar_perfil.replace(R.id.kaka, new Fragment_editar_perfil());
+                editar_perfil.replace(R.id.fragmentContainer, new Fragment_editar_perfil());
                 editar_perfil.commit();
 
                 drawer.closeDrawer(GravityCompat.START);
@@ -126,7 +127,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
             public void onClick(View v) {
 
                 FragmentTransaction cadastrar_pet = getSupportFragmentManager().beginTransaction();
-                cadastrar_pet.replace(R.id.kaka, new Fragment_cadastrar_pet());
+                cadastrar_pet.replace(R.id.fragmentContainer, new Fragment_cadastrar_pet());
                 cadastrar_pet.commit();
 
 
@@ -151,7 +152,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
         }else if(menuItem.getItemId() == R.id.menu_adote){
 
             FragmentTransaction adote = getSupportFragmentManager().beginTransaction();
-            adote.replace(R.id.kaka, new Fragment_adote_um_pet());
+            adote.replace(R.id.fragmentContainer, new Fragment_adote_um_pet());
             adote.commit();
 
         }

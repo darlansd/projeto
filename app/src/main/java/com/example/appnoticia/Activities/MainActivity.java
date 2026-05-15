@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,15 +16,11 @@ import com.example.appnoticia.R;
 import com.example.appnoticia.navigation.Navigation_drawer_Activity;
 import com.google.firebase.auth.FirebaseAuth;
 
-import com.example.appnoticia.Models.Configuracao_firebase;
+import com.example.appnoticia.Config.Configuracao_firebase;
 import com.example.appnoticia.Models.Usuarios;
 
 public class MainActivity extends AppCompatActivity {
-
-    TextView name_confirmation;
     Button btn_cadastrar, btn_entrar;
-    Usuarios user = new Usuarios();
-    FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
 
     //caso o usuario tiver logado mandar pra tela inicial
     @Override

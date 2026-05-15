@@ -1,83 +1,89 @@
 package com.example.appnoticia.Models;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.appnoticia.Config.Configuracao_firebase;
 import com.google.firebase.database.DatabaseReference;
 
 public class Pets {
     DatabaseReference fireref = Configuracao_firebase.getfirebasedatabase();
-    String nome,raca,sexo,bairro,cidade,descriçao;
-    Boolean castrado,vermifugado;
+    String NOME, RACA, SEXO, DESCRIÇAO, CASTRADO, VERMIFUGADO;
+    int IDADE;
 
     // FOTO
 
 
-    public void uploadtodatabase(){
-        DatabaseReference oloco = fireref.child("Pets").child(Configuracao_firebase.getfirebaseUser().getUid()).push();
-        oloco.setValue(this);
+    public void uploadtodatabase() {
+        DatabaseReference pets_Por_Usuario = fireref.child("PETS-POR-USUARIO").child(Configuracao_firebase.getfirebaseUser().getUid()).push();
+        DatabaseReference pets_feed = fireref.child("PETS-FEED").push();
+
+        pets_feed.setValue(this);
+        pets_feed.child("UID_USER").setValue(Configuracao_firebase.getfirebaseUser().getUid());
+        pets_Por_Usuario.setValue(this);
+    }
+    public Pets(){}
+
+    public Pets(String nome_pet, String raca_pet, String sexo_pet, String descricao_pet, int idade_pet, String castrado, String vermifugado) {
+        setNOME(nome_pet);
+        setRACA(raca_pet);
+        setSEXO(sexo_pet);
+        setDESCRIÇAO(descricao_pet);
+        setIDADE(idade_pet);
+        setCASTRADO(castrado);
+        setVERMIFUGADO(vermifugado);
     }
 
-
-    public String getNome() {
-        return nome;
+    public String getNOME() {
+        return NOME;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNOME(String NOME) {
+        this.NOME = NOME;
     }
 
-    public String getRaca() {
-        return raca;
+    public String getRACA() {
+        return RACA;
     }
 
-    public void setRaca(String raca) {
-        this.raca = raca;
+    public void setRACA(String RACA) {
+        this.RACA = RACA;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getSEXO() {
+        return SEXO;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setSEXO(String SEXO) {
+        this.SEXO = SEXO;
     }
 
-    public String getBairro() {
-        return bairro;
+    public String getDESCRIÇAO() {
+        return DESCRIÇAO;
     }
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
+    public void setDESCRIÇAO(String DESCRIÇAO) {
+        this.DESCRIÇAO = DESCRIÇAO;
     }
 
-    public String getCidade() {
-        return cidade;
+    public int getIDADE() {
+        return IDADE;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setIDADE(int IDADE) {
+        this.IDADE = IDADE;
     }
 
-    public String getDescriçao() {
-        return descriçao;
+    public String getCASTRADO() {
+        return CASTRADO;
     }
 
-    public void setDescriçao(String descriçao) {
-        this.descriçao = descriçao;
+    public void setCASTRADO(String CASTRADO) {
+        this.CASTRADO = CASTRADO;
     }
 
-    public Boolean getCastrado() {
-        return castrado;
+    public String getVERMIFUGADO() {
+        return VERMIFUGADO;
     }
 
-    public void setCastrado(Boolean castrado) {
-        this.castrado = castrado;
-    }
-
-    public Boolean getVermifugado() {
-        return vermifugado;
-    }
-
-    public void setVermifugado(Boolean vermifugado) {
-        this.vermifugado = vermifugado;
+    public void setVERMIFUGADO(String VERMIFUGADO) {
+        this.VERMIFUGADO = VERMIFUGADO;
     }
 }

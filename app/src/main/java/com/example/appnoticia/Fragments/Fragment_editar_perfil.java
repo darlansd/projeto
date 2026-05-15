@@ -10,10 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.appnoticia.Models.Configuracao_firebase;
 import com.example.appnoticia.Models.Usuarios;
 import com.example.appnoticia.R;
 import com.example.appnoticia.navigation.Navigation_drawer_Activity;

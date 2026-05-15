@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.database.DatabaseReference;
 
-import com.example.appnoticia.Models.Configuracao_firebase;
+import com.example.appnoticia.Config.Configuracao_firebase;
 import com.example.appnoticia.Models.Usuarios;
 
 public class Fragment_entrar extends Fragment {
@@ -92,7 +92,7 @@ public class Fragment_entrar extends Fragment {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 
-                    Toast.makeText(getContext(), "bem vindo de volta " + auth.getCurrentUser().getDisplayName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "bem vindo de volta " + Configuracao_firebase.getfirebaseUser().getDisplayName(), Toast.LENGTH_SHORT).show();
 
                     startActivity(new Intent(getContext(), Navigation_drawer_Activity.class));
                     getActivity().finish();

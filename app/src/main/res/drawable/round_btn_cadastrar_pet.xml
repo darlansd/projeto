@@ -3,8 +3,8 @@
 
     <item>
         <shape>
-            <solid android:color="@color/fundo_btn_cadastrar_pet"/>
-            <corners android:radius="25dp"/>
+            <solid android:color="@color/white"/>
+            <corners android:radius="50dp"/>
         </shape>
     </item>
 

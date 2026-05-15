@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:state_focused="true"
-          android:drawable="@drawable/ic_user_vector_foucused"/>
+          android:drawable="@drawable/ic_user_foucused"/>
 
     <item android:state_focused="false"
           android:drawable="@drawable/ic_user"/>

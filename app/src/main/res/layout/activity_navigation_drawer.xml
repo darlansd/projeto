@@ -11,21 +11,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/gradient_light_green_dark_green"
-                android:paddingTop="20dp"
-                app:title=" "
-                />
+        android:orientation="vertical">
 
-        <FrameLayout
-            android:id="@+id/kaka"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_light_green_dark_green"
+            android:paddingTop="20dp"
+            app:title=" " />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
 
     </LinearLayout>
 
@@ -36,14 +37,13 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:itemIconTint="@color/turquesa"
-        app:itemTextColor="@color/green"
-        app:itemIconSize="30dp"
         app:headerLayout="@layout/header"
-        app:menu="@menu/menu_navigation"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@color/turquesa"
         app:itemTextAppearance="@style/TextAppearance.Material3.TitleMedium"
         app:itemTextAppearanceActiveBoldEnabled="true"
-        >
+        app:itemTextColor="@color/green"
+        app:menu="@menu/menu_navigation">
 
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

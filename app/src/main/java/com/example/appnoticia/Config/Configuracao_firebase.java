@@ -1,4 +1,4 @@
-package com.example.appnoticia.Models;
+package com.example.appnoticia.Config;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

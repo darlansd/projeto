@@ -1,28 +1,46 @@
 package com.example.appnoticia.Fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
+
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.appnoticia.Adapter.Adapter;
-import com.example.appnoticia.Models.Configuracao_firebase;
+import com.example.appnoticia.Config.Configuracao_firebase;
+import com.example.appnoticia.Models.Pets;
 import com.example.appnoticia.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import org.jspecify.annotations.NonNull;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Fragment_adote_um_pet extends Fragment{
-    FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
+public class Fragment_adote_um_pet extends Fragment {
+    DatabaseReference pets_Feed = FirebaseDatabase.getInstance().getReference("PETS-FEED");
     RecyclerView recycler;
-    RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity());
+    List<Pets> dados;
+    Context context;
+    Adapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,11 +57,37 @@ public class Fragment_adote_um_pet extends Fragment{
         });
 
         recycler = view.findViewById(R.id.recyclerview);
+
+        dados = new ArrayList<>();
+
+        pets_Feed.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                dados.clear();
+                for (DataSnapshot data : snapshot.getChildren()) {
+
+                    Pets valores = data.getValue(Pets.class);
+
+                    dados.add(valores);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "deu bosta", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+        RecyclerView.LayoutManager manager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
         recycler.setLayoutManager(manager);
-        recycler.setAdapter(new Adapter());
+        adapter = new Adapter(context, dados);
+        recycler.setAdapter(adapter);
         recycler.setHasFixedSize(true);
 
 
-    return view;
+        return view;
     }
 }

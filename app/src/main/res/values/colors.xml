@@ -10,16 +10,17 @@
     <color name="light_green">#82aaa2</color>
     <color name="letter">#487068</color>
 
-    <!--custom_btn_tela_inicio-->
-    <!--custom_linear_cadastro-->
-    <!--custom_linear_tela_inicial-->
-    <!--custom_linear_tela_inicio-->
+
+
+    <color name="turquesa_acinzentado">#2b524a</color>
+
+    <!--btn_background-->
+    <!--custom_linear_top_rounded-->
+    <!--custom_linear_Bottom_rounded-->
     <!--gradient_crazy-->
     <!--gradient_light_green_dark_green-->
-    <!--btn_backgound-->
     <!--activity_header-->
     <!--activity_navigation_drawer-->
-    <!-- -->
     <color name="turquesa_apagado">#4c8479</color>
     <color name="turquesa">#2b5f56</color>
 

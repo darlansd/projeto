@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
-import com.example.appnoticia.Models.Configuracao_firebase;
+import com.example.appnoticia.Config.Configuracao_firebase;
 import com.example.appnoticia.Models.Usuarios;
 
 public class Fragment_cadastro extends Fragment {
@@ -108,8 +108,8 @@ public class Fragment_cadastro extends Fragment {
                 if (task.isSuccessful()) {
 
                     users.setUid(task.getResult().getUser().getUid());
-                    users.uploadtodatabase();
 
+                    Usuarios.uploadtodatabase();
                     Usuarios.atualizarnome(users.getNome());
 
                     startActivity(new Intent(getContext(), Navigation_drawer_Activity.class));
