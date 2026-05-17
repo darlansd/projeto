@@ -8,10 +8,10 @@
     android:orientation="vertical"
     tools:context=".Activities.Segunda_activity">
 
-    <FrameLayout
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/frame_principal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </FrameLayout>
+    </androidx.fragment.app.FragmentContainerView>
 
 </LinearLayout>

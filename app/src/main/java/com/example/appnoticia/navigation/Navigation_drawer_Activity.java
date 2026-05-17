@@ -23,10 +23,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.appnoticia.Activities.MainActivity;
+import com.example.appnoticia.Config.TrocarFragment;
 import com.example.appnoticia.Fragments.Fragment_adote_um_pet;
 import com.example.appnoticia.Fragments.Fragment_cadastrar_pet;
 import com.example.appnoticia.Fragments.Fragment_editar_perfil;
 import com.example.appnoticia.Config.Configuracao_firebase;
+import com.example.appnoticia.Fragments.Fragment_pets_cadastrados;
 import com.example.appnoticia.Models.Usuarios;
 import com.example.appnoticia.R;
 import com.google.android.material.navigation.NavigationView;
@@ -40,7 +42,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
     DrawerLayout drawer;
     NavigationView nav_view;
     AppBarConfiguration mappconfig;
-    TextView user_name_header,editar_user_header;
+    TextView user_name_header, editar_user_header;
     Button cadastrar_pet_header;
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
@@ -54,6 +56,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
 
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
+        //responsaveis por alguma coisa que eu tenho que intender
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.fragmentContainer), (view, windowInsets) -> {
 
             Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.ime());
@@ -68,22 +71,21 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
             return windowInsets;
         });
 
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        FragmentTransaction adote = getSupportFragmentManager().beginTransaction();
-        adote.replace(R.id.fragmentContainer, new Fragment_adote_um_pet());
-        adote.commit();
+        TrocarFragment.trocar(Navigation_drawer_Activity.this, R.id.fragmentContainer, new Fragment_adote_um_pet());
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //fazer com que a action bar tenha o toggle (botão) no navigation drawer
         drawer = findViewById(R.id.main);
-        toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.kaka,R.string.koko);
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.kaka, R.string.koko);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         toggle.getDrawerArrowDrawable().setColor(-1);
@@ -104,6 +106,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 user_name_header.setText(snapshot.getValue().toString());
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -113,11 +116,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
         editar_user_header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                FragmentTransaction editar_perfil = getSupportFragmentManager().beginTransaction();
-                editar_perfil.replace(R.id.fragmentContainer, new Fragment_editar_perfil());
-                editar_perfil.commit();
-
+                TrocarFragment.trocar(Navigation_drawer_Activity.this, R.id.fragmentContainer, new Fragment_editar_perfil());
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
@@ -125,12 +124,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
         cadastrar_pet_header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                FragmentTransaction cadastrar_pet = getSupportFragmentManager().beginTransaction();
-                cadastrar_pet.replace(R.id.fragmentContainer, new Fragment_cadastrar_pet());
-                cadastrar_pet.commit();
-
-
+                TrocarFragment.trocar(Navigation_drawer_Activity.this, R.id.fragmentContainer, new Fragment_cadastrar_pet());
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
@@ -142,19 +136,17 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-        if(menuItem.getItemId() == R.id.menu_sair){
+        if (menuItem.getItemId() == R.id.menu_sair) {
 
             Configuracao_firebase.getfirebaseauth().signOut();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
-            Toast.makeText(getApplicationContext(),"Usuario Deslogado",Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(), "Usuario Deslogado", Toast.LENGTH_SHORT);
 
-        }else if(menuItem.getItemId() == R.id.menu_adote){
-
-            FragmentTransaction adote = getSupportFragmentManager().beginTransaction();
-            adote.replace(R.id.fragmentContainer, new Fragment_adote_um_pet());
-            adote.commit();
-
+        } else if (menuItem.getItemId() == R.id.menu_adote) {
+            TrocarFragment.trocar(Navigation_drawer_Activity.this, R.id.fragmentContainer, new Fragment_adote_um_pet());
+        } else if (menuItem.getItemId() == R.id.menu_pets_cadastrados) {
+            TrocarFragment.trocar(Navigation_drawer_Activity.this,R.id.fragmentContainer,new Fragment_pets_cadastrados());
         }
 
         drawer.closeDrawer(GravityCompat.START);

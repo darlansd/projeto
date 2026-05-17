@@ -9,7 +9,7 @@
     </item>
 
 
-    <item android:title="Adopet">
+    <item android:title="@string/app_name">
         <menu>
             <group android:checkableBehavior="single">
                 <item
@@ -23,9 +23,9 @@
                     android:title="mensagens" />
 
                 <item
-                    android:id="@+id/menu_pets_adotados"
-                    android:icon="@drawable/ic_pets_adotados"
-                    android:title="pets adotados" />
+                    android:id="@+id/menu_pets_cadastrados"
+                    android:icon="@drawable/ic_pets_cadastrados"
+                    android:title="pets Cadastrados" />
 
                 <item
                     android:id="@+id/menu_saude_do_pet"

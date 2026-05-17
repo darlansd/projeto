@@ -30,7 +30,6 @@
 
     </LinearLayout>
 
-    <!--preciso adicionar um headerlayout que exibir o foto do user e o nome e editar perfil e cadastrar um pet-->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="300dp"
@@ -43,7 +42,8 @@
         app:itemTextAppearance="@style/TextAppearance.Material3.TitleMedium"
         app:itemTextAppearanceActiveBoldEnabled="true"
         app:itemTextColor="@color/green"
-        app:menu="@menu/menu_navigation">
+        app:menu="@menu/menu_navigation"
+        >
 
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

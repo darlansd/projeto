@@ -14,18 +14,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appnoticia.Adapter.Adapter;
-import com.example.appnoticia.Config.Configuracao_firebase;
 import com.example.appnoticia.Models.Pets;
 import com.example.appnoticia.R;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +35,7 @@ public class Fragment_adote_um_pet extends Fragment {
     RecyclerView recycler;
     List<Pets> dados;
     Context context;
-    Adapter adapter;
+    Adapter adapterPetsFeed;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,21 +65,19 @@ public class Fragment_adote_um_pet extends Fragment {
 
                     dados.add(valores);
                 }
-                adapter.notifyDataSetChanged();
+                adapterPetsFeed.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "deu bosta", Toast.LENGTH_SHORT).show();
+
             }
         });
 
-
-
-        RecyclerView.LayoutManager manager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
         recycler.setLayoutManager(manager);
-        adapter = new Adapter(context, dados);
-        recycler.setAdapter(adapter);
+        adapterPetsFeed = new Adapter(context, dados);
+        recycler.setAdapter(adapterPetsFeed);
         recycler.setHasFixedSize(true);
 
 

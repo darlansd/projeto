@@ -21,18 +21,42 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Usuarios {
     private static String uid, nome, email, senha;
-    private static DatabaseReference salvar_dados_usuario;
+    private static DatabaseReference child_nome;
 
-    //tenho que fazer com que o get uid seja dinamico para o chil_nome sempre estar atualizado
-
+    //tenho que fazer com que o get uid seja dinamico para o child_nome sempre estar atualizado
     public static DatabaseReference getChild_nome() {
 
-        if(salvar_dados_usuario == null){
+        String displayName = Configuracao_firebase.getfirebaseUser().getDisplayName();
 
-            salvar_dados_usuario = FirebaseDatabase.getInstance().getReference().child("USUARIOS").child(Configuracao_firebase.getfirebaseUser().getUid()).child("NOME");
+        if (child_nome == null || !displayName.equals(nome)) {
+
+            child_nome = FirebaseDatabase.getInstance().getReference().child("USUARIOS").child(getUid()).child("NOME");
         }
 
-        return salvar_dados_usuario;
+        child_nome.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                nome = snapshot.getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return child_nome;
+    }
+
+
+    public static String getUid() {
+        if (uid == null || !uid.equals(Configuracao_firebase.getfirebaseUser().getUid())) {
+
+            uid = Configuracao_firebase.getfirebaseUser().getUid();
+        }
+        return uid;
     }
 
     public Usuarios() {
@@ -44,7 +68,7 @@ public class Usuarios {
         Usuarios user = new Usuarios();
 
         //nesse atributo eu passo um metodo de criar 2 nós no realtime database
-        salvar_dados_usuario = Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Configuracao_firebase.getfirebaseUser().getUid());
+        DatabaseReference salvar_dados_usuario = Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(getUid());
 
         //e dentro do ultimo nó (uid) salvo os atributos dessa classe (nome, email)
         salvar_dados_usuario.child("NOME").setValue(user.getNome());
@@ -56,7 +80,7 @@ public class Usuarios {
 
         try {
             //aqui eu faço referencia ate o nó nome e troco o valor pelo parametro
-            Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Configuracao_firebase.getfirebaseUser().getUid()).child("NOME").setValue(nome);
+            Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(getUid()).child("NOME").setValue(nome);
 
             //alterar o nome dentro da variavel displayName
             FirebaseUser user = Configuracao_firebase.getfirebaseUser();
@@ -79,7 +103,6 @@ public class Usuarios {
         }
 
     }
-
 
 
     public void setUid(String uid) {

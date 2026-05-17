@@ -5,7 +5,7 @@
             <gradient android:centerColor="@color/turquesa_apagado"/>
             <gradient android:startColor="@color/turquesa"/>
             <gradient android:endColor="@color/turquesa"/>
-            <corners android:topLeftRadius="50dp" android:topRightRadius="50dp"/>
+            <corners android:topLeftRadius="40dp" android:topRightRadius="40dp"/>
         </shape>
 
     </item>

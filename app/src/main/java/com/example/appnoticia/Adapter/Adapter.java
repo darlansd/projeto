@@ -1,7 +1,6 @@
 package com.example.appnoticia.Adapter;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appnoticia.Models.Pets;
 import com.example.appnoticia.R;
-import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
 
@@ -21,7 +19,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewholder> {
     private final List<Pets> dados;
     private final Context context;
 
-    public Adapter(Context context,List<Pets> dados){
+    public Adapter(Context context, List<Pets> dados){
         this.context = context;
         this.dados = dados;
 
@@ -47,7 +45,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewholder> {
         holder.nome_pet.setText(posicao.getNOME());
         holder.raca_pet.setText(posicao.getRACA());
         holder.sexo_pet.setText(posicao.getSEXO());
-        holder.idade_pet.setText(String.valueOf(posicao.getIDADE()));
+        holder.desc_pet.setText(posicao.getDESCRIÇAO());
+        holder.idade_pet.setText(String.valueOf(posicao.getIDADE()) + " Anos");
 
 
     }
@@ -62,7 +61,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewholder> {
         //declarar os tipos de views aqui
         //como se fosse antes do onCreate em uma activity
 
-        TextView nome_pet,raca_pet,sexo_pet,idade_pet;
+        TextView nome_pet,raca_pet,sexo_pet,idade_pet,desc_pet;
         public viewholder(@NonNull View itemView) {
             super(itemView);
             //fazer referencia as views dos modelos dos itens da lista
@@ -71,6 +70,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewholder> {
             raca_pet = itemView.findViewById(R.id.txt_raca_pet);
             sexo_pet = itemView.findViewById(R.id.txt_sexo_pet);
             idade_pet = itemView.findViewById(R.id.txt_idade_pet);
+            desc_pet = itemView.findViewById(R.id.txt_desc_pet);
 
 
         }

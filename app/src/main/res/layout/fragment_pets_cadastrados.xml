@@ -2,18 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Fragment_adote_um_pet">
+    tools:context=".Fragments.Fragment_pets_cadastrados">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="205dp" />
-
+    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -27,25 +20,24 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
-            android:text="@string/app_name"
+            android:layout_width="250dp"
+            android:layout_height="95dp"
+            android:layout_marginStart="30dp"
+            android:text="@string/Pets_cadastrados"
+            android:fontFamily="@font/montserrat"
             android:textColor="@color/white"
-            android:textSize="40sp"
+            android:textSize="37sp"
             />
 
         <TextView
             android:layout_width="350dp"
-            android:layout_height="85dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
+            android:fontFamily="@font/montserrat_bold"
             android:gravity="center|start"
-            android:text="Encontre Seu Novo Melhor Amigo"
-            android:fontFamily="@font/montserrat"
+            android:text="Veja Os Pets Que Você Anunciou Pra Adoção"
             android:textColor="@color/white"
-            android:textSize="30sp" />
-
+            android:textSize="28sp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -56,6 +48,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

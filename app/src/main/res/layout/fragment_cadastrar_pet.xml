@@ -32,38 +32,38 @@
                 app:layout_constraintGuide_begin="205dp" />
 
             <LinearLayout
-                android:id="@+id/linearLayout3"
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
+                android:layout_height="190dp"
                 android:background="@drawable/custom_linear_bottom_rounded"
                 android:elevation="10dp"
-                android:gravity="center|top"
+                android:gravity="center|top|start"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/txt_Melhor_Amigo"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="115dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="45dp"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center|start"
                     android:text="Vamos"
                     android:textColor="@color/white"
-                    android:textSize="30sp" />
+                    android:textSize="40sp" />
 
                 <TextView
-                    android:id="@+id/txt_adote_um_pet"
                     android:layout_width="220dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="60dp"
+                    android:layout_marginStart="45dp"
+                    android:fontFamily="@font/montserrat_bold"
                     android:gravity="start"
                     android:text="Cadastrar Seu Pet"
                     android:textColor="@color/white"
                     android:textSize="40sp"
-                    android:textStyle="bold" />
+                    />
+
             </LinearLayout>
 
             <EditText
@@ -80,7 +80,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.099"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 
             <EditText
@@ -130,13 +130,13 @@
                 <RadioButton
                     android:id="@+id/radioButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:text="Macho" />
 
                 <RadioButton
                     android:id="@+id/radioButton2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_marginStart="10dp"
                     android:text="Fêmea" />
             </RadioGroup>

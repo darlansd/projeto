@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.appnoticia.Config.TrocarFragment;
 import com.example.appnoticia.R;
 import com.example.appnoticia.navigation.Navigation_drawer_Activity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,29 +49,24 @@ public class MainActivity extends AppCompatActivity {
         btn_cadastrar = findViewById(R.id.btn_casdastrar);
         btn_entrar = findViewById(R.id.btn_entrar);
 
-        btn_entrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), Segunda_activity.class);
-                intent.putExtra("SHOW_FRAGMENT", 1);
-                startActivity(intent);
-
-
-            }
-        });
-
         btn_cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), Segunda_activity.class);
-                intent.putExtra("SHOW_FRAGMENT", 0);
-                startActivity(intent);
-
+                TrocarFragment.intent_PutExtra(MainActivity.this,getApplicationContext(), Segunda_activity.class,0);
 
             }
         });
+
+        btn_entrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TrocarFragment.intent_PutExtra(MainActivity.this,getApplicationContext(),Segunda_activity.class,1);
+
+            }
+        });
+
 
     }
 }
