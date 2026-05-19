@@ -6,10 +6,15 @@ import android.os.Bundle;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 
 import com.example.appnoticia.Config.TrocarFragment;
+import com.example.appnoticia.Fragments.Fragment_cadastrar_gato;
 import com.example.appnoticia.Fragments.Fragment_cadastro;
 import com.example.appnoticia.Fragments.Fragment_editar_informacoes_pessoais;
 import com.example.appnoticia.Fragments.Fragment_entrar;
@@ -24,6 +29,24 @@ public class Segunda_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_segunda);
+
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+
+        //responsaveis por alguma coisa que eu tenho que intender no fragment de cadastrar gato e cachorro
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.frame_principal), (view, windowInsets) -> {
+
+            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.ime());
+
+            view.setPadding(
+                    view.getPaddingLeft(),
+                    view.getPaddingTop(),
+                    view.getPaddingRight(),
+                    insets.bottom
+            );
+
+            return windowInsets;
+        });
+
 
         dados = getIntent().getExtras();
 
@@ -43,6 +66,10 @@ public class Segunda_activity extends AppCompatActivity {
                 break;
 
             case 3:
+                break;
+
+            case 4:
+                TrocarFragment.trocar(this,R.id.frame_principal,new Fragment_cadastrar_gato());
                 break;
         }
 

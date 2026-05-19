@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="options_raca">
+        <item>(SRD) Sem Raça Definida</item>
+        <item>Siamês</item>
+        <item>Frajola</item>
+        <item>Tigrado</item>
+        <item>Laranja</item>
+        <item>Preto</item>
+        <item>Tricolor</item>
+        <item>Escaminha</item>
+        <item>outro</item>
+    </string-array>
+
+    <string-array name="options_idade">
+        <item>2 a 6 Meses</item>
+        <item>6 a 12 Meses</item>
+        <item>1 Anos a 1 Ano e Meio</item>
+        <item>2 Anos a 2 Anos e Meio</item>
+        <item>3 Anos a 3 Anos e Meio</item>
+        <item>4 Anos a 4 Ano e Meio</item>
+        <item>5 Anos a 5 Ano e Meio</item>
+        <item>6 Anos a 6 Ano e Meio</item>
+        <item>7 anos</item>
+        <item>Mais Que 8 (Idoso)</item>
+    </string-array>
+
+    <string-array name="options_porte">
+        <item>Pequeno</item>
+        <item>Medio</item>
+        <item>Grande</item>
+        <item>Imenso</item>
+    </string-array>
+
+</resources>

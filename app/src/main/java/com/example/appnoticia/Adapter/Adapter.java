@@ -46,7 +46,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewholder> {
         holder.raca_pet.setText(posicao.getRACA());
         holder.sexo_pet.setText(posicao.getSEXO());
         holder.desc_pet.setText(posicao.getDESCRIÇAO());
-        holder.idade_pet.setText(String.valueOf(posicao.getIDADE()) + " Anos");
+        holder.idade_pet.setText(String.valueOf(posicao.getIDADE()));
 
 
     }

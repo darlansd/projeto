@@ -56,7 +56,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
 
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
-        //responsaveis por alguma coisa que eu tenho que intender
+        //responsaveis por alguma coisa que eu tenho que intender no fragment container
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.fragmentContainer), (view, windowInsets) -> {
 
             Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.ime());

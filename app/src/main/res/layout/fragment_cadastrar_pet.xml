@@ -6,209 +6,80 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.Fragment_cadastrar_pet">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:isScrollContainer="true"
-        android:scrollbarSize="5dp"
-        android:scrollbars="vertical"
-        android:fillViewport="true"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="190dp"
+        android:background="@drawable/custom_linear_bottom_rounded"
+        android:elevation="10dp"
+        android:gravity="center|top|start"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <!-- TODO: Update blank fragment layout -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginStart="45dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center|start"
+            android:text="Vamos"
+            android:textColor="@color/white"
+            android:textSize="40sp" />
 
+        <TextView
+            android:layout_width="220dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="45dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="start"
+            android:text="Cadastrar Seu Pet"
+            android:textColor="@color/white"
+            android:textSize="40sp" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="205dp" />
+    </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="190dp"
-                android:background="@drawable/custom_linear_bottom_rounded"
-                android:elevation="10dp"
-                android:gravity="center|top|start"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_cadastrar_gato"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_gravity="start"
+        android:layout_marginTop="72dp"
+        android:background="@drawable/btn_background"
+        android:drawableStart="@drawable/ic_patinha"
+        android:fontFamily="@font/montserrat"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:text="Cadastrar Gato"
+        android:textAllCaps="false"
+        android:drawableTint="@color/white"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="44dp"
-                    android:layout_marginStart="45dp"
-                    android:fontFamily="@font/montserrat"
-                    android:gravity="center|start"
-                    android:text="Vamos"
-                    android:textColor="@color/white"
-                    android:textSize="40sp" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_cadastrar_cachorro"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_gravity="start"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/btn_background"
+        android:drawableStart="@drawable/ic_patinha"
+        android:fontFamily="@font/montserrat"
+        android:paddingStart="40dp"
+        android:paddingEnd="20dp"
+        android:text="Cadastrar Cachorro"
+        android:textAllCaps="false"
+        android:drawableTint="@color/white"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_cadastrar_gato" />
 
-                <TextView
-                    android:layout_width="220dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="45dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:gravity="start"
-                    android:text="Cadastrar Seu Pet"
-                    android:textColor="@color/white"
-                    android:textSize="40sp"
-                    />
-
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/edt_nome_pet"
-                android:layout_width="225dp"
-                android:layout_height="53dp"
-                android:layout_marginTop="25dp"
-                android:background="@drawable/custom_edit_text"
-                android:drawableStart="@drawable/ic_change_patinha"
-                android:hint="Nome Do Seu Pet"
-                android:inputType="textPersonName|textAutoComplete|text"
-                android:paddingStart="15dp"
-                android:elevation="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.099"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-
-            <EditText
-                android:id="@+id/edt_raca_pet"
-                android:layout_width="225dp"
-                android:layout_height="53dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/custom_edit_text"
-                android:drawableStart="@drawable/ic_change_patinha"
-                android:hint="Raça / Espécie"
-                android:inputType="textAutoComplete|text"
-                android:paddingStart="15dp"
-                android:elevation="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.099"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_nome_pet" />
-
-            <EditText
-                android:id="@+id/edt_idade_pet"
-                android:layout_width="225dp"
-                android:layout_height="53dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/custom_edit_text"
-                android:drawableStart="@drawable/ic_change_patinha"
-                android:hint="Idade Aproximada"
-                android:inputType="number"
-                android:paddingStart="15dp"
-                android:elevation="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.099"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_raca_pet" />
-
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal"
-                android:padding="3dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.115"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_idade_pet">
-
-                <RadioButton
-                    android:id="@+id/radioButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:text="Macho" />
-
-                <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="10dp"
-                    android:text="Fêmea" />
-            </RadioGroup>
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Castrado"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.106"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-            <CheckBox
-                android:id="@+id/checkBox2"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Vermifugado"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.106"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Conte Mais Sobre o Seu Pet:"
-                android:textColor="@color/turquesa_acinzentado"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.121"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
-
-            <EditText
-                android:id="@+id/edt_desc_pet"
-                android:layout_width="350dp"
-                android:layout_height="250dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/custom_edit_text"
-                android:gravity="top|start"
-                android:hint="Vacinas, Sociabilidade, Condicoes Epeciais, Historia"
-                android:inputType="textMultiLine|textAutoComplete|textLongMessage"
-                android:elevation="10dp"
-                android:descendantFocusability="beforeDescendants"
-                android:overScrollMode="always"
-                android:padding="10dp"
-                android:scrollbarSize="5dp"
-                android:scrollbars="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.311"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_cadastrar_pet"
-                android:layout_width="325dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:layout_marginBottom="60dp"
-                android:background="@drawable/btn_background"
-                android:text="Enviar"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_desc_pet" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

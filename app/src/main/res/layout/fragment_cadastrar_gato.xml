@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nested"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:isScrollContainer="true"
+    android:scrollbarSize="5dp"
+    android:scrollbars="vertical"
+    tools:context=".Fragments.Fragment_cadastrar_gato">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="205dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineStart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="25dp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:background="@drawable/custom_linear_bottom_rounded"
+            android:elevation="10dp"
+            android:gravity="center|top|start"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="65dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center|start"
+                android:text="Vamos"
+                android:textColor="@color/white"
+                android:textSize="40sp" />
+
+            <TextView
+                android:layout_width="220dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="30dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="start"
+                android:text="Cadastrar Seu Gato"
+                android:textColor="@color/white"
+                android:textSize="40sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="40dp"
+            android:elevation="11dp"
+            android:src="@drawable/gato"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="start"
+            android:text="Fotos Do Animal:"
+            android:textColor="@color/turquesa_acinzentado"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Nome Do Animal:"
+                android:textColor="@color/turquesa_acinzentado"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_nome_pet"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/custom_edit_text"
+                    android:hint="nome do pet"
+                    android:paddingStart="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Raça:"
+                android:textColor="@color/turquesa_acinzentado"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/custom_edit_text"
+                android:gravity="center"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/edt_raca_pet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/trnasparent"
+                    android:hint="Raça"
+                    android:inputType="none"
+                    app:simpleItems="@array/options_raca" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Idade Aproximada:"
+                android:textColor="@color/turquesa_acinzentado"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/custom_edit_text"
+                android:gravity="center"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/edt_idade_pet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/trnasparent"
+                    android:hint="2 a 6 meses"
+                    android:inputType="none"
+                    app:simpleItems="@array/options_idade" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Porte:"
+                android:textColor="@color/turquesa_acinzentado"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/custom_edit_text"
+                android:gravity="center"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/edt_porte_pet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/trnasparent"
+                    android:hint="Tamanho"
+                    android:inputType="none"
+                    app:simpleItems="@array/options_porte" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Sexo:"
+                android:textColor="@color/turquesa_acinzentado"
+                android:textSize="15sp" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@+id/linear">
+
+                <RadioButton
+                    android:id="@+id/rb_macho"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="Macho" />
+
+                <RadioButton
+                    android:id="@+id/rb_femea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="10dp"
+                    android:text="Fêmea" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Saúde e Cuidados:"
+                android:textColor="@color/turquesa_acinzentado"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cb_castrado"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:text="Castrado" />
+
+                <CheckBox
+                    android:id="@+id/cb_vacinado"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:text="Vacinado" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cb_vermifugado"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:text="Vermifugado" />
+
+                <CheckBox
+                    android:id="@+id/cb_cuidados"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cuidados Especiais" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Personalidade:"
+                android:textColor="@color/turquesa_acinzentado"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cb_docil"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="Dócil" />
+
+                <CheckBox
+                    android:id="@+id/cb_agressivo"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="Agressivo" />
+
+                <CheckBox
+                    android:id="@+id/cb_arisco"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="Arisco" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cb_calmo"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="Calmo" />
+
+                <CheckBox
+                    android:id="@+id/cb_brincalhao"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="Brincalhão" />
+
+                <CheckBox
+                    android:id="@+id/cb_independente"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Independente" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Convivência:"
+                android:textColor="@color/turquesa_acinzentado"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cb_criancas"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="Crianças" />
+
+                <CheckBox
+                    android:id="@+id/cb_cachorros"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cachorros" />
+
+                <CheckBox
+                    android:id="@+id/cb_apartamento"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Apartamento" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cb_crianca"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="Criança" />
+
+                <CheckBox
+                    android:id="@+id/cb_gato"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="Brincalhão" />
+
+                <CheckBox
+                    android:id="@+id/cb_casa"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="Casa" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Conte Mais Sobre o Seu Pet:"
+                android:textColor="@color/turquesa_acinzentado"
+                android:textSize="15sp" />
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_desc_pet"
+                    android:layout_width="340dp"
+                    android:layout_height="250dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/custom_edit_text"
+                    android:descendantFocusability="beforeDescendants"
+                    android:elevation="10dp"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="top|start"
+                    android:hint="Vacinas, Sociabilidade, Condicoes Epeciais, Historia"
+                    android:inputType="textMultiLine|textAutoComplete|textLongMessage"
+                    android:overScrollMode="always"
+                    android:padding="10dp"
+                    android:scrollbarSize="5dp"
+                    android:scrollbars="vertical" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_cadastrar_pet"
+                android:layout_width="325dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="60dp"
+                android:background="@drawable/btn_background"
+                android:fontFamily="@font/montserrat"
+                android:text="Enviar"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="19sp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

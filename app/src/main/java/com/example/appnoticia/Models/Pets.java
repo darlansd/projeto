@@ -12,10 +12,28 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class Pets {
-    private String NOME, RACA, SEXO, DESCRIÇAO, CASTRADO, VERMIFUGADO;
-    private int IDADE;
+    private String NOME, RACA, SEXO, DESCRIÇAO, CASTRADO, VERMIFUGADO,IDADE,PORTE,VACINADO,CUIDADOS_ESP,DOCIL,CALMO,AGRESSIVO,BRINCALHAO,ARISCO,INDEP;
     // FOTO
+    public Pets(String nome_pet, String raca_pet, String sexo_pet, String descricao_pet, String idade_pet, String castrado, String vermifugado, String porte, String vacinado, String cuidados_esp, String docil, String calmo, String agressivo, String brincalhao, String arisco, String indep) {
+        setNOME(nome_pet.trim());
+        setRACA(raca_pet.trim());
+        setSEXO(sexo_pet.trim());
+        setDESCRIÇAO(descricao_pet.trim());
+        setIDADE(idade_pet);
+        setCASTRADO(castrado.trim());
+        setVERMIFUGADO(vermifugado.trim());
+        setPORTE(porte.trim());
+        setVACINADO(vacinado.trim());
+        setCUIDADOS_ESP(cuidados_esp.trim());
+        setDOCIL(docil.trim());
+        setCALMO(calmo.trim());
+        setAGRESSIVO(agressivo.trim());
+        setBRINCALHAO(brincalhao.trim());
+        setARISCO(arisco.trim());
+        setINDEP(indep.trim());
 
+        //PORTE,VACINADO,CUIDADOS_ESP,DOCIL,CALMO,AGRESSIVO,BRINCALHAO,ARISCO,INDEP
+    }
     public static void delete_ppu(String path, String value) {
         DatabaseReference ppu = Configuracao_firebase.getfirebasedatabase().child("PETS-POR-USUARIO").child(Usuarios.getUid());
 
@@ -42,7 +60,6 @@ public class Pets {
         });
 
     }
-
     public static void delete_pf(String path, String value) {
         DatabaseReference pf = Configuracao_firebase.getfirebasedatabase().child("PETS-FEED");
 
@@ -79,19 +96,7 @@ public class Pets {
         pets_por_user.setValue(this);
     }
 
-    public Pets() {
-    }
-
-    public Pets(String nome_pet, String raca_pet, String sexo_pet, String descricao_pet, int idade_pet, String castrado, String vermifugado) {
-        setNOME(nome_pet.trim());
-        setRACA(raca_pet.trim());
-        setSEXO(sexo_pet.trim());
-        setDESCRIÇAO(descricao_pet.trim());
-        setIDADE(idade_pet);
-        setCASTRADO(castrado.trim());
-        setVERMIFUGADO(vermifugado.trim());
-    }
-
+    public Pets() {}
     public String getNOME() {
         return NOME;
     }
@@ -124,11 +129,11 @@ public class Pets {
         this.DESCRIÇAO = DESCRIÇAO;
     }
 
-    public int getIDADE() {
+    public String getIDADE() {
         return IDADE;
     }
 
-    public void setIDADE(int IDADE) {
+    public void setIDADE(String IDADE) {
         this.IDADE = IDADE;
     }
 
@@ -146,5 +151,76 @@ public class Pets {
 
     public void setVERMIFUGADO(String VERMIFUGADO) {
         this.VERMIFUGADO = VERMIFUGADO;
+    }
+    public String getPORTE() {
+        return PORTE;
+    }
+
+    public void setPORTE(String PORTE) {
+        this.PORTE = PORTE;
+    }
+
+    public String getVACINADO() {
+        return VACINADO;
+    }
+
+    public void setVACINADO(String VACINADO) {
+        this.VACINADO = VACINADO;
+    }
+
+    public String getCUIDADOS_ESP() {
+        return CUIDADOS_ESP;
+    }
+
+    public void setCUIDADOS_ESP(String CUIDADOS_ESP) {
+        this.CUIDADOS_ESP = CUIDADOS_ESP;
+    }
+
+    public String getDOCIL() {
+        return DOCIL;
+    }
+
+    public void setDOCIL(String DOCIL) {
+        this.DOCIL = DOCIL;
+    }
+
+    public String getCALMO() {
+        return CALMO;
+    }
+
+    public void setCALMO(String CALMO) {
+        this.CALMO = CALMO;
+    }
+
+    public String getAGRESSIVO() {
+        return AGRESSIVO;
+    }
+
+    public void setAGRESSIVO(String AGRESSIVO) {
+        this.AGRESSIVO = AGRESSIVO;
+    }
+
+    public String getBRINCALHAO() {
+        return BRINCALHAO;
+    }
+
+    public void setBRINCALHAO(String BRINCALHAO) {
+        this.BRINCALHAO = BRINCALHAO;
+    }
+
+    public String getARISCO() {
+        return ARISCO;
+    }
+
+    public void setARISCO(String ARISCO) {
+        this.ARISCO = ARISCO;
+    }
+
+    public String getINDEP() {
+        return INDEP;
+    }
+
+    public void setINDEP(String INDEP) {
+        this.INDEP = INDEP;
     }
 }

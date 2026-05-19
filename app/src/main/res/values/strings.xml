@@ -6,4 +6,6 @@
     <string name="koko">vai se fuder tambem</string>
     <string name="cadastre_um_pet">Cadastre Um Pet</string>
     <string name="Pets_cadastrados">Pets Cadastrados</string>
+    <string name="persona">De Personalidade</string>
+    <string name="obrigatorio">Campo Obrigatorio</string>
 </resources>
