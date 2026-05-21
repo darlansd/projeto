@@ -5,6 +5,10 @@ import android.os.Bundle;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.method.KeyListener;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +18,9 @@ import android.widget.Toast;
 import com.example.appnoticia.Config.Configuracao_firebase;
 import com.example.appnoticia.Models.Usuarios;
 import com.example.appnoticia.R;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Fragment_editar_informacoes_pessoais extends Fragment {
     String novo_nome;
@@ -29,32 +36,48 @@ public class Fragment_editar_informacoes_pessoais extends Fragment {
 
         edt_novo_nome = view.findViewById(R.id.edt_novo_nome);
         alterar = view.findViewById(R.id.btn_alterar);
-        edt_novo_nome.setHint(Configuracao_firebase.getfirebaseUser().getDisplayName());
+        edt_novo_nome.setText(Configuracao_firebase.getfirebaseUser().getDisplayName());
 
         //validaçao so vai acontecer se o usuario digitar alguma coisa em algum campo
         //senao o botao nao habilita pra clickar
+
+
+        edt_novo_nome.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                novo_nome = edt_novo_nome.getText().toString();
+
+               if (!novo_nome.equals(Configuracao_firebase.getfirebaseUser().getDisplayName())){
+                    alterar.setVisibility(View.VISIBLE);
+               }else {
+                    alterar.setVisibility(View.GONE);
+               }
+            }
+        });
 
         alterar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                novo_nome = edt_novo_nome.getText().toString();
+                Usuarios.atualizarnome(novo_nome);
+                requireActivity().finish();
+                Toast.makeText(getContext(), "Nome Atualizado", Toast.LENGTH_SHORT).show();
 
-                if(!novo_nome.isEmpty()){
-                    Usuarios.atualizarnome(novo_nome);
-                    requireActivity().finish();
-                }else{
-                    Toast.makeText(getContext(),"preencha o nome",Toast.LENGTH_SHORT).show();
-                }
+                //edt_novo_nome.setError("Campo Obrigatorio");
+                //edt_novo_nome.setHintTextColor(-65536);
+                //Toast.makeText(getContext(), "preencha o nome", Toast.LENGTH_SHORT).show();
+
 
             }
         });
-
-
-
-
-
-
 
 
         return view;

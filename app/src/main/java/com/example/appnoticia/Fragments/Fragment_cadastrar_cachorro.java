@@ -1,8 +1,5 @@
 package com.example.appnoticia.Fragments;
 
-import static android.content.Intent.getIntent;
-
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -21,31 +18,28 @@ import com.example.appnoticia.R;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class Fragment_cadastrar_gato extends Fragment {
+public class Fragment_cadastrar_cachorro extends Fragment {
     NestedScrollView nested;
-    TextInputEditText edt_nome_gato, edt_desc_gato;
-    MaterialAutoCompleteTextView edt_raca_gato, edt_idade_gato,edt_porte_gato;
+    TextInputEditText edt_nome_cao, edt_desc_cao;
+    MaterialAutoCompleteTextView edt_raca_cao, edt_idade_cao,edt_porte_cao;
     RadioButton rb_macho;
     CheckBox cb_castrado, cb_vermifugado, cb_vacinado, cb_cuidados_esp, cb_docil, cb_agressivo, cb_ariso, cb_calmo, cb_brincalhao, cb_indep, cb_criancas, cb_crianca, cb_cachorros, cb_gatos, cb_apart, cb_casa;
     AppCompatButton btn_enviar;
-    String nome_pet,raca_pet,idade_pet,porte,sexo,castrado,vermifugado,vacinado,cuidados_esp,docil,agressivo,arisco,calmo,brincalhao,indep,crianca,criancas,gatos,cachorros,apart,casa,desc_pet;
-    Bundle dados;
-
+    String nome_cao,raca_cao,idade_cao,porte,sexo,castrado,vermifugado,vacinado,cuidados_esp,docil,agressivo,arisco,calmo,brincalhao,indep,crianca,criancas,gatos,cachorros,apart,casa,desc_cao;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_cadastrar_gato, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_cadastrar_cachorro, container, false);
 
         nested = view.findViewById(R.id.nested);
 
-        edt_nome_gato = view.findViewById(R.id.edt_nome_gato);
-        edt_desc_gato = view.findViewById(R.id.edt_desc_gato);
+        edt_nome_cao= view.findViewById(R.id.edt_nome_cao);
+        edt_desc_cao = view.findViewById(R.id.edt_desc_cao);
 
-        edt_raca_gato = view.findViewById(R.id.edt_raca_gato);
-        edt_idade_gato = view.findViewById(R.id.edt_idade_gato);
-        edt_porte_gato = view.findViewById(R.id.edt_porte_gato);
+        edt_raca_cao = view.findViewById(R.id.edt_raca_cao);
+        edt_idade_cao = view.findViewById(R.id.edt_idade_cao);
+        edt_porte_cao = view.findViewById(R.id.edt_porte_cao);
 
         rb_macho = view.findViewById(R.id.rb_macho);
 
@@ -65,15 +59,13 @@ public class Fragment_cadastrar_gato extends Fragment {
         cb_gatos = view.findViewById(R.id.cb_gato);
         cb_cachorros = view.findViewById(R.id.cb_cachorros);
         cb_casa = view.findViewById(R.id.cb_casa);
-
-
-        btn_enviar = view.findViewById(R.id.btn_cadastrar_gato);
+        btn_enviar = view.findViewById(R.id.btn_cadastrar_cao);
 
         btn_enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                validar_cadastrar_pet();
+                validar_cadastrar_cao();
 
             }
         });
@@ -81,13 +73,13 @@ public class Fragment_cadastrar_gato extends Fragment {
         return view;
     }
 
-    private void validar_cadastrar_pet(){
-        nome_pet = tiet_string(edt_nome_gato);
-        desc_pet = tiet_string(edt_desc_gato);
+    private void validar_cadastrar_cao(){
+        nome_cao = tiet_string(edt_nome_cao);
+        desc_cao = tiet_string(edt_desc_cao);
 
-        raca_pet = mact_string(edt_raca_gato);
-        idade_pet = mact_string(edt_idade_gato);
-        porte = mact_string(edt_porte_gato);
+        raca_cao = mact_string(edt_raca_cao);
+        idade_cao = mact_string(edt_idade_cao);
+        porte = mact_string(edt_porte_cao);
 
         sexo = rb_macho.isChecked() ? "Macho" : "Fêmea";
         castrado = cb_check(cb_castrado,"Castrado","Nao Castrado");
@@ -101,28 +93,28 @@ public class Fragment_cadastrar_gato extends Fragment {
         arisco = cb_check(cb_ariso,"Arisca","Nao Arisca");
         indep = cb_check(cb_indep,"Independente","Nao Independente");
 
-        if(!nome_pet.isEmpty()){
-            if (!raca_pet.isEmpty()){
-                if (!idade_pet.isEmpty()){
+        if(!nome_cao.isEmpty()){
+            if (!raca_cao.isEmpty()){
+                if (!idade_cao.isEmpty()){
                     if (!porte.isEmpty()){
                         if(!sexo.isEmpty()){
-                            if (!desc_pet.isEmpty()){
+                            if (!desc_cao.isEmpty()){
 
-                                Pets pets = new Pets(nome_pet,raca_pet,sexo,desc_pet,idade_pet,castrado,vermifugado,porte,vacinado,cuidados_esp,docil,calmo,agressivo,brincalhao,arisco,indep,"Gato");
+                                Pets pets = new Pets(nome_cao,raca_cao,sexo,desc_cao,idade_cao,castrado,vermifugado,porte,vacinado,cuidados_esp,docil,calmo,agressivo,brincalhao,arisco,indep,"Cachorro");
                                 pets.uploadtodatabase();
                                 requireActivity().finish();
-                                Toast.makeText(getContext(),pets.getEspecie() + " Cadastrado Com Sucesso",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), pets.getEspecie() + " Cadastrado Com Sucesso",Toast.LENGTH_SHORT).show();
 
-                            }else {edt_desc_gato.setError("Campo Obrigatorio");
+                            }else {edt_desc_cao.setError("Campo Obrigatorio");
                                 Toast.makeText(getContext(),"Fale Um Pouco Sobre Seu Pet",Toast.LENGTH_SHORT).show();}
                         }else{Toast.makeText(getContext(),"Defina Um Sexo ao Pet",Toast.LENGTH_SHORT).show();}
-                    }else{edt_porte_gato.setError("Campo Obrigatorio");
-                    Toast.makeText(getContext(),"Defina o Porte Do Pet",Toast.LENGTH_SHORT).show();}
-                }else{edt_idade_gato.setError("Campo Obrigatorio");
+                    }else{edt_porte_cao.setError("Campo Obrigatorio");
+                        Toast.makeText(getContext(),"Defina o Porte Do Pet",Toast.LENGTH_SHORT).show();}
+                }else{edt_idade_cao.setError("Campo Obrigatorio");
                     Toast.makeText(getContext(),"Preecha a Idade Do Pet",Toast.LENGTH_SHORT).show();}
-            }else{edt_raca_gato.setError("Campo Obrigatorio");
+            }else{edt_raca_cao.setError("Campo Obrigatorio");
                 Toast.makeText(getContext(),"Preecha a Raça Do Pet",Toast.LENGTH_SHORT).show();}
-        }else{edt_nome_gato.setError("Campo Obrigatorio");
+        }else{edt_nome_cao.setError("Campo Obrigatorio");
             Toast.makeText(getContext(),"Preecha o Nome Do Pet",Toast.LENGTH_SHORT).show();}
     }
     private String tiet_string(TextInputEditText edt){

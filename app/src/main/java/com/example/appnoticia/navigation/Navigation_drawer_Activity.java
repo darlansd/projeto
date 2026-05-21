@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -32,6 +33,7 @@ import com.example.appnoticia.Fragments.Fragment_pets_cadastrados;
 import com.example.appnoticia.Models.Usuarios;
 import com.example.appnoticia.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -113,6 +115,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
             }
         });
 
+
         editar_user_header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +149,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
         } else if (menuItem.getItemId() == R.id.menu_adote) {
             TrocarFragment.trocar(Navigation_drawer_Activity.this, R.id.fragmentContainer, new Fragment_adote_um_pet());
         } else if (menuItem.getItemId() == R.id.menu_pets_cadastrados) {
-            TrocarFragment.trocar(Navigation_drawer_Activity.this,R.id.fragmentContainer,new Fragment_pets_cadastrados());
+            TrocarFragment.trocar(Navigation_drawer_Activity.this, R.id.fragmentContainer, new Fragment_pets_cadastrados());
         }
 
         drawer.closeDrawer(GravityCompat.START);

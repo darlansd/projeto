@@ -2,6 +2,7 @@ package com.example.appnoticia.Activities;
 
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -14,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 import com.example.appnoticia.Config.TrocarFragment;
+import com.example.appnoticia.Fragments.Fragment_cadastrar_cachorro;
 import com.example.appnoticia.Fragments.Fragment_cadastrar_gato;
 import com.example.appnoticia.Fragments.Fragment_cadastro;
 import com.example.appnoticia.Fragments.Fragment_editar_informacoes_pessoais;
@@ -50,6 +52,7 @@ public class Segunda_activity extends AppCompatActivity {
 
         dados = getIntent().getExtras();
 
+
         show_fragment = dados.getInt("SHOW_FRAGMENT");
 
         switch (show_fragment) {
@@ -69,7 +72,11 @@ public class Segunda_activity extends AppCompatActivity {
                 break;
 
             case 4:
-                TrocarFragment.trocar(this,R.id.frame_principal,new Fragment_cadastrar_gato());
+                TrocarFragment.trocar_putExtra(this,R.id.frame_principal,new Fragment_cadastrar_gato(),getApplicationContext(), Fragment_cadastrar_gato.class,0);
+                break;
+
+            case 5:
+                TrocarFragment.trocar_putExtra(this,R.id.frame_principal,new Fragment_cadastrar_cachorro(),getApplicationContext(), Fragment_cadastrar_gato.class,1);
                 break;
         }
 

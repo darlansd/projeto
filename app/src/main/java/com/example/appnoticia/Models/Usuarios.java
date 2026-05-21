@@ -24,6 +24,8 @@ public class Usuarios {
     private static DatabaseReference child_nome;
 
     //tenho que fazer com que o get uid seja dinamico para o child_nome sempre estar atualizado
+
+    //serve para caso ocorra uma troca de usuario | o header do NavigationDrawer estar Atualizado | comparar se o getdisplayname confere com o valor do nó nome | caso nao
     public static DatabaseReference getChild_nome() {
 
         String displayName = Configuracao_firebase.getfirebaseUser().getDisplayName();
@@ -33,7 +35,8 @@ public class Usuarios {
             child_nome = FirebaseDatabase.getInstance().getReference().child("USUARIOS").child(getUid()).child("NOME");
         }
 
-        child_nome.addValueEventListener(new ValueEventListener() {
+        //captura o valor do nó nome |
+        child_nome.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 

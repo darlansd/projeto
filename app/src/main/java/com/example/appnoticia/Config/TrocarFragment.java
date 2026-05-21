@@ -15,20 +15,34 @@ public class TrocarFragment {
 
     public static void intent_PutExtra(Activity activity, Context context, Class activity_com_intecao, int value){
 
-        Intent intent1 = new Intent(context,activity_com_intecao);
-        intent1.putExtra("SHOW_FRAGMENT",value);
+        Intent intent = new Intent(context,activity_com_intecao);
+        intent.putExtra("SHOW_FRAGMENT",value);
 
         // pra poder funcionar em versoes um pouco mais antigas do android
-        intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        activity.startActivity(intent1);
+        activity.startActivity(intent);
 
     }
 
     public static void trocar (FragmentActivity activity, int layout, Fragment fragment){
 
+
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
         transaction.replace(layout,fragment);
+        transaction.commit();
+
+        // Boas práticas do Android para animações e transições
+        transaction.setReorderingAllowed(true);
+
+    }
+
+    public static void trocar_putExtra (FragmentActivity activity, int layout, Fragment fragment_to_replace,Context context,Class fragment_class,int value){
+        Intent intent = new Intent(context,fragment_class);
+        intent.putExtra("Raça",value);
+
+        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+        transaction.replace(layout,fragment_to_replace);
         transaction.commit();
 
         // Boas práticas do Android para animações e transições

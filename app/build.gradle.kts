@@ -37,6 +37,11 @@ android {
 }
 
 dependencies {
+    implementation(libs.glide)
+
+    //para kotlin/java hibrido
+
+    implementation(libs.supbase)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

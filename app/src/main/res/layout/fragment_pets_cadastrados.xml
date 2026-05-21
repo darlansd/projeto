@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.Fragment_pets_cadastrados">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -39,6 +38,24 @@
             android:textColor="@color/white"
             android:textSize="28sp" />
     </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_encaminhar_frag_cadastrar_pet"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:background="@drawable/btn_background"
+        android:elevation="11dp"
+        android:visibility="gone"
+        android:text="Cadastrar Pet Agora!"
+        android:textSize="19sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/montserrat_bold"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"

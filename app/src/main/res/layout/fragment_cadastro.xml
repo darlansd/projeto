@@ -7,9 +7,6 @@
     android:layout_height="match_parent"
     tools:context="Fragments.Fragment_cadastro">
 
-
-    <!-- TODO: Update blank fragment layout -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="270dp"
@@ -49,9 +46,7 @@
         android:layout_height="53dp"
         android:layout_marginTop="300dp"
         android:drawableStart="@drawable/ic_change_user"
-        android:ems="10"
         android:background="@drawable/custom_edit_text"
-        android:paddingEnd="12dp"
         android:paddingStart="25dp"
         android:drawablePadding="12dp"
         android:hint="Nome Completo"

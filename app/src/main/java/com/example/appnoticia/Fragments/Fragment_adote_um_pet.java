@@ -55,7 +55,7 @@ public class Fragment_adote_um_pet extends Fragment {
 
         dados = new ArrayList<>();
 
-        pets_Feed.addValueEventListener(new ValueEventListener() {
+        pets_Feed.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dados.clear();

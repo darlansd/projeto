@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.appnoticia.Adapter.Adapter;
 import com.example.appnoticia.Config.Configuracao_firebase;
+import com.example.appnoticia.Config.TrocarFragment;
 import com.example.appnoticia.Models.Pets;
 import com.example.appnoticia.Models.Usuarios;
 import com.example.appnoticia.R;
@@ -32,10 +34,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Fragment_pets_cadastrados extends Fragment {
+    AppCompatButton btn_encaminhar;
     DatabaseReference pets_por_users = FirebaseDatabase.getInstance().getReference("PETS-POR-USUARIO").child(Usuarios.getUid());
     DatabaseReference pets_feed = FirebaseDatabase.getInstance().getReference("PETS-FEED");
     RecyclerView recycler;
@@ -51,15 +55,54 @@ public class Fragment_pets_cadastrados extends Fragment {
 
         dados = new ArrayList<>();
 
+        btn_encaminhar = view.findViewById(R.id.btn_encaminhar_frag_cadastrar_pet);
+
+        //se for comentar ou descomentar lembra do uploadtodatabase na classe Pets e delete_ppu no OnLongItemClick la em baixo
+        Query q_pets_ppu = pets_feed.orderByChild("UID_USER").equalTo(Usuarios.getUid());
+
+        q_pets_ppu.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    Log.i("snap pets cadastrados",snapshot.getValue().toString());
+                    dados.clear();
+
+                    for (DataSnapshot kaka : snapshot.getChildren()) {
+                        Pets valores = kaka.getValue(Pets.class);
+                        dados.add(valores);
+                    }
+                    adapterPetsFeed.notifyDataSetChanged();
+
+                }else{
+                    btn_encaminhar.setVisibility(View.VISIBLE);
+                    btn_encaminhar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                           //todo: fazer fragment de adotar pet aparecer
+                        }
+                    });
+                    Toast.makeText(getContext(),"voce ainda nao cadastrou pets",Toast.LENGTH_SHORT).show();}
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+
+        //todo: duvida para o professor sobre qual das opçoes seria melhor em relaçao a desempenho
+
+        /* //se for comentar ou descomentar lembra do uploadtodatabase na classe Pets e delete_ppu no OnLongItemClick la em baixo
         pets_por_users.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                dados.clear();
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    Pets valores = data.getValue(Pets.class);
-                    dados.add(valores);
-                }
-                adapterPetsFeed.notifyDataSetChanged();
+                if (snapshot.exists()){
+                    dados.clear();
+                    for (DataSnapshot data : snapshot.getChildren()) {
+                        Pets valores = data.getValue(Pets.class);
+                        dados.add(valores);
+                    }
+                    adapterPetsFeed.notifyDataSetChanged();
+
+                }else {Toast.makeText(getContext(),"voce ainda nao cadastrou pets",Toast.LENGTH_SHORT).show();}
+
             }
 
             @Override
@@ -67,6 +110,9 @@ public class Fragment_pets_cadastrados extends Fragment {
 
             }
         });
+
+         */
+
 
         //definindo o adapter e o layoutManager
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
@@ -84,12 +130,10 @@ public class Fragment_pets_cadastrados extends Fragment {
                 Toast.makeText(getContext(), R.string.kaka, Toast.LENGTH_SHORT).show();
 
             }
-
             @Override
             public void onLongItemClick(View view, int position) {
 
                 String nome = dados.get(position).getNOME();
-
 
                 // configurando o alert dialog
                 AlertDialog.Builder alerta = new AlertDialog.Builder(requireContext());
@@ -108,17 +152,13 @@ public class Fragment_pets_cadastrados extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        Pets.delete_ppu("nome",nome);
-                        Pets.delete_pf("nome",nome);
+                        //Pets.delete_ppu("nome",nome);
+                        Pets.delete_pf(getContext(),"nome",nome);
 
                     }
                 });
-
                 // gerando e exibindo o alert dialog
-                alerta.create().
-
-                        show();
-
+                alerta.create().show();
             }
 
             @Override

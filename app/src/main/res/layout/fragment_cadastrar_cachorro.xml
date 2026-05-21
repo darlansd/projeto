@@ -9,7 +9,7 @@
     android:isScrollContainer="true"
     android:scrollbarSize="5dp"
     android:scrollbars="vertical"
-    tools:context=".Fragments.Fragment_cadastrar_gato">
+    tools:context=".Fragments.Fragment_cadastrar_cachorro">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -58,19 +58,18 @@
                 android:layout_marginStart="30dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="start"
-                android:text="Cadastrar Seu Gato"
+                android:text="Cadastrar Seu Cão"
                 android:textColor="@color/white"
                 android:textSize="40sp" />
-
         </LinearLayout>
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="120dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="30dp"
             android:elevation="11dp"
-            android:src="@drawable/gato"
+            android:src="@drawable/cachorro"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -113,20 +112,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Nome Do Gato:"
+                android:text="Nome Do Cão:"
                 android:textColor="@color/turquesa_acinzentado"
                 android:textSize="15sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="300dp"
                 android:layout_height="55dp"
-                android:gravity="start|center_vertical"
                 app:hintAnimationEnabled="false"
-                app:hintEnabled="false"
-                >
+                android:gravity="start|center_vertical"
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_nome_gato"
+                    android:id="@+id/edt_nome_cao"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_edit_text"
@@ -156,14 +154,14 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                    android:id="@+id/edt_raca_gato"
+                    android:id="@+id/edt_raca_cao"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/trnasparent"
                     android:fontFamily="@font/montserrat"
                     android:hint="Raça"
                     android:inputType="none"
-                    app:simpleItems="@array/options_raca_gato" />
+                    app:simpleItems="@array/options_raca_cachorro" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -181,17 +179,18 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/custom_edit_text"
+                android:fontFamily="@font/montserrat"
                 android:gravity="center"
                 app:hintAnimationEnabled="false"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                    android:id="@+id/edt_idade_gato"
+                    android:id="@+id/edt_idade_cao"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/trnasparent"
                     android:fontFamily="@font/montserrat"
-                    android:hint="Idade"
+                    android:hint="Idade Aproximada"
                     android:inputType="none"
                     app:simpleItems="@array/options_idade_att" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -216,7 +215,7 @@
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                    android:id="@+id/edt_porte_gato"
+                    android:id="@+id/edt_porte_cao"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/trnasparent"
@@ -305,7 +304,7 @@
 
                 <CheckBox
                     android:id="@+id/cb_cuidados"
-                    android:layout_width="160dp"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
                     android:text="Cuidados Especiais" />
@@ -314,7 +313,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Personalidade:"
                 android:textColor="@color/turquesa_acinzentado"
@@ -334,7 +333,7 @@
 
                 <CheckBox
                     android:id="@+id/cb_agressivo"
-                    android:layout_width="110dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
                     android:text="Agressivo" />
@@ -450,16 +449,14 @@
                 android:textSize="15sp" />
 
 
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:hintAnimationEnabled="false"
-                app:hintEnabled="false"
-                >
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_desc_gato"
+                    android:id="@+id/edt_desc_cao"
                     android:layout_width="340dp"
                     android:layout_height="250dp"
                     android:layout_marginTop="12dp"
@@ -478,7 +475,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_cadastrar_gato"
+                android:id="@+id/btn_cadastrar_cao"
                 android:layout_width="325dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"

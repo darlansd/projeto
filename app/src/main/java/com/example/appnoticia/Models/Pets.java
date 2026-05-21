@@ -1,8 +1,11 @@
 package com.example.appnoticia.Models;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.appnoticia.Config.Configuracao_firebase;
 import com.google.firebase.database.DataSnapshot;
@@ -12,27 +15,15 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class Pets {
-    private String NOME, RACA, SEXO, DESCRIÇAO, CASTRADO, VERMIFUGADO,IDADE,PORTE,VACINADO,CUIDADOS_ESP,DOCIL,CALMO,AGRESSIVO,BRINCALHAO,ARISCO,INDEP;
+    private String NOME, RACA, SEXO, DESCRIÇAO, CASTRADO, VERMIFUGADO,IDADE,PORTE,VACINADO,CUIDADOS_ESP,DOCIL,CALMO,AGRESSIVO,BRINCALHAO,ARISCO,INDEP,especie;
     // FOTO
-    public Pets(String nome_pet, String raca_pet, String sexo_pet, String descricao_pet, String idade_pet, String castrado, String vermifugado, String porte, String vacinado, String cuidados_esp, String docil, String calmo, String agressivo, String brincalhao, String arisco, String indep) {
-        setNOME(nome_pet.trim());
-        setRACA(raca_pet.trim());
-        setSEXO(sexo_pet.trim());
-        setDESCRIÇAO(descricao_pet.trim());
-        setIDADE(idade_pet);
-        setCASTRADO(castrado.trim());
-        setVERMIFUGADO(vermifugado.trim());
-        setPORTE(porte.trim());
-        setVACINADO(vacinado.trim());
-        setCUIDADOS_ESP(cuidados_esp.trim());
-        setDOCIL(docil.trim());
-        setCALMO(calmo.trim());
-        setAGRESSIVO(agressivo.trim());
-        setBRINCALHAO(brincalhao.trim());
-        setARISCO(arisco.trim());
-        setINDEP(indep.trim());
+    public Pets(String nome_pet, String raca_pet, String sexo_pet, String descricao_pet, String idade_pet, String castrado, String vermifugado, String porte, String vacinado, String cuidados_esp, String docil, String calmo, String agressivo, String brincalhao, String arisco, String indep,String especie) {
 
-        //PORTE,VACINADO,CUIDADOS_ESP,DOCIL,CALMO,AGRESSIVO,BRINCALHAO,ARISCO,INDEP
+        setNOME(nome_pet.trim());       setRACA(raca_pet.trim());             setSEXO(sexo_pet.trim());           setDESCRIÇAO(descricao_pet.trim());
+        setIDADE(idade_pet);            setCASTRADO(castrado.trim());         setVERMIFUGADO(vermifugado.trim()); setPORTE(porte.trim());
+        setVACINADO(vacinado.trim());   setCUIDADOS_ESP(cuidados_esp.trim()); setDOCIL(docil.trim());             setCALMO(calmo.trim());
+        setAGRESSIVO(agressivo.trim()); setBRINCALHAO(brincalhao.trim());     setARISCO(arisco.trim());           setINDEP(indep.trim());
+        setEspecie(especie.trim());
     }
     public static void delete_ppu(String path, String value) {
         DatabaseReference ppu = Configuracao_firebase.getfirebasedatabase().child("PETS-POR-USUARIO").child(Usuarios.getUid());
@@ -43,8 +34,9 @@ public class Pets {
         child_nome.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.i("snapshot ppu", snapshot.getValue().toString());
                 if (snapshot.exists()) {
+                    Log.i("snapshot ppu", snapshot.getValue().toString());
+
                     for (DataSnapshot kaka : snapshot.getChildren()) {
                         String key_ppu = kaka.getKey();
                         ppu.child(key_ppu).removeValue();
@@ -60,7 +52,7 @@ public class Pets {
         });
 
     }
-    public static void delete_pf(String path, String value) {
+    public static void delete_pf(Context context,String path, String value) {
         DatabaseReference pf = Configuracao_firebase.getfirebasedatabase().child("PETS-FEED");
 
         //sempre que eu quiser fazer pesquisas dados no firebase preciso ordenar primeiro para depois pesquisar
@@ -69,33 +61,43 @@ public class Pets {
         child_nome.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.i("snapshot pf", snapshot.getValue().toString());
                 if (snapshot.exists()) {
+                    Log.i("snapshot pf", snapshot.getValue().toString());
+
                     for (DataSnapshot kaka : snapshot.getChildren()) {
                         String key_pf = kaka.getKey();
-                        pf.child(key_pf).removeValue();
+                        pf.child(key_pf).removeValue(new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                Toast.makeText(context,"Postagem de" +value+ "Excluida Com Sucesso!",Toast.LENGTH_SHORT).show();
+                                //todo: estudar sobre maneiras de atualizar o fragment apartir de uma helper class
+                            }
+                        });
                     }
-                } else {
-                    Log.i("snapshot pf", "NULL");
-                }
+                } else {Log.i("snapshot pf", "NULL");}
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
 
     }
 
     public void uploadtodatabase() {
-        DatabaseReference pets_por_user = Configuracao_firebase.getfirebasedatabase().child("PETS-POR-USUARIO").child(Usuarios.getUid()).push();
+        //DatabaseReference pets_por_user = Configuracao_firebase.getfirebasedatabase().child("PETS-POR-USUARIO").child(Usuarios.getUid()).push();
         DatabaseReference pets_feed = Configuracao_firebase.getfirebasedatabase().child("PETS-FEED").push();
 
         pets_feed.setValue(this);
         pets_feed.child("UID_USER").setValue(Usuarios.getUid());
-        pets_por_user.setValue(this);
+        //pets_por_user.setValue(this);
     }
 
+    public String getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
     public Pets() {}
     public String getNOME() {
         return NOME;
