@@ -104,9 +104,11 @@
                         android:background="@drawable/custom_edit_text"
                         android:drawableStart="@drawable/ic_change_loc"
                         android:drawablePadding="12dp"
+                        android:inputType="number"
                         android:fontFamily="@font/montserrat"
                         android:paddingStart="25dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
 
             </LinearLayout>
 

@@ -39,9 +39,11 @@ public class Usuarios {
         child_nome.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                nome = snapshot.getValue().toString();
-
+                if (snapshot.exists()){
+                    nome = snapshot.getValue().toString();
+                }else {
+                    Log.i("get_child", "erro");
+                }
             }
 
             @Override
@@ -106,8 +108,6 @@ public class Usuarios {
         }
 
     }
-
-
     public void setUid(String uid) {
         this.uid = uid;
     }

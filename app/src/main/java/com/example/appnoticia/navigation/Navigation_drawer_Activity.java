@@ -2,6 +2,7 @@ package com.example.appnoticia.navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -106,15 +107,15 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
         Usuarios.getChild_nome().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                user_name_header.setText(snapshot.getValue().toString());
+                if (snapshot.exists()){
+                    user_name_header.setText(snapshot.getValue().toString());
+                }else {
+                    Log.i("snaphsot-mudar-valor_header-nome","null");
+                }
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
-
 
         editar_user_header.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +124,6 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
-
         cadastrar_pet_header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,14 +131,10 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
-
-
     }
-
     // responsavel por controlar a navegaçao dos itens no navigation drawer
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
         if (menuItem.getItemId() == R.id.menu_sair) {
 
             Configuracao_firebase.getfirebaseauth().signOut();
@@ -151,7 +147,6 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
         } else if (menuItem.getItemId() == R.id.menu_pets_cadastrados) {
             TrocarFragment.trocar(Navigation_drawer_Activity.this, R.id.fragmentContainer, new Fragment_pets_cadastrados());
         }
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
