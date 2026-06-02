@@ -26,6 +26,7 @@ public class Segunda_activity extends AppCompatActivity {
 
     int show_fragment;
     Bundle dados;
+    int cadastrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,6 @@ public class Segunda_activity extends AppCompatActivity {
 
 
         dados = getIntent().getExtras();
-
 
         show_fragment = dados.getInt("SHOW_FRAGMENT");
 
@@ -80,6 +80,16 @@ public class Segunda_activity extends AppCompatActivity {
                 break;
         }
 
+        /*
+        cadastrar = dados.getInt("CADASTRAR");
+
+        switch (cadastrar){
+            case 1:
+                TrocarFragment.trocar(this,R.id.frame_principal,new Fragment_cadastro());
+                break;
+        }
+
+         */
 
     }
 

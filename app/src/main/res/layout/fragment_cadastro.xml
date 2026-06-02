@@ -1,143 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:isScrollContainer="true"
+    android:scrollbarSize="5dp"
+    android:scrollbars="vertical"
     tools:context="Fragments.Fragment_cadastro">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:background="@drawable/custom_linear_bottom_rounded"
-        android:elevation="10dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="30dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:background="@drawable/custom_linear_bottom_rounded"
+            android:elevation="10dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="38dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Vamos"
+                android:textColor="@color/white"
+                android:textSize="40sp" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Criar Sua Conta"
+                android:textColor="@color/white"
+                android:textSize="40sp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:elevation="10dp"
+            app:endIconMode="clear_text"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_userName"
+                android:layout_width="330dp"
+                android:layout_height="56dp"
+                android:background="@drawable/custom_edit_text"
+                android:drawableStart="@drawable/ic_change_user"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/montserrat"
+                android:hint="Nome Completo"
+                android:paddingStart="25dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:elevation="10dp"
+            app:endIconMode="clear_text"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_username">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_EmailAddress"
+                android:layout_width="330dp"
+                android:layout_height="56dp"
+                android:background="@drawable/custom_edit_text"
+                android:drawableStart="@drawable/ic_change_email"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/montserrat"
+                android:hint="Email de acesso"
+                android:inputType="textEmailAddress"
+                android:paddingStart="25dp"
+                android:paddingEnd="12dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_senha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:elevation="10dp"
+            app:endIconMode="password_toggle"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_password"
+                android:layout_width="330dp"
+                android:layout_height="56dp"
+                android:background="@drawable/custom_edit_text"
+                android:drawableStart="@drawable/ic_change_senha"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/montserrat"
+                android:hint="Senha"
+                android:inputType="numberPassword"
+                android:paddingStart="25dp"
+                android:paddingEnd="12dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_senha_conf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/turquesa_acinzentado"
+
+            android:elevation="10dp"
+            app:hintEnabled="false"
+            app:hintAnimationEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_senha">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_password_confirmation"
+                android:layout_width="330dp"
+                android:layout_height="56dp"
+                android:background="@drawable/custom_edit_text"
+                android:drawableStart="@drawable/ic_change_senha"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/montserrat"
+                android:hint="Confirmaçao de Senha"
+                android:inputType="numberPassword"
+                android:paddingStart="25dp"
+                android:paddingEnd="12dp"
+                 />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="38dp"
             android:fontFamily="@font/montserrat"
-            android:text="Vamos"
-            android:textColor="@color/white"
-            android:textSize="40sp"
-            />
+            android:text="Concorda com os "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.183"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_senha_conf" />
 
         <TextView
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="Criar Sua Conta"
+            android:id="@+id/txt_termos_uso"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="38dp"
             android:fontFamily="@font/montserrat_bold"
+            android:gravity="start|center_vertical"
+            android:text="Termos De Uso"
+            android:textColor="@color/turquesa_acinzentado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/checkBox"
+            app:layout_constraintTop_toBottomOf="@+id/layout_senha_conf" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_continuar"
+            android:layout_width="266dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/btn_background"
+            android:fontFamily="@font/montserrat"
+            android:text="Continuar"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="40sp"
-            />
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/edt_userName"
-        android:layout_width="330dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="300dp"
-        android:drawableStart="@drawable/ic_change_user"
-        android:background="@drawable/custom_edit_text"
-        android:paddingStart="25dp"
-        android:drawablePadding="12dp"
-        android:hint="Nome Completo"
-        android:fontFamily="@font/montserrat"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/edt_EmailAddress"
-        android:layout_width="330dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="15dp"
-        android:drawableStart="@drawable/ic_change_email"
-        android:ems="20"
-        android:background="@drawable/custom_edit_text"
-        android:paddingEnd="12dp"
-        android:paddingStart="25dp"
-        android:drawablePadding="12dp"
-        android:hint="Email de acesso"
-        android:fontFamily="@font/montserrat"
-        android:inputType="textEmailAddress"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_userName" />
-
-    <EditText
-        android:id="@+id/edt_password"
-        android:layout_width="330dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="15dp"
-        android:drawableStart="@drawable/ic_change_senha"
-        android:ems="10"
-        android:background="@drawable/custom_edit_text"
-        android:paddingEnd="12dp"
-        android:paddingStart="25dp"
-        android:drawablePadding="12dp"
-        android:hint="Senha"
-        android:fontFamily="@font/montserrat"
-        android:inputType="numberPassword"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_EmailAddress" />
-
-    <EditText
-        android:id="@+id/edt_password_confirmation"
-        android:layout_width="330dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="15dp"
-        android:drawableStart="@drawable/ic_change_senha"
-        android:ems="10"
-        android:background="@drawable/custom_edit_text"
-        android:paddingEnd="12dp"
-        android:paddingStart="25dp"
-        android:drawablePadding="12dp"
-        android:hint="Confirmaçao de Senha"
-        android:fontFamily="@font/montserrat"
-        android:inputType="numberPassword"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_password" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="38dp"
-        android:text="Concorda com os"
-        android:fontFamily="@font/montserrat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.183"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_password_confirmation" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_continuar"
-        android:layout_width="266dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="35dp"
-        android:text="Continuar"
-        android:fontFamily="@font/montserrat"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:background="@drawable/btn_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

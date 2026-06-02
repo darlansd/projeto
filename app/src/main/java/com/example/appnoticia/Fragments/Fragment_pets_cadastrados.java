@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -87,7 +88,7 @@ public class Fragment_pets_cadastrados extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
 
-        //todo: duvida para o professor sobre qual das opçoes seria melhor em relaçao a desempenho
+        //todo: talvez esse esquema de criar um no novo so para os pets do usuario pode servir de alguma coisa
 
         /* //se for comentar ou descomentar lembra do uploadtodatabase na classe Pets e delete_ppu no OnLongItemClick la em baixo
         pets_por_users.addValueEventListener(new ValueEventListener() {

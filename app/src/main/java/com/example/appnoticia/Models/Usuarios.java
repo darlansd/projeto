@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Usuarios {
+    //todo fazer com que um usuario nome nao tenha o nome nulo
     private static String uid, nome, email, senha;
     private static DatabaseReference child_nome;
 

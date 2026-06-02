@@ -20,7 +20,7 @@
             />
         <activity
             android:name=".Activities.Segunda_activity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".Activities.MainActivity"
             android:exported="true">

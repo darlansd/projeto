@@ -8,12 +8,23 @@ public class Ceps {
     private int cepUSer;
 
     private int Cep;
-    //Logradouro,bairro,localidade,estado
+    //localidade,estado
+    @SerializedName("localidade")
+    private String cidade;
+    @SerializedName("bairro")
+    private String bairro;
 
-    private String Logradouro;
+    public static void uploadrua(String bairro, String cidade) {
+        Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Usuarios.getUid()).child("BAIRRO").setValue(bairro);
+        Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Usuarios.getUid()).child("CIDADE").setValue(cidade);
+    }
 
-    public void uploadrua(String rua) {
-        Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Usuarios.getUid()).child("LOGRADOURO").setValue(rua);
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
     public int getCep() {
@@ -24,11 +35,11 @@ public class Ceps {
         Cep = cep;
     }
 
-    public String getlogradouro() {
-        return Logradouro;
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setlogradouro(String rua) {
-        this.Logradouro = Logradouro;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 }
