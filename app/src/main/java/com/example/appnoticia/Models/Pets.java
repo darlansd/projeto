@@ -11,20 +11,24 @@ import com.example.appnoticia.Config.Configuracao_firebase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class Pets {
-    private String NOME, RACA, SEXO, DESCRIÇAO, CASTRADO, VERMIFUGADO,IDADE,PORTE,VACINADO,CUIDADOS_ESP,DOCIL,CALMO,AGRESSIVO,BRINCALHAO,ARISCO,INDEP,especie;
+    private String NOME, RACA, SEXO, DESCRIÇAO, CASTRADO, VERMIFUGADO,IDADE,PORTE,VACINADO,CUIDADOS_ESP,DOCIL,CALMO,AGRESSIVO,BRINCALHAO,ARISCO,INDEP,especie,uid_user;
     // FOTO
-    public Pets(String nome_pet, String raca_pet, String sexo_pet, String descricao_pet, String idade_pet, String castrado, String vermifugado, String porte, String vacinado, String cuidados_esp, String docil, String calmo, String agressivo, String brincalhao, String arisco, String indep,String especie) {
 
-        setNOME(nome_pet.trim());       setRACA(raca_pet.trim());             setSEXO(sexo_pet.trim());           setDESCRIÇAO(descricao_pet.trim());
+    //para que voce consiga retornar atributos pelo firebase ultilizando os getters eles precisao estar como paramentros no construtor
+    public Pets(String nome_pet, String raca_pet, String sexo_pet, String descricao_pet, String idade_pet, String castrado, String vermifugado, String porte, String vacinado, String cuidados_esp, String docil, String calmo, String agressivo, String brincalhao, String arisco, String indep,String especie,String uid_user) {
+
+        setNOME(nome_pet.trim());       setRACA(raca_pet.trim());             setSEXO(sexo_pet.trim());           setDESCRIÇAO(descricao_pet.trim()); setUid_user(uid_user);
         setIDADE(idade_pet);            setCASTRADO(castrado.trim());         setVERMIFUGADO(vermifugado.trim()); setPORTE(porte.trim());
         setVACINADO(vacinado.trim());   setCUIDADOS_ESP(cuidados_esp.trim()); setDOCIL(docil.trim());             setCALMO(calmo.trim());
         setAGRESSIVO(agressivo.trim()); setBRINCALHAO(brincalhao.trim());     setARISCO(arisco.trim());           setINDEP(indep.trim());
         setEspecie(especie.trim());
     }
+    /*
     public static void delete_ppu(String path, String value) {
         DatabaseReference ppu = Configuracao_firebase.getfirebasedatabase().child("PETS-POR-USUARIO").child(Usuarios.getUid());
 
@@ -50,8 +54,9 @@ public class Pets {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
-
     }
+     */
+
     public static void delete_pf(Context context,String path, String value) {
         DatabaseReference pf = Configuracao_firebase.getfirebasedatabase().child("PETS-FEED");
 
@@ -70,6 +75,7 @@ public class Pets {
                             @Override
                             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                                 Toast.makeText(context,"Postagem de" +value+ "Excluida Com Sucesso!",Toast.LENGTH_SHORT).show();
+                                
                                 //todo: estudar sobre maneiras de atualizar o fragment apartir de uma helper class
                             }
                         });
@@ -87,8 +93,14 @@ public class Pets {
         DatabaseReference pets_feed = Configuracao_firebase.getfirebasedatabase().child("PETS-FEED").push();
 
         pets_feed.setValue(this);
-        pets_feed.child("UID_USER").setValue(Usuarios.getUid());
         //pets_por_user.setValue(this);
+    }
+    public String getuid_user() {
+        return uid_user;
+    }
+
+    public void setUid_user(String UID_USER) {
+        this.uid_user = UID_USER;
     }
 
     public String getEspecie() {

@@ -1,5 +1,6 @@
 [versions]
 agp = "9.1.1"
+cloudinaryAndroid = "3.1.2"
 converterGson = "3.0.0"
 junit = "4.13.2"
 glide = "5.0.7"
@@ -23,6 +24,7 @@ legacySupportV4 = "1.0.0"
 
 [libraries]
 
+cloudinary-android = { module = "com.cloudinary:cloudinary-android", version.ref = "cloudinaryAndroid" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 glide = {group = "com.github.bumptech.glide", name = "glide", version.ref = "glide"}
 

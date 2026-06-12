@@ -59,7 +59,7 @@ public class Fragment_pets_cadastrados extends Fragment {
         btn_encaminhar = view.findViewById(R.id.btn_encaminhar_frag_cadastrar_pet);
 
         //se for comentar ou descomentar lembra do uploadtodatabase na classe Pets e delete_ppu no OnLongItemClick la em baixo
-        Query q_pets_ppu = pets_feed.orderByChild("UID_USER").equalTo(Usuarios.getUid());
+        Query q_pets_ppu = pets_feed.orderByChild("uid_user").equalTo(Usuarios.getUid());
 
         q_pets_ppu.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -79,7 +79,8 @@ public class Fragment_pets_cadastrados extends Fragment {
                     btn_encaminhar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                           //todo: fazer fragment de adotar pet aparecer
+                            getParentFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new Fragment_cadastrar_pet()).commit();
+                           //todo: fazer ter uma animaçao melhor
                         }
                     });
                     Toast.makeText(getContext(),"voce ainda nao cadastrou pets",Toast.LENGTH_SHORT).show();}

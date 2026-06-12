@@ -11,6 +11,7 @@
     android:scrollbars="vertical"
     tools:context=".Fragments.Fragment_cadastrar_gato">
 
+    <!--todo resolver o texto cortando em resoluçoes menores-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -118,9 +119,13 @@
                 android:textSize="15sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_nome_gato"
                 android:layout_width="300dp"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
+                app:helperTextTextColor="@color/red"
                 android:gravity="start|center_vertical"
+                app:counterEnabled="true"
+                app:counterMaxLength="15"
                 app:hintAnimationEnabled="false"
                 app:hintEnabled="false"
                 >
@@ -128,7 +133,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_nome_gato"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="56dp"
+                    android:maxLength="15"
                     android:background="@drawable/custom_edit_text"
                     android:fontFamily="@font/montserrat"
                     android:hint="Nome"
@@ -146,11 +152,12 @@
                 android:textSize="15sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_raca_gato"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/custom_edit_text"
+                app:helperTextTextColor="@color/red"
                 android:gravity="center"
                 app:hintAnimationEnabled="false"
                 app:hintEnabled="false">
@@ -158,11 +165,10 @@
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/edt_raca_gato"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/trnasparent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_edit_text"
                     android:fontFamily="@font/montserrat"
                     android:hint="Raça"
-                    android:inputType="none"
                     app:simpleItems="@array/options_raca_gato" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -176,20 +182,21 @@
                 android:textSize="15sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_idade_gato"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/custom_edit_text"
                 android:gravity="center"
+                app:helperTextTextColor="@color/red"
                 app:hintAnimationEnabled="false"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/edt_idade_gato"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/trnasparent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_edit_text"
                     android:fontFamily="@font/montserrat"
                     android:hint="Idade"
                     android:inputType="none"
@@ -206,11 +213,12 @@
                 android:textSize="15sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_porte_gato"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/custom_edit_text"
+                app:helperTextTextColor="@color/red"
                 android:gravity="center"
                 app:hintAnimationEnabled="false"
                 app:hintEnabled="false">
@@ -218,8 +226,8 @@
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/edt_porte_gato"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/trnasparent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_edit_text"
                     android:fontFamily="@font/montserrat"
                     android:hint="Tamanho"
                     android:inputType="none"
@@ -452,9 +460,12 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_desc_gato"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:hintAnimationEnabled="false"
+                android:elevation="10dp"
+                app:helperTextTextColor="@color/red"
                 app:hintEnabled="false"
                 >
 
@@ -465,7 +476,6 @@
                     android:layout_marginTop="12dp"
                     android:background="@drawable/custom_edit_text"
                     android:descendantFocusability="beforeDescendants"
-                    android:elevation="10dp"
                     android:fontFamily="@font/montserrat"
                     android:gravity="top|start"
                     android:hint="Vacinas, Sociabilidade, Condicoes Epeciais, Historia"

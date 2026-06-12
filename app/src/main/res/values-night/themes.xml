@@ -3,7 +3,7 @@
     <style name="DayAndNight.Theme.AppNoticia" parent="Theme.Material3.Light.NoActionBar">
 
         <!-- Customize your night theme here. -->
-        <item name="android:statusBarColor">@color/green</item>
+        <item name="android:statusBarColor">@color/turquesa_acinzentado</item>
         <!-- <item name="colorSurface">@color/surface</item> -->
 
     </style>

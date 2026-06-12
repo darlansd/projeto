@@ -133,8 +133,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             app:endIconMode="password_toggle"
-            app:endIconTint="@color/turquesa_acinzentado"
-
             android:elevation="10dp"
             app:hintEnabled="false"
             app:hintAnimationEnabled="false"
@@ -165,6 +163,7 @@
             android:layout_marginTop="38dp"
             android:fontFamily="@font/montserrat"
             android:text="Concorda com os "
+            android:checked="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.183"
             app:layout_constraintStart_toStartOf="parent"

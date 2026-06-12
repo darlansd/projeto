@@ -53,67 +53,87 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="84dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="Nome Completo:"
-                    android:textColor="@color/turquesa_acinzentado"
-                    android:textSize="15sp" />
+                    android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="300dp"
-                    android:layout_height="55dp"
-                    app:hintAnimationEnabled="false"
-                    app:hintEnabled="false"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="15">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Nome Completo:"
+                        android:textColor="@color/turquesa_acinzentado"
+                        android:textSize="15sp" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edt_novo_nome"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:maxLength="15"
-                        android:background="@drawable/custom_edit_text"
-                        android:drawableStart="@drawable/ic_change_user"
-                        android:drawablePadding="12dp"
-                        android:fontFamily="@font/montserrat"
-                        android:paddingStart="25dp" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_novo_nome"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        app:counterEnabled="false"
+                        app:counterMaxLength="15"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false">
 
-                <TextView
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_novo_nome"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:background="@drawable/custom_edit_text"
+                            android:drawableStart="@drawable/ic_change_user"
+                            android:drawablePadding="12dp"
+                            android:fontFamily="@font/montserrat"
+                            android:maxLength="15"
+                            android:paddingStart="25dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Endereço (CEP):"
+                        android:textColor="@color/turquesa_acinzentado"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="Endereço (CEP):"
-                    android:textColor="@color/turquesa_acinzentado"
-                    android:textSize="15sp" />
+                    android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="300dp"
-                    android:layout_height="55dp"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="8"
-                    app:hintAnimationEnabled="false"
-                    app:hintEnabled="false">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layout_novo_cep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="300dp"
+                        app:counterEnabled="false"
+                        app:counterMaxLength="8"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edt_novo_cep"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/custom_edit_text"
-                        android:drawableStart="@drawable/ic_change_loc"
-                        android:drawablePadding="12dp"
-                        android:maxLength="8"
-                        android:inputType="number"
-                        android:fontFamily="@font/montserrat"
-                        android:paddingStart="25dp" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_novo_cep"
+                            android:layout_width="wrap_content"
+                            android:layout_height="56dp"
+                            android:paddingEnd="15dp"
+                            android:background="@drawable/custom_edit_text"
+                            android:drawableStart="@drawable/ic_change_loc"
+                            android:drawablePadding="12dp"
+                            android:fontFamily="@font/montserrat"
+                            android:inputType="number"
+                            android:maxLength="8"
+                            android:paddingStart="25dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
 
 
             </LinearLayout>

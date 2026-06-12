@@ -20,8 +20,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Usuarios {
-    //todo fazer com que um usuario nome nao tenha o nome nulo
-    private static String uid, nome, email, senha;
+    //todo fazer com que um novo usuario nao tenha o nome nulo
+    private String email, senha, bairro, cidade;
+    private static String uid,nome;
     private static DatabaseReference child_nome;
 
     //tenho que fazer com que o get uid seja dinamico para o child_nome sempre estar atualizado
@@ -31,7 +32,7 @@ public class Usuarios {
 
         String displayName = Configuracao_firebase.getfirebaseUser().getDisplayName();
 
-        if (child_nome == null || !displayName.equals(nome)) {
+        if (child_nome == null || !displayName.equals(nome)){
 
             child_nome = FirebaseDatabase.getInstance().getReference().child("USUARIOS").child(getUid()).child("NOME");
         }
@@ -56,8 +57,8 @@ public class Usuarios {
         return child_nome;
     }
 
-
     public static String getUid() {
+
         if (uid == null || !uid.equals(Configuracao_firebase.getfirebaseUser().getUid())) {
 
             uid = Configuracao_firebase.getfirebaseUser().getUid();
@@ -77,8 +78,8 @@ public class Usuarios {
         DatabaseReference salvar_dados_usuario = Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(getUid());
 
         //e dentro do ultimo nó (uid) salvo os atributos dessa classe (nome, email)
-        salvar_dados_usuario.child("NOME").setValue(user.getNome());
-        salvar_dados_usuario.child("E-MAIL").setValue(user.getEmail());
+        salvar_dados_usuario.child("nome").setValue(user.getNome());
+        salvar_dados_usuario.child("e-mail").setValue(user.getEmail());
 
     }
 
@@ -86,7 +87,7 @@ public class Usuarios {
 
         try {
             //aqui eu faço referencia ate o nó nome e troco o valor pelo parametro
-            Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(getUid()).child("NOME").setValue(nome);
+            Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(getUid()).child("nome").setValue(nome);
 
             //alterar o nome dentro da variavel displayName
             FirebaseUser user = Configuracao_firebase.getfirebaseUser();
@@ -109,16 +110,41 @@ public class Usuarios {
         }
 
     }
-    public void setUid(String uid) {
-        this.uid = uid;
+
+    public static void setUid(String uid) {
+        Usuarios.uid = uid;
+    }
+    @Exclude
+    public String getSenha() {
+        return senha;
     }
 
-    public String getNome() {
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public static String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public static void setNome(String nome) {
+        Usuarios.nome = nome;
     }
 
     public String getEmail() {
@@ -127,14 +153,5 @@ public class Usuarios {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @Exclude //anotaçao do propria firebase pra nao salvar no banco de dados
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 }

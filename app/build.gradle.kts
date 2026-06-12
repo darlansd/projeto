@@ -41,7 +41,7 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.converter.gson)
     implementation(libs.retrofit)
-
+    implementation(libs.cloudinary.android)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

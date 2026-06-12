@@ -14,13 +14,16 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.appnoticia.Models.Pets;
+import com.example.appnoticia.Models.Usuarios;
 import com.example.appnoticia.R;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class Fragment_cadastrar_cachorro extends Fragment {
     NestedScrollView nested;
     TextInputEditText edt_nome_cao, edt_desc_cao;
+    TextInputLayout layout_nome_cao, layout_raca_cao, layout_idade_cao, layout_porte, layout_desc;
     MaterialAutoCompleteTextView edt_raca_cao, edt_idade_cao,edt_porte_cao;
     RadioButton rb_macho;
     CheckBox cb_castrado, cb_vermifugado, cb_vacinado, cb_cuidados_esp, cb_docil, cb_agressivo, cb_ariso, cb_calmo, cb_brincalhao, cb_indep, cb_criancas, cb_crianca, cb_cachorros, cb_gatos, cb_apart, cb_casa;
@@ -34,10 +37,15 @@ public class Fragment_cadastrar_cachorro extends Fragment {
 
         nested = view.findViewById(R.id.nested);
 
+        layout_nome_cao = view.findViewById(R.id.layout_nome_cao);
         edt_nome_cao= view.findViewById(R.id.edt_nome_cao);
+
         edt_desc_cao = view.findViewById(R.id.edt_desc_cao);
 
+        layout_raca_cao = view.findViewById(R.id.layout_raca_cao);
         edt_raca_cao = view.findViewById(R.id.edt_raca_cao);
+
+        layout_idade_cao = view.findViewById(R.id.layout_idade_cao);
         edt_idade_cao = view.findViewById(R.id.edt_idade_cao);
         edt_porte_cao = view.findViewById(R.id.edt_porte_cao);
 
@@ -100,7 +108,7 @@ public class Fragment_cadastrar_cachorro extends Fragment {
                         if(!sexo.isEmpty()){
                             if (!desc_cao.isEmpty()){
 
-                                Pets pets = new Pets(nome_cao,raca_cao,sexo,desc_cao,idade_cao,castrado,vermifugado,porte,vacinado,cuidados_esp,docil,calmo,agressivo,brincalhao,arisco,indep,"Cachorro");
+                                Pets pets = new Pets(nome_cao,raca_cao,sexo,desc_cao,idade_cao,castrado,vermifugado,porte,vacinado,cuidados_esp,docil,calmo,agressivo,brincalhao,arisco,indep,"Cachorro", Usuarios.getUid());
                                 pets.uploadtodatabase();
                                 requireActivity().finish();
                                 Toast.makeText(getContext(), pets.getEspecie() + " Cadastrado Com Sucesso",Toast.LENGTH_SHORT).show();

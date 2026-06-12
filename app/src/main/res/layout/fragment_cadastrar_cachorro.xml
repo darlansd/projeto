@@ -11,6 +11,8 @@
     android:scrollbars="vertical"
     tools:context=".Fragments.Fragment_cadastrar_cachorro">
 
+    <!--todo resolver o texto cortando em resoluçoes menores-->
+    <!--todo adicionar as mesmas tweaks que na tela de cadastrar gato-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -117,16 +119,18 @@
                 android:textSize="15sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_nome_cao"
                 android:layout_width="300dp"
-                android:layout_height="55dp"
-                app:hintAnimationEnabled="false"
+                android:layout_height="wrap_content"
                 android:gravity="start|center_vertical"
+                app:helperTextTextColor="@color/red"
+                app:hintAnimationEnabled="false"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_nome_cao"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="56dp"
                     android:background="@drawable/custom_edit_text"
                     android:fontFamily="@font/montserrat"
                     android:hint="Nome"
@@ -144,20 +148,22 @@
                 android:textSize="15sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_raca_cao"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/custom_edit_text"
                 android:gravity="center"
+                android:minWidth="300dp"
+                app:helperTextTextColor="@color/red"
                 app:hintAnimationEnabled="false"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/edt_raca_cao"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/trnasparent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_edit_text"
                     android:fontFamily="@font/montserrat"
                     android:hint="Raça"
                     android:inputType="none"
@@ -174,21 +180,22 @@
                 android:textSize="15sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_idade_cao"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/custom_edit_text"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center"
+                app:helperTextTextColor="@color/red"
                 app:hintAnimationEnabled="false"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/edt_idade_cao"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/trnasparent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_edit_text"
                     android:fontFamily="@font/montserrat"
                     android:hint="Idade Aproximada"
                     android:inputType="none"
@@ -205,20 +212,21 @@
                 android:textSize="15sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_porte_cao"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/custom_edit_text"
                 android:gravity="center"
+                app:helperTextTextColor="@color/red"
                 app:hintAnimationEnabled="false"
                 app:hintEnabled="false">
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/edt_porte_cao"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/trnasparent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_edit_text"
                     android:fontFamily="@font/montserrat"
                     android:hint="Tamanho"
                     android:inputType="none"

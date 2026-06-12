@@ -57,9 +57,15 @@ public class Fragment_cadastro extends Fragment {
         edt_conf_senha = view.findViewById(R.id.edt_password_confirmation);
         termos_uso = view.findViewById(R.id.txt_termos_uso);
         checkBox = view.findViewById(R.id.checkBox);
-
-
         continuar = view.findViewById(R.id.btn_continuar);
+
+        checkBox.setOnClickListener(v -> {
+            if(checkBox.isChecked()){
+                termos_aceitos = true;
+            }else{
+                termos_aceitos = false;
+            }
+        });
 
         termos_uso.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +91,7 @@ public class Fragment_cadastro extends Fragment {
                 alerta.create().show();
             }
         });
+
 
         continuar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -28,10 +28,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (Configuracao_firebase.getfirebaseUser() != null) {
-
             startActivity(new Intent(getApplicationContext(), Navigation_drawer_Activity.class));
             finish();
-
         }
     }
 

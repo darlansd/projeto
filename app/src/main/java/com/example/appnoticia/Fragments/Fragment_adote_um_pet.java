@@ -58,14 +58,18 @@ public class Fragment_adote_um_pet extends Fragment {
         pets_Feed.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                dados.clear();
-                for (DataSnapshot data : snapshot.getChildren()) {
+                if(snapshot.exists()) {
+                    dados.clear();
+                    for (DataSnapshot data : snapshot.getChildren()) {
 
-                    Pets valores = data.getValue(Pets.class);
+                        Pets valores = data.getValue(Pets.class);
 
-                    dados.add(valores);
+                        dados.add(valores);
+                    }
+                    adapterPetsFeed.notifyDataSetChanged();
+                }else{
+
                 }
-                adapterPetsFeed.notifyDataSetChanged();
             }
 
             @Override

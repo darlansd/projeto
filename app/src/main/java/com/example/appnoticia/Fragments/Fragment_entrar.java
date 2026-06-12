@@ -71,6 +71,7 @@ public class Fragment_entrar extends Fragment {
             @Override
             public void onClick(View v) {
                 getParentFragmentManager().beginTransaction().replace(R.id.frame_principal, new Fragment_cadastro()).commit();
+                //todo: fazer ter uma animaçao melhor
             }
         });
 
