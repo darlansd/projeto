@@ -32,8 +32,6 @@ public class Fragment_cadastrar_gato extends Fragment {
     CheckBox cb_castrado, cb_vermifugado, cb_vacinado, cb_cuidados_esp, cb_docil, cb_agressivo, cb_ariso, cb_calmo, cb_brincalhao, cb_indep, cb_criancas, cb_crianca, cb_cachorros, cb_gatos, cb_apart, cb_casa;
     AppCompatButton btn_enviar;
     String nome_pet, raca_pet, idade_pet, porte, sexo, castrado, vermifugado, vacinado, cuidados_esp, docil, agressivo, arisco, calmo, brincalhao, indep, crianca, criancas, gatos, cachorros, apart, casa, desc_pet;
-    Bundle dados;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
