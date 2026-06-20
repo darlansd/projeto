@@ -163,7 +163,7 @@
 
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/edt_raca_cao"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:background="@drawable/custom_edit_text"
                     android:fontFamily="@font/montserrat"
