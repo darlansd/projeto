@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.appnoticia.Config.API;
+import com.example.appnoticia.Config.API_ceps;
 import com.example.appnoticia.Config.Configuracao_firebase;
 import com.example.appnoticia.Models.Ceps;
 import com.example.appnoticia.Models.Usuarios;
@@ -23,7 +23,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import retrofit2.Call;
@@ -53,7 +52,7 @@ public class Fragment_editar_informacoes_pessoais extends Fragment {
         alterar = view.findViewById(R.id.btn_alterar);
         edt_novo_nome.setText(Configuracao_firebase.getfirebaseUser().getDisplayName());
 
-        Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Usuarios.getUid()).child("CIDADE").addListenerForSingleValueEvent(new ValueEventListener() {
+        Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Usuarios.getUid()).child("cidade").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -70,7 +69,7 @@ public class Fragment_editar_informacoes_pessoais extends Fragment {
             }
         });
 
-        Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Usuarios.getUid()).child("BAIRRO").addListenerForSingleValueEvent(new ValueEventListener() {
+        Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Usuarios.getUid()).child("bairro").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -162,7 +161,7 @@ public class Fragment_editar_informacoes_pessoais extends Fragment {
                     // instaciei a biblioteca
                     Retrofit retrofit = new Retrofit.Builder().baseUrl("https://viacep.com.br/ws/").addConverterFactory(GsonConverterFactory.create()).build();
                     // instaciei a helper class
-                    API api = retrofit.create(API.class);
+                    API_ceps api = retrofit.create(API_ceps.class);
                     //usei o metodo call pra me retornar o objeto ceps
                     Call<Ceps> call = api.getceps(novo_cep);
 

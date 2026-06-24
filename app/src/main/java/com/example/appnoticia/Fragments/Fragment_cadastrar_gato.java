@@ -1,14 +1,12 @@
 package com.example.appnoticia.Fragments;
 
-import static android.content.Intent.getIntent;
-
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +14,25 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.example.appnoticia.Config.API_supabase;
+import com.example.appnoticia.Config.API_supabase_CreateBucket;
+import com.example.appnoticia.Models.Fotos;
 import com.example.appnoticia.Models.Pets;
 import com.example.appnoticia.Models.Usuarios;
 import com.example.appnoticia.R;
+import com.example.appnoticia.body.Create_Bucket_Body;
+import com.example.appnoticia.body.Fotos_List_body;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Fragment_cadastrar_gato extends Fragment {
     NestedScrollView nested;
@@ -32,6 +43,7 @@ public class Fragment_cadastrar_gato extends Fragment {
     CheckBox cb_castrado, cb_vermifugado, cb_vacinado, cb_cuidados_esp, cb_docil, cb_agressivo, cb_ariso, cb_calmo, cb_brincalhao, cb_indep, cb_criancas, cb_crianca, cb_cachorros, cb_gatos, cb_apart, cb_casa;
     AppCompatButton btn_enviar;
     String nome_pet, raca_pet, idade_pet, porte, sexo, castrado, vermifugado, vacinado, cuidados_esp, docil, agressivo, arisco, calmo, brincalhao, indep, crianca, criancas, gatos, cachorros, apart, casa, desc_pet;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -132,6 +144,9 @@ public class Fragment_cadastrar_gato extends Fragment {
 
                                 Pets pets = new Pets(nome_pet, raca_pet, sexo, desc_pet, idade_pet, castrado, vermifugado, porte, vacinado, cuidados_esp, docil, calmo, agressivo, brincalhao, arisco, indep, "Gato", Usuarios.getUid());
                                 pets.uploadtodatabase();
+
+                                //todo lugar do metodo pra upar foto do supabase
+
                                 requireActivity().finish();
                                 Toast.makeText(getContext(), pets.getEspecie() + " Cadastrado Com Sucesso", Toast.LENGTH_SHORT).show();
 

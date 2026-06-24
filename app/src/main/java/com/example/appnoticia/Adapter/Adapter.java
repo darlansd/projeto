@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cloudinary.android.MediaManager;
 import com.example.appnoticia.Config.Configuracao_firebase;
 import com.example.appnoticia.Models.Pets;
 import com.example.appnoticia.Models.Usuarios;
@@ -20,10 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.viewholder> {
 
@@ -69,12 +65,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewholder> {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("bucaCancelada", "leitado");
+                Log.i("buscaCancelada", "leitado");
             }
         });
-
-
-
 
         holder.nome_pet.setText(posicao.getNOME());
         holder.raca_pet.setText(posicao.getRACA());
@@ -96,12 +89,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewholder> {
         //declarar os tipos de views aqui
         //como se fosse antes do onCreate em uma activity
 
-        TextView nome_pet, raca_pet, sexo_pet, idade_pet, desc_pet, txt_localizacao;
+        TextView nome_pet, raca_pet, sexo_pet, idade_pet, desc_pet, txt_localizacao, fodase;
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
             //fazer referencia as views dos modelos dos itens da lista
             //como se fosse o onCreate em uma activity
+            fodase= itemView.findViewById(R.id.fodase);
+
             txt_localizacao = itemView.findViewById(R.id.txt_localizacao);
             nome_pet = itemView.findViewById(R.id.txt_nome_pet);
             raca_pet = itemView.findViewById(R.id.txt_raca_pet);
