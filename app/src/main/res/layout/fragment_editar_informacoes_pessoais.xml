@@ -55,7 +55,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="84dp"
+                android:layout_marginTop="25dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -65,11 +65,41 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <!--todo desenvolver a seleçao de avatar de perfil -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Mudar Imagem De Perfil:"
+                            android:textColor="@color/turquesa_acinzentado"
+                            android:textSize="15sp" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/img_imagem_perfil"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+                            android:src="@drawable/placeholder_img_perfil"
+                            android:scaleType="centerCrop"
+                            android:layout_width="125dp"
+                            android:layout_height="125dp">
+
+                        </com.google.android.material.imageview.ShapeableImageView>
+
+                    </LinearLayout>
+
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="Nome Completo:"
+                        android:layout_marginTop="10dp"
                         android:textColor="@color/turquesa_acinzentado"
                         android:textSize="15sp" />
 
@@ -124,14 +154,14 @@
                             android:id="@+id/edt_novo_cep"
                             android:layout_width="wrap_content"
                             android:layout_height="56dp"
-                            android:paddingEnd="15dp"
                             android:background="@drawable/custom_edit_text"
                             android:drawableStart="@drawable/ic_change_loc"
                             android:drawablePadding="12dp"
                             android:fontFamily="@font/montserrat"
                             android:inputType="number"
                             android:maxLength="8"
-                            android:paddingStart="25dp" />
+                            android:paddingStart="25dp"
+                            android:paddingEnd="15dp" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 

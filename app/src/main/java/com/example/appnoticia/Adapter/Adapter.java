@@ -36,7 +36,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewholder> {
     @Override
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View oncreatevh = LayoutInflater.from(parent.getContext()).inflate(R.layout.design_lista_recycle_view, parent, false);
+        View oncreatevh = LayoutInflater.from(parent.getContext()).inflate(R.layout.design_lista_pets_recycle_view, parent, false);
 
         return new viewholder(oncreatevh);
     }

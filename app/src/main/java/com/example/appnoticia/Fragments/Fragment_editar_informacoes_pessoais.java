@@ -1,10 +1,14 @@
 package com.example.appnoticia.Fragments;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,18 +16,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.appnoticia.Adapter.Adapter;
 import com.example.appnoticia.Config.API_ceps;
 import com.example.appnoticia.Config.Configuracao_firebase;
 import com.example.appnoticia.Models.Ceps;
+import com.example.appnoticia.Models.Foto_perfis;
+import com.example.appnoticia.Models.Pets;
 import com.example.appnoticia.Models.Usuarios;
 import com.example.appnoticia.R;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,7 +48,10 @@ public class Fragment_editar_informacoes_pessoais extends Fragment {
     TextInputEditText edt_novo_nome, edt_novo_cep;
     TextInputLayout layout_novo_cep, layout_novo_nome;
     AppCompatButton alterar;
+    ShapeableImageView imagem_perfil;
     boolean finalizar, campo_cep, campo_nome = false;
+    List<Pets> dados;
+    Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +65,30 @@ public class Fragment_editar_informacoes_pessoais extends Fragment {
         edt_novo_cep = view.findViewById(R.id.edt_novo_cep);
         edt_novo_cep.setText(null);
         alterar = view.findViewById(R.id.btn_alterar);
+        imagem_perfil = view.findViewById(R.id.img_imagem_perfil);
         edt_novo_nome.setText(Configuracao_firebase.getfirebaseUser().getDisplayName());
+
+
+        imagem_perfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(requireContext());
+                View mview = getLayoutInflater().inflate(R.layout.placeholder_imagens_perfil,null);
+                alertDialog.setTitle("Escolha Seu Avatar Adopet");
+
+                alertDialog.setPositiveButton("definir", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alertDialog.setView(mview);
+                alertDialog.create().show();
+            }
+        });
+        Glide.with(imagem_perfil).load(Foto_perfis.getFotoAtual() ).placeholder(R.drawable.placeholder_img_perfil).into(imagem_perfil);
+
+        //Configuracao_firebase.getfirebasedatabase().child("IMAGENS PERFIL").addValueEventListener();
 
         Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Usuarios.getUid()).child("cidade").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

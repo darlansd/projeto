@@ -145,7 +145,7 @@ public class Fragment_cadastrar_gato extends Fragment {
                                 Pets pets = new Pets(nome_pet, raca_pet, sexo, desc_pet, idade_pet, castrado, vermifugado, porte, vacinado, cuidados_esp, docil, calmo, agressivo, brincalhao, arisco, indep, "Gato", Usuarios.getUid());
                                 pets.uploadtodatabase();
 
-                                //todo lugar do metodo pra upar foto do supabase
+                                //todo lugar do metodo upar_foto do supabase
 
                                 requireActivity().finish();
                                 Toast.makeText(getContext(), pets.getEspecie() + " Cadastrado Com Sucesso", Toast.LENGTH_SHORT).show();

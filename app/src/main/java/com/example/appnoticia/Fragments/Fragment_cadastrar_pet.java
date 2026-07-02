@@ -51,6 +51,9 @@ public class Fragment_cadastrar_pet extends Fragment {
             @Override
             public void onClick(View v) {
                 TrocarFragment.intent_PutExtra(requireActivity(),getContext(), Segunda_activity.class,4);
+
+
+                // todo metodo de criar bucket deve ser movido para sessão de criar conta
                 Retrofit retrofit = new Retrofit.Builder().baseUrl("https://pqghcqdtuaeupdlrdbyu.storage.supabase.co/").addConverterFactory(GsonConverterFactory.create()).build();
                 API_supabase_CreateBucket api = retrofit.create(API_supabase_CreateBucket.class);
                 Create_Bucket_Body body = new Create_Bucket_Body(Usuarios.getUid(), 10485760,"image/png","image/jpg");
