@@ -22,9 +22,11 @@ import com.google.firebase.database.ValueEventListener;
 public class Usuarios {
     //todo fazer com que um novo usuario nao tenha o nome nulo
     private String email, senha, bairro, cidade;
-    private static String uid,nome;
+    private static String uid, nome;
     private static DatabaseReference child_nome;
 
+    public Usuarios() {
+    }
     //tenho que fazer com que o get uid seja dinamico para o child_nome sempre estar atualizado
 
     //serve para caso ocorra uma troca de usuario | o header do NavigationDrawer estar Atualizado | comparar se o getdisplayname confere com o valor do nó nome | caso nao
@@ -32,18 +34,18 @@ public class Usuarios {
 
         String displayName = Configuracao_firebase.getfirebaseUser().getDisplayName();
 
-        if (child_nome == null || !displayName.equals(nome)){
+        if (child_nome == null || !displayName.equals(nome)) {
 
-            child_nome = FirebaseDatabase.getInstance().getReference().child("USUARIOS").child(getUid()).child("NOME");
+            child_nome = FirebaseDatabase.getInstance().getReference().child("USUARIOS").child(getUid()).child("nome");
         }
 
         //captura o valor do nó nome |
         child_nome.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
+                if (snapshot.exists()) {
                     nome = snapshot.getValue().toString();
-                }else {
+                } else {
                     Log.i("get_child", "erro");
                 }
             }
@@ -59,28 +61,43 @@ public class Usuarios {
 
     public static String getUid() {
 
-        if (uid == null || !uid.equals(Configuracao_firebase.getfirebaseUser().getUid())) {
+        try {
+            if (uid == null || !uid.equals(Configuracao_firebase.getfirebaseUser().getUid())) {
 
-            uid = Configuracao_firebase.getfirebaseUser().getUid();
+                uid = Configuracao_firebase.getfirebaseUser().getUid();
+            }
+
+        } catch (Exception e) {
+            Log.i("getUID", e.getMessage());
+            uid = null;
         }
         return uid;
     }
 
-    public Usuarios() {
-    }
 
+    public static boolean uploadtodatabase() {
 
-    public static void uploadtodatabase() {
-
+        boolean upload = false;
         Usuarios user = new Usuarios();
 
-        //nesse atributo eu passo um metodo de criar 2 nós no realtime database
-        DatabaseReference salvar_dados_usuario = Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(getUid());
+        try {
+            if (user.getEmail() != null && getNome() != null) {
+                //nesse atributo eu passo um metodo de criar 2 nós no realtime database
+                DatabaseReference salvar_dados_usuario = Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(getUid());
 
-        //e dentro do ultimo nó (uid) salvo os atributos dessa classe (nome, email)
-        salvar_dados_usuario.child("nome").setValue(user.getNome());
-        salvar_dados_usuario.child("e-mail").setValue(user.getEmail());
+                //e dentro do ultimo nó (uid) salvo os atributos dessa classe (nome, email)
+                salvar_dados_usuario.child("nome").setValue(getNome());
+                //todo resolver email retornando null
+                salvar_dados_usuario.child("e-mail").setValue(user.getEmail());
+                upload = true;
+            }
+        } catch (Exception e) {
+            Log.i("uploadToDatabase", e.getMessage());
+            upload = false;
 
+        }
+
+        return upload;
     }
 
     public static boolean atualizarnome(String nome) {
@@ -114,6 +131,7 @@ public class Usuarios {
     public static void setUid(String uid) {
         Usuarios.uid = uid;
     }
+
     @Exclude
     public String getSenha() {
         return senha;

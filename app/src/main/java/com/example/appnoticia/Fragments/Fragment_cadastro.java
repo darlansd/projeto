@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ import com.example.appnoticia.Models.Usuarios;
 public class Fragment_cadastro extends Fragment {
 
     TextInputEditText edt_nome, edt_email, edt_senha, edt_conf_senha;
-    TextInputLayout layout_senha,layout_conf;
+    TextInputLayout layout_senha, layout_conf;
     CheckBox checkBox;
     TextView termos_uso;
     Button continuar;
@@ -60,9 +61,9 @@ public class Fragment_cadastro extends Fragment {
         continuar = view.findViewById(R.id.btn_continuar);
 
         checkBox.setOnClickListener(v -> {
-            if(checkBox.isChecked()){
+            if (checkBox.isChecked()) {
                 termos_aceitos = true;
-            }else{
+            } else {
                 termos_aceitos = false;
             }
         });
@@ -96,12 +97,15 @@ public class Fragment_cadastro extends Fragment {
         continuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (termos_aceitos) {
                     validar_cadastrar_usuario();
-                }else {
+                } else {
                     Toast.makeText(getContext(), "Voce Precisa Aceitar Os Termos De Uso", Toast.LENGTH_SHORT).show();
                 }
+
             }
+
         });
 
 
@@ -111,8 +115,8 @@ public class Fragment_cadastro extends Fragment {
     //tenho que fazer o metodo validar se os dois campos de senha foram validados e que todos os campos foram preechidos pra poder fazer o cadastro
     private void validar_cadastrar_usuario() {
 
-        nome = edt_nome.getText().toString();
-        email = edt_email.getText().toString();
+        nome = edt_nome.getText().toString().trim();
+        email = edt_email.getText().toString().trim();
         senha = edt_senha.getText().toString();
         senha_conf = edt_conf_senha.getText().toString();
 
@@ -124,20 +128,19 @@ public class Fragment_cadastro extends Fragment {
 
                         Toast.makeText(getContext(), "Cadastrando ...", Toast.LENGTH_SHORT).show();
 
-                        users.setNome(nome);
+                        Usuarios.setNome(nome);
+
                         users.setEmail(email);
                         users.setSenha(senha);
 
                         cadastrar_usuario(users.getEmail(), users.getSenha());
 
                     } else {
-                        Toast kaka = Toast.makeText(getContext(), "as senhas precisao ser iguais", Toast.LENGTH_SHORT);
-                        kaka.show();
+                        Toast.makeText(getContext(), "as senhas precisao ser iguais", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
-                    Toast kaka = Toast.makeText(getContext(), "as senhas precisao ser iguais", Toast.LENGTH_SHORT);
-                    kaka.show();
+                    Toast.makeText(getContext(), "as senhas precisao ser iguais", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 Toast kaka = Toast.makeText(getContext(), "preecha o campo de email", Toast.LENGTH_SHORT);
@@ -152,45 +155,51 @@ public class Fragment_cadastro extends Fragment {
 
     private void cadastrar_usuario(String email, String senha) {
 
-        auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+        boolean upload = Usuarios.uploadtodatabase();
 
-                if (task.isSuccessful()) {
+        if (upload) {
+            auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
 
-                    users.setUid(task.getResult().getUser().getUid());
+                    if (task.isSuccessful() && Usuarios.getUid() != null) {
 
-                    Usuarios.uploadtodatabase();
-                    Usuarios.atualizarnome(users.getNome());
+                        Usuarios.setUid(task.getResult().getUser().getUid());
+                        Usuarios.atualizarnome(Usuarios.getNome());
 
-                    startActivity(new Intent(getContext(), Navigation_drawer_Activity.class));
-                    getActivity().finish();
+                        startActivity(new Intent(getContext(), Navigation_drawer_Activity.class));
+                        getActivity().finish();
 
-                    Toast.makeText(getContext(), "cadastro concluido", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "cadastro concluido", Toast.LENGTH_SHORT).show();
 
 
-                } else {
-                    String execao = "";
+                    } else {
+                        String execao = "";
 
-                    try { //vai tentar capturar as exeçoes que o objeto task pode lançar
-                        throw (task.getException());
-                    } catch (FirebaseAuthWeakPasswordException e) {
-                        execao = "Digite Uma Senha Com Mais De 5 Caracteres";
-                    } catch (FirebaseAuthInvalidCredentialsException e) {
-                        execao = "Digite o Email No Formato ***@gmail.com";
-                    } catch (FirebaseAuthUserCollisionException e) {
-                        execao = "Email Ja Cadastrado";
-                    } catch (Exception e) {
-                        execao = "Erro ao Cadastrar Usuário" + e.getMessage();
+                        try { //vai tentar capturar as exeçoes que o objeto task pode lançar
+                            throw (task.getException());
+                        } catch (FirebaseAuthWeakPasswordException e) {
+                            execao = "Digite Uma Senha Com Mais De 5 Caracteres";
+                        } catch (FirebaseAuthInvalidCredentialsException e) {
+                            execao = "Digite o Email No Formato ***@gmail.com";
+                        } catch (FirebaseAuthUserCollisionException e) {
+                            execao = "Email Ja Cadastrado";
+                        } catch (Exception e) {
+                            execao = "Erro ao Cadastrar Usuário" + e.getMessage();
 
-                        //printa o erro no log
-                        e.printStackTrace();
+                            //printa o erro no log
+                            e.printStackTrace();
 
+                        }
+                        Toast.makeText(getContext(), execao, Toast.LENGTH_LONG).show();
                     }
-                    Toast.makeText(getContext(), execao, Toast.LENGTH_LONG).show();
                 }
-            }
-        });
+            });
+
+        }else{
+            Log.i("cadastro","Nao Foi Possivel Cadastrar");
+            Toast.makeText(requireContext(), "Nao Foi Possivel Cadastrar", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
