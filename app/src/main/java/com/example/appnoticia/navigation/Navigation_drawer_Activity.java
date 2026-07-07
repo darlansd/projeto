@@ -97,7 +97,8 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
         editar_user_header = header_views.findViewById(R.id.txt_editar_perfil_header);
 
         //fazer com que isso atualize assim que voce alterar o nome no fragment de editar perfil
-        Usuarios.getChild_nome().addValueEventListener(new ValueEventListener() {
+        //erro nessa linha
+        Usuarios.getChild_nome(Usuarios.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){

@@ -33,6 +33,8 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.example.appnoticia.Config.Configuracao_firebase;
 import com.example.appnoticia.Models.Usuarios;
 
+import java.util.Objects;
+
 public class Fragment_cadastro extends Fragment {
 
     TextInputEditText edt_nome, edt_email, edt_senha, edt_conf_senha;
@@ -129,11 +131,11 @@ public class Fragment_cadastro extends Fragment {
                         Toast.makeText(getContext(), "Cadastrando ...", Toast.LENGTH_SHORT).show();
 
                         Usuarios.setNome(nome);
+                        Usuarios.setEmail(email);
 
-                        users.setEmail(email);
                         users.setSenha(senha);
 
-                        cadastrar_usuario(users.getEmail(), users.getSenha());
+                        cadastrar_usuario(Usuarios.getEmail(), users.getSenha());
 
                     } else {
                         Toast.makeText(getContext(), "as senhas precisao ser iguais", Toast.LENGTH_SHORT).show();
@@ -155,51 +157,48 @@ public class Fragment_cadastro extends Fragment {
 
     private void cadastrar_usuario(String email, String senha) {
 
-        boolean upload = Usuarios.uploadtodatabase();
+        //boolean upload = users.uploadtodatabase();
 
-        if (upload) {
-            auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
+        auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
 
-                    if (task.isSuccessful() && Usuarios.getUid() != null) {
+                if (task.isSuccessful()) {
+                    Log.i("Cadastro","Cadastro concluido");
 
-                        Usuarios.setUid(task.getResult().getUser().getUid());
-                        Usuarios.atualizarnome(Usuarios.getNome());
+                    Usuarios.setUid(task.getResult().getUser().getUid());
+                    Usuarios.atualizarnome(Usuarios.getNome());
+                    Usuarios.atualizarEmail(Usuarios.getEmail());
+                    Log.i("cadastro","uid: "+ Usuarios.getUid()+ "\n" + "nome: "+Usuarios.getNome()+ "\n" + "e-mail: "+Usuarios.getEmail());
 
-                        startActivity(new Intent(getContext(), Navigation_drawer_Activity.class));
-                        getActivity().finish();
+                    startActivity(new Intent(getContext(), Navigation_drawer_Activity.class));
+                    getActivity().finish();
 
-                        Toast.makeText(getContext(), "cadastro concluido", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Cadastro concluido", Toast.LENGTH_SHORT).show();
 
 
-                    } else {
-                        String execao = "";
+                } else {
+                    String execao = "";
 
-                        try { //vai tentar capturar as exeçoes que o objeto task pode lançar
-                            throw (task.getException());
-                        } catch (FirebaseAuthWeakPasswordException e) {
-                            execao = "Digite Uma Senha Com Mais De 5 Caracteres";
-                        } catch (FirebaseAuthInvalidCredentialsException e) {
-                            execao = "Digite o Email No Formato ***@gmail.com";
-                        } catch (FirebaseAuthUserCollisionException e) {
-                            execao = "Email Ja Cadastrado";
-                        } catch (Exception e) {
-                            execao = "Erro ao Cadastrar Usuário" + e.getMessage();
+                    try { //vai tentar capturar as exeçoes que o objeto task pode lançar
+                        throw (task.getException());
+                    } catch (FirebaseAuthWeakPasswordException e) {
+                        execao = "Digite Uma Senha Com Mais De 5 Caracteres";
+                    } catch (FirebaseAuthInvalidCredentialsException e) {
+                        execao = "Digite o Email No Formato ***@gmail.com";
+                    } catch (FirebaseAuthUserCollisionException e) {
+                        execao = "Email Ja Cadastrado";
+                    } catch (Exception e) {
+                        execao = "Erro ao Cadastrar Usuário" + e.getMessage();
 
-                            //printa o erro no log
-                            e.printStackTrace();
+                        //printa o erro no log
+                        e.printStackTrace();
 
-                        }
-                        Toast.makeText(getContext(), execao, Toast.LENGTH_LONG).show();
                     }
+                    Toast.makeText(getContext(), execao, Toast.LENGTH_LONG).show();
                 }
-            });
-
-        }else{
-            Log.i("cadastro","Nao Foi Possivel Cadastrar");
-            Toast.makeText(requireContext(), "Nao Foi Possivel Cadastrar", Toast.LENGTH_SHORT).show();
-        }
+            }
+        });
 
     }
 

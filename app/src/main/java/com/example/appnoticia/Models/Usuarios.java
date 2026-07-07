@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.example.appnoticia.Config.Configuracao_firebase;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,32 +22,47 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Usuarios {
     //todo fazer com que um novo usuario nao tenha o nome nulo
-    private String email, senha, bairro, cidade;
-    private static String uid, nome;
+    private String senha, bairro, cidade;
+    private static String uid, nome, email;
     private static DatabaseReference child_nome;
 
     public Usuarios() {
     }
     //tenho que fazer com que o get uid seja dinamico para o child_nome sempre estar atualizado
 
-    //serve para caso ocorra uma troca de usuario | o header do NavigationDrawer estar Atualizado | comparar se o getdisplayname confere com o valor do nó nome | caso nao
-    public static DatabaseReference getChild_nome() {
+    //todo tentar fazer o get uid e child nome fazerem uma pesquisa no realtime o getuid vai tentar recuperar o uid pelo displayname
+
+    public static String getUid() {
+
+        try {
+            if (!uid.equals(Configuracao_firebase.getfirebaseUser().getUid()) || uid == null ) {
+
+                uid = Configuracao_firebase.getfirebaseUser().getUid();
+            }
+
+        } catch (Exception e) {
+            Log.i("getUID", e.getMessage());
+            uid = null;
+        }
+        return uid;
+    }
+    public static DatabaseReference getChild_nome(String uid) {
 
         String displayName = Configuracao_firebase.getfirebaseUser().getDisplayName();
-
+        //todo resolver .esquals recebendo null
         if (child_nome == null || !displayName.equals(nome)) {
 
-            child_nome = FirebaseDatabase.getInstance().getReference().child("USUARIOS").child(getUid()).child("nome");
+            //erro nessa linha
+            child_nome = FirebaseDatabase.getInstance().getReference().child("USUARIOS").child(uid).child("nome");
         }
-
         //captura o valor do nó nome |
-        child_nome.addListenerForSingleValueEvent(new ValueEventListener() {
+        child_nome.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     nome = snapshot.getValue().toString();
                 } else {
-                    Log.i("get_child", "erro");
+                    Log.i("get_child", "snapshot nao exite");
                 }
             }
 
@@ -59,73 +75,43 @@ public class Usuarios {
         return child_nome;
     }
 
-    public static String getUid() {
+    public static boolean atualizarEmail(String email) {
 
         try {
-            if (uid == null || !uid.equals(Configuracao_firebase.getfirebaseUser().getUid())) {
+            Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(getUid()).child("e-mail").setValue(email);
 
-                uid = Configuracao_firebase.getfirebaseUser().getUid();
-            }
-
-        } catch (Exception e) {
-            Log.i("getUID", e.getMessage());
-            uid = null;
-        }
-        return uid;
-    }
-
-
-    public static boolean uploadtodatabase() {
-
-        boolean upload = false;
-        Usuarios user = new Usuarios();
-
-        try {
-            if (user.getEmail() != null && getNome() != null) {
-                //nesse atributo eu passo um metodo de criar 2 nós no realtime database
-                DatabaseReference salvar_dados_usuario = Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(getUid());
-
-                //e dentro do ultimo nó (uid) salvo os atributos dessa classe (nome, email)
-                salvar_dados_usuario.child("nome").setValue(getNome());
-                //todo resolver email retornando null
-                salvar_dados_usuario.child("e-mail").setValue(user.getEmail());
-                upload = true;
-            }
-        } catch (Exception e) {
-            Log.i("uploadToDatabase", e.getMessage());
-            upload = false;
-
-        }
-
-        return upload;
-    }
-
-    public static boolean atualizarnome(String nome) {
-
-        try {
-            //aqui eu faço referencia ate o nó nome e troco o valor pelo parametro
-            Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(getUid()).child("nome").setValue(nome);
-
-            //alterar o nome dentro da variavel displayName
-            FirebaseUser user = Configuracao_firebase.getfirebaseUser();
-            UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder().setDisplayName(nome).build();
-            user.updateProfile(profile).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-
-                    if (!task.isSuccessful()) {
-                        Log.e("perfil", "erro ao atualizar o Nome do perfil");
-                    }
-
-                }
-            });
+            //todo descbrir uma maneira de trocar o email tanto no realtime quanto no auth quando trocar pra autenticaçao do google
             return true;
 
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+    }
 
+    public static boolean atualizarnome(String nome) {
+
+        try {
+
+            //aqui eu faço referencia ate o nó nome e troco o valor pelo parametro
+            Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(getUid()).child("nome").setValue(nome);
+
+            //alterar o nome dentro da variavel displayName
+            FirebaseUser user = Configuracao_firebase.getfirebaseUser();
+            UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder().setDisplayName(nome).build();
+            user.updateProfile(profile).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    Log.i("perfil", "Nome De Perfil Atualizado");
+                }
+            });
+            return true;
+
+        } catch (Exception e) {
+            Log.i("perfil", "erro ao atualizar o Nome do perfil");
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public static void setUid(String uid) {
@@ -165,11 +151,11 @@ public class Usuarios {
         Usuarios.nome = nome;
     }
 
-    public String getEmail() {
+    public static String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public static void setEmail(String email) {
+        Usuarios.email = email;
     }
 }
