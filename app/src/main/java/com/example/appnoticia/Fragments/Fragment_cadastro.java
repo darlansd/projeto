@@ -44,7 +44,7 @@ public class Fragment_cadastro extends Fragment {
     Button continuar;
     String nome, email, senha, senha_conf;
     boolean termos_aceitos = false;
-    Usuarios users = new Usuarios();
+    Usuarios users = new Usuarios(null,null,null);
     FirebaseAuth auth = Configuracao_firebase.getfirebaseauth();
 
     @Override

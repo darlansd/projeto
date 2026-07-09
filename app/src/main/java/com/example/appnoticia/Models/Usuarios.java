@@ -26,51 +26,41 @@ public class Usuarios {
     private static String uid, nome, email;
     private static DatabaseReference child_nome;
 
-    public Usuarios() {
+    public Usuarios(String uid, String nome, String email) {
+        Usuarios.uid = uid;
+        Usuarios.nome = nome;
+        Usuarios.email = email;
     }
+
+    public Usuarios() {
+
+    }
+
     //tenho que fazer com que o get uid seja dinamico para o child_nome sempre estar atualizado
-
-    //todo tentar fazer o get uid e child nome fazerem uma pesquisa no realtime o getuid vai tentar recuperar o uid pelo displayname
-
     public static String getUid() {
 
         try {
-            if (!uid.equals(Configuracao_firebase.getfirebaseUser().getUid()) || uid == null ) {
+            if (uid == null || !uid.equals(Configuracao_firebase.getfirebaseUser().getUid())) {
 
                 uid = Configuracao_firebase.getfirebaseUser().getUid();
             }
 
         } catch (Exception e) {
             Log.i("getUID", e.getMessage());
-            uid = null;
+
         }
         return uid;
     }
+
+    //todo esse metodo da um erro quando voce tentar criar 2 usuarios sem fechar o app antes
+    //fazer uma validaçao melhor
     public static DatabaseReference getChild_nome(String uid) {
 
-        String displayName = Configuracao_firebase.getfirebaseUser().getDisplayName();
-        //todo resolver .esquals recebendo null
-        if (child_nome == null || !displayName.equals(nome)) {
+        if (child_nome == null) {
 
-            //erro nessa linha
             child_nome = FirebaseDatabase.getInstance().getReference().child("USUARIOS").child(uid).child("nome");
+
         }
-        //captura o valor do nó nome |
-        child_nome.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    nome = snapshot.getValue().toString();
-                } else {
-                    Log.i("get_child", "snapshot nao exite");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         return child_nome;
     }

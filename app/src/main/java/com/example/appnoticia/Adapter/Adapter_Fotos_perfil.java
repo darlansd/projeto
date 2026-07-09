@@ -19,7 +19,7 @@ import java.util.List;
 public class Adapter_Fotos_perfil extends RecyclerView.Adapter<Adapter_Fotos_perfil.viewholder> {
 
     Context context;
-    List<Foto_perfis> fotos;
+    private final List<Foto_perfis> fotos;
 
     public Adapter_Fotos_perfil(Context context, List<Foto_perfis> foto_perfil) {
         this.context = context;
@@ -42,7 +42,7 @@ public class Adapter_Fotos_perfil extends RecyclerView.Adapter<Adapter_Fotos_per
         Foto_perfis posicao = fotos.get(position);
 
         Glide.with(holder.foto)
-                .load("https://pqghcqdtuaeupdlrdbyu.supabase.co/storage/v1/object/public/Adopet/fogman.png")
+                .load(posicao.getLink())
                 .placeholder(R.drawable.placeholder_img_perfil)
                 .into(holder.foto);
 
@@ -50,7 +50,7 @@ public class Adapter_Fotos_perfil extends RecyclerView.Adapter<Adapter_Fotos_per
 
     @Override
     public int getItemCount() {
-        return 1;
+        return fotos.size();
     }
 
     public static class viewholder extends RecyclerView.ViewHolder {

@@ -20,6 +20,8 @@ import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.ui.AppBarConfiguration;
+
+import com.bumptech.glide.Glide;
 import com.example.appnoticia.Activities.MainActivity;
 import com.example.appnoticia.Config.TrocarFragment;
 import com.example.appnoticia.Fragments.Fragment_adote_um_pet;
@@ -27,8 +29,10 @@ import com.example.appnoticia.Fragments.Fragment_cadastrar_pet;
 import com.example.appnoticia.Fragments.Fragment_editar_perfil;
 import com.example.appnoticia.Config.Configuracao_firebase;
 import com.example.appnoticia.Fragments.Fragment_pets_cadastrados;
+import com.example.appnoticia.Models.Foto_perfis;
 import com.example.appnoticia.Models.Usuarios;
 import com.example.appnoticia.R;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,7 +46,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
     Button cadastrar_pet_header;
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
-
+    ShapeableImageView fotoperfilHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,13 +96,17 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
 
         //fazendo referencia as views do header e alterando elas
         View header_views = nav_view.getHeaderView(0);
+        fotoperfilHeader = header_views.findViewById(R.id.shapeableImageView);
         user_name_header = header_views.findViewById(R.id.txt_user_name_header);
         cadastrar_pet_header = header_views.findViewById(R.id.btn_cadastrar_pet_header);
         editar_user_header = header_views.findViewById(R.id.txt_editar_perfil_header);
 
+        //responsavel por carregar as fotos do supabase na imagem de perfil do naviagtion drawer
+        Glide.with(fotoperfilHeader).load(Foto_perfis.getFotoAtual()).placeholder(R.drawable.placeholder_img_perfil).into(fotoperfilHeader);
+
         //fazer com que isso atualize assim que voce alterar o nome no fragment de editar perfil
         //erro nessa linha
-        Usuarios.getChild_nome(Usuarios.getUid()).addValueEventListener(new ValueEventListener() {
+        Usuarios.getChild_nome(Configuracao_firebase.getfirebaseUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){

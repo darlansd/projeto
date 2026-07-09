@@ -30,7 +30,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewholder> {
         this.context = context;
         this.dados_pet = dados_pet;
     }
-
     //reponsavel por criar os primeiros itens da lista
     @NonNull
     @Override

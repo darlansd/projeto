@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.appnoticia.Adapter.Adapter;
+import com.example.appnoticia.Adapter.Adapter_Fotos_perfil;
 import com.example.appnoticia.Config.API_ceps;
 import com.example.appnoticia.Config.Configuracao_firebase;
 import com.example.appnoticia.Models.Ceps;
@@ -35,6 +37,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -50,8 +53,9 @@ public class Fragment_editar_informacoes_pessoais extends Fragment {
     AppCompatButton alterar;
     ShapeableImageView imagem_perfil;
     boolean finalizar, campo_cep, campo_nome = false;
-    List<Pets> dados;
-    Context context;
+    RecyclerView recycler;
+    Adapter_Fotos_perfil adapter;
+    List<Foto_perfis> fotos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,7 +77,37 @@ public class Fragment_editar_informacoes_pessoais extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(requireContext());
-                View mview = getLayoutInflater().inflate(R.layout.placeholder_imagens_perfil,null);
+                View mview = getLayoutInflater().inflate(R.layout.placeholder_imagens_perfil, null);
+
+                fotos = new ArrayList<>();
+
+                Configuracao_firebase.getfirebasedatabase().child("IMAGENS PERFIL").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            Log.i("snaphot_fotos", "conectou");
+                            fotos.clear();
+                            for (DataSnapshot fds : snapshot.getChildren()) {
+                                Foto_perfis val = fds.getValue(Foto_perfis.class);
+                                fotos.add(val);
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.i("snaphot_fotos", "leitado");
+                    }
+                });
+
+                recycler = mview.findViewById(R.id.recycler);
+                RecyclerView.LayoutManager manager = new LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false);
+                recycler.setLayoutManager(manager);
+                adapter = new Adapter_Fotos_perfil(requireContext(), fotos);
+                recycler.setAdapter(adapter);
+                recycler.setHasFixedSize(true);
+
                 alertDialog.setTitle("Escolha Seu Avatar Adopet");
 
                 alertDialog.setPositiveButton("definir", new DialogInterface.OnClickListener() {
@@ -86,43 +120,51 @@ public class Fragment_editar_informacoes_pessoais extends Fragment {
                 alertDialog.create().show();
             }
         });
-        Glide.with(imagem_perfil).load(Foto_perfis.getFotoAtual() ).placeholder(R.drawable.placeholder_img_perfil).into(imagem_perfil);
+        Glide.with(imagem_perfil).load(Foto_perfis.getFotoAtual()).placeholder(R.drawable.placeholder_img_perfil).into(imagem_perfil);
 
         //Configuracao_firebase.getfirebasedatabase().child("IMAGENS PERFIL").addValueEventListener();
-
-        Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Usuarios.getUid()).child("cidade").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    cidade = snapshot.getValue().toString();
-                    edt_novo_cep.setHint(cidade);
-                } else {
-                    Log.i("get cidade", "leitado");
+        try {
+            Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Usuarios.getUid()).child("cidade").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        cidade = snapshot.getValue().toString();
+                        edt_novo_cep.setHint(cidade);
+                    } else {
+                        Log.i("get cidade", "leitado");
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("String cidade", error.getMessage());
-            }
-        });
-
-        Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Usuarios.getUid()).child("bairro").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    bairro = snapshot.getValue().toString() + " - " + edt_novo_cep.getHint().toString();
-                    edt_novo_cep.setHint(bairro);
-                } else {
-                    Log.i("get bairro", "leitado");
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.i("String cidade", error.getMessage());
                 }
-            }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("String bairro", error.getMessage());
-            }
-        });
+        } catch (Exception e) {
+            Log.i("get cidade", e.getMessage());
+        }
+
+        try {
+            Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(Usuarios.getUid()).child("bairro").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        bairro = snapshot.getValue().toString() + " - " + edt_novo_cep.getHint().toString();
+                        edt_novo_cep.setHint(bairro);
+                    } else {
+                        Log.i("get bairro", "leitado");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.i("String bairro", error.getMessage());
+                }
+            });
+        } catch (Exception e) {
+            Log.i("get bairro", e.getMessage());
+        }
 
         //fazer o botao confirmar aparecer para o campo nome
         edt_novo_nome.addTextChangedListener(new TextWatcher() {

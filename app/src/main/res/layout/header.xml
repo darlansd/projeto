@@ -5,18 +5,18 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="30dp">
+    android:layout_marginTop="20dp">
 
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shapeableImageView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="20dp"
         android:scaleType="centerCrop"
         android:src="@drawable/castracao"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
@@ -25,9 +25,9 @@
         android:id="@+id/txt_user_name_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="25dp"
         android:gravity="start"
-        android:text=""
+        android:text="**********"
         android:fontFamily="@font/montserrat_bold"
         android:textColor="@color/turquesa"
         android:textSize="19sp"
@@ -53,7 +53,7 @@
         android:id="@+id/btn_cadastrar_pet_header"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="100dp"
         android:text="@string/cadastre_um_pet"
         android:textAllCaps="false"
         android:fontFamily="@font/montserrat_bold"
