@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -30,6 +32,7 @@ import com.example.appnoticia.Models.Foto_perfis;
 import com.example.appnoticia.Models.Pets;
 import com.example.appnoticia.Models.Usuarios;
 import com.example.appnoticia.R;
+import com.example.appnoticia.RecyclerViewOnClickListener.OnClick_Recycler;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -72,6 +75,7 @@ public class Fragment_editar_informacoes_pessoais extends Fragment {
         imagem_perfil = view.findViewById(R.id.img_imagem_perfil);
         edt_novo_nome.setText(Configuracao_firebase.getfirebaseUser().getDisplayName());
 
+        Glide.with(imagem_perfil).load(Foto_perfis.getFotoAtual()).placeholder(R.drawable.placeholder_img_perfil).into(imagem_perfil);
 
         imagem_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,25 +106,36 @@ public class Fragment_editar_informacoes_pessoais extends Fragment {
                 });
 
                 recycler = mview.findViewById(R.id.recycler);
-                RecyclerView.LayoutManager manager = new LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false);
+                RecyclerView.LayoutManager manager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
                 recycler.setLayoutManager(manager);
                 adapter = new Adapter_Fotos_perfil(requireContext(), fotos);
                 recycler.setAdapter(adapter);
                 recycler.setHasFixedSize(true);
 
-                alertDialog.setTitle("Escolha Seu Avatar Adopet");
-
-                alertDialog.setPositiveButton("definir", new DialogInterface.OnClickListener() {
+                recycler.addOnItemTouchListener(new OnClick_Recycler(requireContext(), recycler, new OnClick_Recycler.OnItemClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onItemClick(View view, int position) {
+                        String link = fotos.get(position).getLink();
+                        Usuarios.atualizarFoto(link);
 
                     }
-                });
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    }
+                }));
+
+
                 alertDialog.setView(mview);
                 alertDialog.create().show();
             }
         });
-        Glide.with(imagem_perfil).load(Foto_perfis.getFotoAtual()).placeholder(R.drawable.placeholder_img_perfil).into(imagem_perfil);
 
         //Configuracao_firebase.getfirebasedatabase().child("IMAGENS PERFIL").addValueEventListener();
         try {

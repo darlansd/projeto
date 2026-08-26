@@ -104,6 +104,18 @@ public class Usuarios {
         }
     }
 
+    public static boolean atualizarFoto(String foto){
+        try{
+            Configuracao_firebase.getfirebasedatabase().child("USUARIOS").child(getUid()).child("foto-perfil").setValue(foto);
+
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public static void setUid(String uid) {
         Usuarios.uid = uid;
     }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -24,6 +25,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import com.bumptech.glide.Glide;
 import com.example.appnoticia.Activities.MainActivity;
 import com.example.appnoticia.Config.TrocarFragment;
+import com.example.appnoticia.Fragments.Fragment_Denuncia;
 import com.example.appnoticia.Fragments.Fragment_adote_um_pet;
 import com.example.appnoticia.Fragments.Fragment_cadastrar_pet;
 import com.example.appnoticia.Fragments.Fragment_editar_perfil;
@@ -104,19 +106,22 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
         //responsavel por carregar as fotos do supabase na imagem de perfil do naviagtion drawer
         Glide.with(fotoperfilHeader).load(Foto_perfis.getFotoAtual()).placeholder(R.drawable.placeholder_img_perfil).into(fotoperfilHeader);
 
+
         //fazer com que isso atualize assim que voce alterar o nome no fragment de editar perfil
         //erro nessa linha
         Usuarios.getChild_nome(Configuracao_firebase.getfirebaseUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
+                if (snapshot.exists()) {
                     user_name_header.setText(snapshot.getValue().toString());
-                }else {
-                    Log.i("snaphsot-mudar-valor_header-nome","null");
+                } else {
+                    Log.i("snaphsot-mudar-valor_header-nome", "null");
                 }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         });
 
         editar_user_header.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +139,7 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
             }
         });
     }
+
     // responsavel por controlar a navegaçao dos itens no navigation drawer
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -144,11 +150,11 @@ public class Navigation_drawer_Activity extends AppCompatActivity implements Nav
             finish();
             Toast.makeText(getApplicationContext(), "Usuario Deslogado", Toast.LENGTH_SHORT);
 
-        } else if (menuItem.getItemId() == R.id.menu_adote) {
-            TrocarFragment.trocar(Navigation_drawer_Activity.this, R.id.fragmentContainer, new Fragment_adote_um_pet());
-        } else if (menuItem.getItemId() == R.id.menu_pets_cadastrados) {
-            TrocarFragment.trocar(Navigation_drawer_Activity.this, R.id.fragmentContainer, new Fragment_pets_cadastrados());
-        }
+        } else if (menuItem.getItemId() == R.id.menu_adote) {TrocarFragment.trocar(Navigation_drawer_Activity.this, R.id.fragmentContainer, new Fragment_adote_um_pet());
+
+        } else if (menuItem.getItemId() == R.id.menu_pets_cadastrados) {TrocarFragment.trocar(Navigation_drawer_Activity.this, R.id.fragmentContainer, new Fragment_pets_cadastrados());
+
+        } else if (menuItem.getItemId() == R.id.menu_disk_denuncia) {TrocarFragment.trocar(Navigation_drawer_Activity.this,R.id.fragmentContainer,new Fragment_Denuncia());}
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

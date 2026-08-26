@@ -170,6 +170,7 @@ public class Fragment_cadastro extends Fragment {
                     Usuarios.atualizarnome(Usuarios.getNome());
                     Usuarios.atualizarEmail(Usuarios.getEmail());
                     Log.i("cadastro","uid: "+ Usuarios.getUid()+ "\n" + "nome: "+Usuarios.getNome()+ "\n" + "e-mail: "+Usuarios.getEmail());
+                    Usuarios.atualizarFoto("https://pqghcqdtuaeupdlrdbyu.supabase.co/storage/v1/object/public/Adopet/padrao.jpg");
 
                     startActivity(new Intent(getContext(), Navigation_drawer_Activity.class));
                     getActivity().finish();
