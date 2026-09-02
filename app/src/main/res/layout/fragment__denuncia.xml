@@ -62,7 +62,7 @@
             android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -167,7 +167,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -239,7 +239,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
-                    android:text="guarda municipal"
+                    android:text="Rua A,qd B-Nova Cidade"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -264,13 +264,13 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
-            android:src="@drawable/ic_loc" />
+            android:src="@drawable/ic_denuncia_online" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -281,7 +281,6 @@
                 android:textColor="@color/turquesa_acinzentado"
                 android:textSize="15sp" />
 
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -291,37 +290,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="www."
+                    android:text="www.amazonasdenuncia.am.gov.br"
                     android:textColor="@color/green"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Policia Civil"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="SEMA Unidade Local:"
-                    android:textColor="@color/green"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Disk Denuncia"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -334,15 +304,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="CISP Zona Norte:"
+                    android:text="www.pcmam.am.gov.br/denuncia"
                     android:textColor="@color/green"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:text="guarda municipal"
                     android:textSize="12sp" />
 
             </LinearLayout>
